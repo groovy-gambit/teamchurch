@@ -1,0 +1,1 @@
+Rest of the components such as <PageHeader /> and <MainNav /> are placed in the components folder.
