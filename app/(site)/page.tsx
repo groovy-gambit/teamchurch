@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -102,6 +103,9 @@ export default function Home() {
                     헌금
                   </a>
                 </li>
+                <li>
+                  <Link href="/blog">Blog</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -113,7 +117,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-screen-xl px-4 pb-8 pt-20 lg:grid-cols-12 lg:gap-8 lg:py-16 lg:pt-28 xl:gap-0">
           <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
-              TEAM Church{" "}
+              TEAM Church{' '}
             </h1>
             <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
