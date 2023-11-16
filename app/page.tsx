@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import navLogo from "../public/team_church_logo.svg";
+import heroImage from "../public/gradient.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,7 +25,7 @@ export default function Home() {
     >
       <div className="mx-auto h-96 px-0 lg:container">
         {/* NAV */}
-        <header className="w-full">
+        <header className="mb-6 w-full">
           <nav className="felx-row flex w-full justify-between py-2">
             <Link href="/" legacyBehavior>
               <Image src={navLogo} alt="Team Church logo" />
@@ -72,28 +73,19 @@ export default function Home() {
         </header>
         {/* NAV DONE */}
         {/* Start block */}
-        <section className="bg-white dark:bg-gray-900">
-          <div className="mx-auto grid max-w-screen-xl px-4 pb-8 pt-20 lg:grid-cols-12 lg:gap-8 lg:py-16 lg:pt-28 xl:gap-0">
-            <div className="mr-auto place-self-center lg:col-span-7">
-              <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
-                TEAM Church{" "}
-              </h1>
-              <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              <div className="space-y-4 sm:flex sm:space-x-4 sm:space-y-0"></div>
-            </div>
-            <div className="hidden lg:col-span-5 lg:mt-0 lg:flex">
-              <img src="./images/hero.png" alt="hero image" />
-            </div>
+        <section rel="hero relative">
+          <Image
+            alt="hero-banner"
+            src={heroImage}
+            className="w-full rounded-md"
+          />
+          <div className="absolute left-48 top-28">
+            <h1 className="text-5xl font-semibold">TEAM.</h1>
+            <h2 className="text-4xl font-semibold">설립헌신예배.</h2>
+            <h3 className="text-4xl font-semibold">2023년 12월 3일.</h3>
           </div>
         </section>
+
         {/* End block */}
         {/* Start block */}
         <section className="bg-white dark:bg-gray-900">
