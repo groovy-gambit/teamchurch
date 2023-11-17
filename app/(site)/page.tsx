@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import navLogo from "../public/team_church_logo.svg";
-import heroImage from "../public/gradient.png";
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import navLogo from '@/public/team_church_logo.svg';
+import heroImage from '@/public/gradient.png';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,9 +13,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
-import Link from "next/link";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+} from '@/components/ui/navigation-menu';
+import Link from 'next/link';
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 
 export default function Home() {
   return (
@@ -66,6 +66,9 @@ export default function Home() {
                       헌금
                     </NavigationMenuLink>
                   </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem asChild>
+                  <Link href="/post">Post</Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
