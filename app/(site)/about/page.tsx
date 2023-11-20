@@ -112,8 +112,8 @@ export default function Home() {
               <span className="mr-2 font-bold">교회 안내</span>
             </section>
             {/* Main */}
-            <section className="mt-6">
-              <h1 className="font-semibod mb-12 text-3xl">교회 안내</h1>
+            <section className="prose prose-h1:font-semibold prose-h1:text-3xl prose-h1:mb-12 prose-h2:font-semibold prose-h2:text-2xl prose-h2:mb-4 prose-img:mb-4 prose-p:mb-12 mt-6">
+              <h1>교회 안내</h1>
               <Image alt="hero-banner" src={heroImage} className="rounded-md" />
               <p className="break-word">
                 팀쳐치는 가정과 다음세대에 대한 구체적인 비전을 가지고 세 목회자
@@ -125,6 +125,7 @@ export default function Home() {
                 리더십이나 모든 성도들의 섬김에 있어서 좁게든, 넓게는 팀사역의
                 가치를 실현해 나갈 것입니다. 
               </p>
+              <h2>교회 안내</h2>
             </section>
           </div>
         </div>
