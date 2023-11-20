@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import navLogo from '@/public/team_church_logo.svg';
+import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import heroImage from '@/public/gradient.png';
 import {
   NavigationMenu,
@@ -103,8 +104,13 @@ export default function Home() {
               </div>
             </section>
           </div>
-          <div className="flex- flex flex-auto bg-blue-300">
-            <section>I AM FULL?</section>
+          <div className="flex flex-auto flex-row bg-blue-300">
+            {/* breadcrumb */}
+            <section className="flex flex-row py-2">
+              <span className="mr-2">소개</span>
+              <ChevronRightIcon className="mr-2 h-6 w-4 font-bold" />
+              <span className="mr-2 font-bold">교회 안내</span>
+            </section>
           </div>
         </div>
       </div>
