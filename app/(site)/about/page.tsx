@@ -78,7 +78,7 @@ export default function Home() {
         {/* NAV DONE */}
         <div className="flex flex-row pb-20">
           {/* Two Column Layout */}
-          <div className="hidden bg-red-300 lg:flex lg:w-56 lg:flex-col">
+          <div className="hidden  lg:flex lg:w-56 lg:flex-col">
             <section className="border-b border-gray-300 pb-2">
               {/* Current Section Title */}
               <h2 className="py-2">소개</h2>
@@ -104,7 +104,7 @@ export default function Home() {
               </div>
             </section>
           </div>
-          <div className="lg:w-subpage-main  flex flex-auto flex-col bg-blue-300">
+          <div className="lg:w-subpage-main  flex flex-auto flex-col">
             {/* breadcrumb */}
             <section className="flex flex-row py-2">
               <span className="mr-2">소개</span>
