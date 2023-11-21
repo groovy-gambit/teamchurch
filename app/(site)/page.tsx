@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import heroImage from '@/public/about-hero.png';
+import heroImage from '@/public/people-hero.png';
 
 import Header from '@/components/ui/header';
 

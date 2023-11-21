@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
-import heroImage from '@/public/about-hero.png';
+import heroImage from '@/public/church-hero.png';
 import Link from 'next/link';
 
 import Header from '@/components/ui/header';
