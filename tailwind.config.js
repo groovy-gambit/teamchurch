@@ -75,6 +75,32 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#000',
+            'ul > li::marker': {
+              color: '#000',
+            },
+            h1: {
+              fontWeight: '600',
+              fontSize: '1.875rem',
+              marginBottom: '3rem',
+            },
+            h2: {
+              fontWeight: '600',
+              fontSize: '1.5rem',
+              marginBottom: '1rem',
+            },
+            img: {
+              marginBottom: '1rem',
+            },
+            p: {
+              marginBottom: '3rem',
+            },
+          },
+        },
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
