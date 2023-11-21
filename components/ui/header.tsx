@@ -81,11 +81,11 @@ export default function Header() {
                   <NavigationMenuContent>
                     <NavigationMenuLink>Link</NavigationMenuLink>
                   </NavigationMenuContent> */}
-              <Link href="/offering" legacyBehavior passHref>
+              {/* <Link href="/offering" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   헌금
                 </NavigationMenuLink>
-              </Link>
+              </Link> */}
             </NavigationMenuItem>
             <NavigationMenuItem asChild>
               <Link href="/post">Post</Link>
