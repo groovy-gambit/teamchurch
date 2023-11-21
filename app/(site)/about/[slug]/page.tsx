@@ -1,14 +1,19 @@
 import { client } from '@/sanity/lib/client';
-import { aboutPageQuery } from '@/sanity/lib/queries';
+import { pageQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
-async function getAboutPage() {
-  const pageData = await client.fetch(aboutPageQuery);
-  return pageData[0];
+type Props = {
+  params: { slug: string };
+};
+
+async function getPageData(slug: string) {
+  const pageData = await client.fetch(pageQuery, { slug: slug });
+  return pageData;
 }
-export default async function Page() {
-  const data = await getAboutPage();
+export default async function Page({ params }: Props) {
+  const slug = params.slug;
+  const data = await getPageData(slug);
   return (
     <>
       <h1>{data.title}</h1>

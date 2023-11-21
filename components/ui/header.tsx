@@ -56,9 +56,9 @@ export default function Header() {
               <NavigationMenuContent>
                 <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
                   <ListItem href="/about" title="교회 안내" />
-                  <ListItem href="/hours" title="예배 시간" />
-                  <ListItem href="/staff" title="섬기는 사람들" />
-                  <ListItem href="/contact" title="위치 및 연락 방법" />
+                  <ListItem href="/about/hours" title="예배 시간" />
+                  <ListItem href="/about/staff" title="섬기는 사람들" />
+                  <ListItem href="/about/contact" title="위치 및 연락 방법" />
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

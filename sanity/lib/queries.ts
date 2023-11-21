@@ -2,17 +2,27 @@
 
 import { groq } from 'next-sanity';
 
-// Get all posts
-export const postsQuery = groq`*[_type == "post" && defined(slug.current)]{
-    _id, title, slug
+// Get page
+export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
+    title, slug, body, "imageUrl": mainImage.asset->url, mainImage,
   }`;
 
-// Get a single post by its slug
-export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{ 
-    title, mainImage, body
+// Get about page
+export const aboutPageQuery = groq`*[_type == "page" && slug.current == 'about']{
+    title, slug, body, "imageUrl": mainImage.asset->url, mainImage
   }`;
 
-// Get all post slugs
-export const postPathsQuery = groq`*[_type == "post" && defined(slug.current)][]{
-    "params": { "slug": slug.current }
+// Get hours page
+export const hoursPageQuery = groq`*[_type == "page" && slug.current == 'hours']{
+    title, slug, body, "imageUrl": mainImage.asset->url, mainImage
+  }`;
+
+// Get staff page
+export const staffPageQuery = groq`*[_type == "page" && slug.current == 'staff']{
+    title, slug, body, "imageUrl": mainImage.asset->url, mainImage
+  }`;
+
+// Get contact page
+export const contactPageQuery = groq`*[_type == "page" && slug.current == 'contact']{
+    title, slug, body, "imageUrl": mainImage.asset->url, mainImage
   }`;
