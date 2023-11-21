@@ -1,22 +1,11 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import navLogo from '@/public/team_church_logo.svg';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import heroImage from '@/public/gradient.png';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from '@/components/ui/navigation-menu';
 import Link from 'next/link';
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+
+import Header from '@/components/ui/header';
 
 export default function Home() {
   return (
@@ -25,57 +14,7 @@ export default function Home() {
                   justify-between bg-white align-top"
     >
       <div className="mx-auto h-96 px-0 lg:container">
-        {/* NAV */}
-        <header className="mb-6 w-full">
-          <nav className="felx-row flex w-full justify-between py-2">
-            <Link href="/" legacyBehavior>
-              <Image src={navLogo} alt="Team Church logo" />
-            </Link>
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>소개</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <NavigationMenuLink href="/about">소개</NavigationMenuLink>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>설교</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <NavigationMenuLink href="/sermon-guide">
-                      개요
-                    </NavigationMenuLink>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>사역</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <NavigationMenuLink href="/ministries">
-                      방향
-                    </NavigationMenuLink>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  {/* <NavigationMenuTrigger>헌금</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <NavigationMenuLink>Link</NavigationMenuLink>
-                  </NavigationMenuContent> */}
-                  <Link href="/offering" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      헌금
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem asChild>
-                  <Link href="/post">Post</Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </nav>
-        </header>
-        {/* NAV DONE */}
+        <Header />
         <div className="flex flex-row pb-20">
           {/* Two Column Layout */}
           <div className="hidden  lg:flex lg:w-56 lg:flex-col">
