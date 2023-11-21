@@ -79,6 +79,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: '#000',
+            maxWidth: null,
             'ul > li::marker': {
               color: '#000',
             },
