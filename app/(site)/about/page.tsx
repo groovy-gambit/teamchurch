@@ -17,12 +17,12 @@ export default function Home() {
         <Header />
         <div className="flex flex-row pb-20">
           {/* Two Column Layout */}
-          <div className="hidden  lg:flex lg:w-56 lg:flex-col">
+          <div className="hidden  pr-6 lg:flex lg:w-56 lg:flex-col">
             <section className="border-b border-gray-300 pb-2">
               {/* Current Section Title */}
               <h2 className="py-2">소개</h2>
             </section>
-            <section className="border-b border-gray-300 pb-2">
+            <section>
               {/* Subsection menu */}
               <div className="flex flex-col">
                 <Link href="/about" className="py-2 font-bold">
@@ -43,7 +43,7 @@ export default function Home() {
               </div>
             </section>
           </div>
-          <div className="lg:w-subpage-main  flex flex-auto flex-col">
+          <div className="lg:w-subpage-main flex flex-auto flex-col">
             {/* breadcrumb */}
             <section className="flex flex-row py-2">
               <span className="mr-2">소개</span>
@@ -53,7 +53,12 @@ export default function Home() {
             {/* Main */}
             <section className="prose mt-6">
               <h1>교회 안내</h1>
-              <Image alt="hero-banner" src={heroImage} className="rounded-md" />
+              <Image
+                alt="hero-banner"
+                src={heroImage}
+                className="rounded-md"
+                width={704}
+              />
               <p className="break-word">
                 팀쳐치는 가정과 다음세대에 대한 구체적인 비전을 가지고 세 목회자
                 가정의 헌신으로 시작되었습니다. 인격적인 성숙함과 수평적이면서도
