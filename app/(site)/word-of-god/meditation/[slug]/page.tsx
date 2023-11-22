@@ -12,7 +12,7 @@ async function getPageData(slug: string) {
 }
 
 async function getAllMeditations(): Promise<any[]> {
-  const dataList = await client.fetch(meditationsQuery, { some: 'thing' });
+  const dataList = await client.fetch(meditationsQuery);
   return dataList;
 }
 
