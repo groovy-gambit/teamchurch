@@ -15,9 +15,19 @@ export default defineType({
       title: '슬러그',
       type: 'slug',
       options: {
-        source: 'title',
-        maxLength: 96,
+        source: 'releasedAt',
+        slugify: (input) => `mt-${input}`,
       },
+    }),
+    defineField({
+      name: 'releasedAt',
+      title: '등록일',
+      type: 'date',
+    }),
+    defineField({
+      name: 'intro',
+      title: '서론',
+      type: 'string',
     }),
     defineField({
       name: 'body',

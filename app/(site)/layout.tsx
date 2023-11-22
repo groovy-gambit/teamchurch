@@ -14,11 +14,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main
-          className="align-center flex min-h-screen flex-col items-center 
-                  justify-between bg-white align-top"
-        >
-          <div className="mx-auto h-96 px-0 lg:container 2xl:w-1/5">
+        <main className="min-h-screen bg-white px-4 py-6 align-top">
+          <div className="mx-auto px-0 lg:container 2xl:w-1/5">
             <Header />
             {children}
           </div>
