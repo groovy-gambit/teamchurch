@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'page',
-  title: '페이지',
+  name: 'announcement',
+  title: '공지 및 광고',
   type: 'document',
   fields: [
     defineField({
@@ -15,24 +15,18 @@ export default defineType({
       title: '슬러그',
       type: 'slug',
       options: {
-        source: 'title',
         maxLength: 96,
       },
     }),
     defineField({
-      name: 'mainImage',
-      title: '메인 이미지',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'alt 텍스트',
-        },
-      ],
+      name: 'publishedAt',
+      title: '공지 날짜',
+      type: 'datetime',
+    }),
+    defineField({
+      name: 'eventAt',
+      title: '이벤트 날짜',
+      type: 'datetime',
     }),
     defineField({
       name: 'body',
