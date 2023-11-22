@@ -1,52 +1,106 @@
 'use client';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import navLogo from '@/public/logo.svg';
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from '@/components/ui/navigation-menu';
+import { Button } from '@/components/ui/button';
+import { Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose, SheetTrigger } from '@/components/ui/sheet';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 import Link from 'next/link';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import React from 'react';
 
-const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
-  ({ className, title, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-              className,
-            )}
-            {...props}
-          >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
-          </a>
+const ListItem = ({ href, title }: { href: string; title: string }) => {
+  return (
+    <li>
+      <Link href={href} legacyBehavior passHref>
+        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+          <div className="text-sm font-medium leading-none">{title}</div>
         </NavigationMenuLink>
-      </li>
-    );
-  },
-);
+      </Link>
+    </li>
+  );
+};
 ListItem.displayName = 'ListItem';
+
+const MobileNavItem = ({ href, title }: { href: string; title: string }) => {
+  return (
+    <SheetClose asChild className="w-full">
+      <Link href={href}>
+        <Button
+          variant="ghost"
+          className="block w-full select-none space-y-1 rounded-md p-3 text-left leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        >
+          {title}
+        </Button>
+      </Link>
+    </SheetClose>
+  );
+};
 
 export default function Header() {
   return (
     <header className="mb-6 w-full">
-      <nav className="felx-row flex w-full justify-between py-2">
+      <nav className="flex w-full flex-row justify-between py-2">
         <Link href="/" legacyBehavior>
           <Image src={navLogo} alt="Team Church logo" width={100} />
         </Link>
-        <NavigationMenu>
+        {/* collapsed nav */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Team Church</SheetTitle>
+              </SheetHeader>
+              <nav>
+                <Accordion type="single" collapsible defaultValue="item-1">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>소개</AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                        <MobileNavItem href="/about" title="교회 안내" />
+                        <MobileNavItem href="/about/hours" title="예배 시간" />
+                        <MobileNavItem href="/about/staff" title="섬기는 사람들" />
+                        <MobileNavItem href="/about/contact" title="위치 및 연락 방법" />
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>말씀</AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                        <MobileNavItem href="/word-of-god" title="예배" />
+                        <MobileNavItem href="/word-of-god/meditation" title="묵상" />
+                        <MobileNavItem href="/word-of-god/membership-training" title="멤버쉽반" />
+                        <MobileNavItem href="/word-of-god/lecture" title="특강" />
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </nav>
+              <Link href="" legacyBehavior passHref>
+                <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                  헌금
+                </Button>
+              </Link>
+            </SheetContent>
+          </Sheet>
+        </div>
+        {/* expanded nav */}
+        <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>소개</NavigationMenuTrigger>
@@ -70,30 +124,10 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            {/* <NavigationMenuItem>
-              <NavigationMenuTrigger>설교</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink href="/sermon-guide">
-                  개요
-                </NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>사역</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink href="/ministries">방향</NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem> */}
-            <NavigationMenuItem>
-              {/* <NavigationMenuTrigger>헌금</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <NavigationMenuLink>Link</NavigationMenuLink>
-                  </NavigationMenuContent> */}
-              {/* <Link href="/offering" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  헌금
-                </NavigationMenuLink>
-              </Link> */}
+              <Link href="" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>헌금</NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

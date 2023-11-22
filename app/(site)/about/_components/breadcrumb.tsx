@@ -14,7 +14,7 @@ export default function Breadcrumb() {
   };
 
   return (
-    <section className="flex flex-row py-2">
+    <section className="flex flex-row py-2 lg:hidden">
       <span className="mr-2">소개</span>
       <ChevronRightIcon className="mr-2 h-6 w-4 font-bold" />
       <span className="mr-2 font-bold">{getPageName()}</span>
