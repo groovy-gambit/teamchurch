@@ -50,7 +50,7 @@ export default async function Home() {
         </section>
         {/* End block */}
         {/* Start block */}
-        <section className="bg-red-300">
+        <section>
           <h2 className="mb-4 text-center text-2xl font-semibold">
             주간 묵상 가이드
           </h2>
