@@ -42,9 +42,9 @@ export default async function Home() {
 
       {/* End block */}
       {/* Two column content layout */}
-      <div className="mt-12 grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+      <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
         {/* Start block */}
-        <section className="flex flex-col">
+        <section className="flex flex-col gap-4">
           <h2 className="mb-4 text-center text-2xl font-semibold">공지 및 광고</h2>
           <AnnouncementList />
           <Link href="/announcement" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}>
