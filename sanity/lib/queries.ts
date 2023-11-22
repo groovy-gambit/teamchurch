@@ -14,7 +14,12 @@ export const announcementsQuery = groq`*[_type == "announcement"]{
 
 // Get all meditation
 export const meditationsQuery = groq`*[_type == "meditation"]{
-    title, slug, type, body, publishedAt, eventAt
+    title, slug, type, body, _updatedAt
+  }`;
+
+// Get one meditation
+export const meditationQuery = groq`*[_type == "meditation" && slug.current == $slug][0]{
+    title, slug, type, body, _updatedAt
   }`;
 
 // Get announcement

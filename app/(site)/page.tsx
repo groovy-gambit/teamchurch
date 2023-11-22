@@ -23,11 +23,7 @@ export default async function Home() {
     <>
       {/* Start block */}
       <section rel="hero relative">
-        <Image
-          alt="hero-banner"
-          src={heroImage}
-          className="w-full rounded-md"
-        />
+        <Image alt="hero-banner" src={heroImage} className="w-full rounded-md" />
         <div className="absolute left-48 top-28">
           <h1 className="text-5xl font-semibold">TEAM.</h1>
           <h2 className="text-4xl font-semibold">설립헌신예배.</h2>
@@ -51,23 +47,15 @@ export default async function Home() {
         {/* End block */}
         {/* Start block */}
         <section>
-          <h2 className="mb-4 text-center text-2xl font-semibold">
-            주간 묵상 가이드
-          </h2>
-          <div className="mb-2 h-52 text-ellipsis">
+          <h2 className="mb-4 text-center text-2xl font-semibold">주간 묵상 가이드</h2>
+          <div className="text-ellipse mb-2 h-52">
             <PortableText value={meditation.body} />
           </div>
           <div className="grid grid-cols-2 justify-between gap-x-1.5 pb-6">
-            <Link
-              href="/word-of-god/meditation"
-              className={cn(buttonVariants({ variant: 'default' }), 'w-full')}
-            >
+            <Link href="/word-of-god/meditation" className={cn(buttonVariants({ variant: 'default' }), 'w-full')}>
               주간 가이드 읽기
             </Link>
-            <Link
-              href="/word-of-god/meditation"
-              className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
-            >
+            <Link href="/word-of-god/meditation" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}>
               전체 가이드 읽기
             </Link>
           </div>
