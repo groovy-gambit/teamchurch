@@ -7,7 +7,7 @@ export default function SubMenu() {
   const pathName = usePathname();
 
   return (
-    <section>
+    <section className="pt-3">
       <div className="flex flex-col">
         <Link href="/word-of-god" className={`py-2 ${pathName === '/word-of-god' && 'font-bold'}`}>
           예배

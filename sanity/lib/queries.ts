@@ -19,7 +19,7 @@ export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt
 
 // Get one meditation
 export const meditationQuery = groq`*[_type == "meditation" && slug.current == $slug][0]{
-    title, slug, type, body, releasedAt
+    title, slug, type, body, releasedAt,
   }`;
 
 // Get announcement
