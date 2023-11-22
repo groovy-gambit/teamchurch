@@ -7,7 +7,7 @@ export default function Breadcrumb() {
   const pathName = usePathname();
 
   const getPageName = () => {
-    if (pathName === '/word-of-god/meditation') return '묵상';
+    if (pathName.startsWith('/word-of-god/meditation')) return '묵상';
     if (pathName === '/word-of-god/membership-training') return '멤버쉽반';
     if (pathName === '/word-of-god/lecture') return '특강';
     return '예배';

@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'mediation',
+  name: 'meditation',
   title: '묵상',
   type: 'document',
   fields: [

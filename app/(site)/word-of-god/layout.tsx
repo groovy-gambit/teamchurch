@@ -1,11 +1,7 @@
 import SubMenu from './_components/submenu';
 import Breadcrumb from './_components/breadcrumb';
 
-export default function AboutLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-row pb-20">
       {/* Two Column Layout */}
@@ -17,7 +13,7 @@ export default function AboutLayout({
         {/* Subsection menu */}
         <SubMenu />
       </div>
-      <div className="lg:w-subpage-main flex flex-auto flex-col">
+      <div className="flex flex-auto flex-col lg:w-subpage-main">
         {/* breadcrumb */}
         <Breadcrumb />
         {/* Main */}
