@@ -1,19 +1,19 @@
+import { BodyContent } from '@/components/ui/BodyContent';
 import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
-import { PortableText } from '@portabletext/react';
+import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
-type Props = {
-  params: { slug: string };
-};
+const builder = imageUrlBuilder(client);
 
 async function getPageData(slug: string) {
   const pageData = await client.fetch(pageQuery, { slug: slug });
   return pageData;
 }
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const data = await getPageData(slug);
+
   return (
     <>
       <h1>{data.title}</h1>
@@ -21,13 +21,13 @@ export default async function Page({ params }: Props) {
         <div className="relative h-72 overflow-hidden rounded-md">
           <Image
             alt={data.mainImage.alt}
-            src={data.imageUrl}
+            src={builder.image(data.mainImage).url()}
             fill
             className="m-0"
           />
         </div>
       ) : null}
-      {data.body ? <PortableText value={data.body} /> : null}
+      {data.body ? <BodyContent value={data.body} /> : null}
     </>
   );
 }

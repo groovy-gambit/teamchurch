@@ -6,12 +6,16 @@ import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
-async function getPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'about' });
+async function getPageData(slug: string) {
+  const pageData = await client.fetch(pageQuery, { slug: slug });
   return pageData;
 }
-export default async function Page() {
-  const data = await getPageData();
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const slug = params.slug;
+  const data = await getPageData(slug);
+  console.log({ slug });
+
   return (
     <>
       <h1>{data.title}</h1>
