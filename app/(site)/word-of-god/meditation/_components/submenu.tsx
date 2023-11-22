@@ -10,7 +10,7 @@ async function getAllMeditations() {
 export default async function SubMenu() {
   const posts = await getAllMeditations();
   return (
-    <section>
+    <section className="pt-3">
       <div className="flex flex-col">
         {posts.map((post: any) => {
           return <SubMenuItem post={post} key={post.slug.current} />;

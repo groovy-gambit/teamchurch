@@ -15,6 +15,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const data = await getPageData(slug);
 
+  console.log({ data });
   return (
     <div>
       <h1>{data.title}</h1>

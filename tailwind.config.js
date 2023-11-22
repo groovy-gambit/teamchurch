@@ -8,20 +8,6 @@ module.exports = {
       padding: '2rem',
     },
     extend: {
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-      },
       width: {
         'subpage-main': '44rem',
       },
@@ -90,7 +76,7 @@ module.exports = {
             h1: {
               fontWeight: '600',
               fontSize: '1.875rem',
-              marginBottom: '3rem',
+              marginBottom: '2.5rem',
             },
             h2: {
               fontWeight: '600',
@@ -101,7 +87,7 @@ module.exports = {
               marginBottom: '1rem',
             },
             p: {
-              marginBottom: '3rem',
+              marginBottom: '1rem',
             },
           },
         },

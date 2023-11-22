@@ -21,24 +21,27 @@ async function getlastedMeditation() {
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
+
   return (
     <>
       {/* Start block */}
-      <section rel="hero" className="relative h-72 overflow-hidden rounded-lg">
-        <Image
-          alt="hero-banner"
-          src={heroImage}
-          className="object-cover"
-          fill
-          sizes="100vw"
-          style={{ objectPosition: '15%' }}
-        />
-        <div className="absolute left-6 top-6">
-          <h1 className="text-5xl font-semibold">TEAM.</h1>
-          <h2 className="text-4xl font-semibold">설립헌신예배.</h2>
-          <h3 className="text-4xl font-semibold">2023년 12월 3일.</h3>
-        </div>
-      </section>
+      <Link href="/announcement/an-2023-11-21" className="outline-none">
+        <section rel="hero" className="relative h-72 overflow-hidden rounded-lg">
+          <Image
+            alt="hero-banner"
+            src={heroImage}
+            className="object-cover"
+            fill
+            sizes="100vw"
+            style={{ objectPosition: '15%' }}
+          />
+          <div className="absolute left-6 top-6">
+            <h1 className="text-5xl font-semibold">TEAM.</h1>
+            <h2 className="text-4xl font-semibold">설립헌신예배.</h2>
+            <h3 className="text-4xl font-semibold">2023년 12월 3일.</h3>
+          </div>
+        </section>
+      </Link>
 
       {/* End block */}
       {/* Two column content layout */}
