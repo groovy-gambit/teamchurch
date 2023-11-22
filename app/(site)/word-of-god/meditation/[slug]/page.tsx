@@ -1,6 +1,6 @@
 import { BodyContent } from '@/components/ui/BodyContent';
 import { client } from '@/sanity/lib/client';
-import { meditationQuery } from '@/sanity/lib/queries';
+import { meditationQuery, meditationsQuery } from '@/sanity/lib/queries';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
@@ -11,9 +11,22 @@ async function getPageData(slug: string) {
   return pageData;
 }
 
+async function getAllMeditations(): Promise<any[]> {
+  const dataList = await client.fetch(meditationsQuery, { some: 'thing' });
+  return dataList;
+}
+
+async function getData(slug: string) {
+  if (slug == 'last') {
+    return (await getAllMeditations())[0];
+  } else {
+    return await getPageData(slug);
+  }
+}
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
-  const data = await getPageData(slug);
+  const data = await getData(slug);
   console.log({ slug });
 
   return (
