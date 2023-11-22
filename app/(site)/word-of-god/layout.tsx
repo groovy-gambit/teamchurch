@@ -12,7 +12,7 @@ export default function AboutLayout({
       <div className="hidden  pr-6 lg:flex lg:w-56 lg:flex-col">
         <section className="border-b border-gray-300 pb-2">
           {/* Current Section Title */}
-          <h2 className="py-2">소개</h2>
+          <h2 className="py-2">말씀</h2>
         </section>
         {/* Subsection menu */}
         <SubMenu />

@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'page',
-  title: '페이지',
+  name: 'mediation',
+  title: '묵상',
   type: 'document',
   fields: [
     defineField({
@@ -18,21 +18,6 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-    }),
-    defineField({
-      name: 'mainImage',
-      title: '메인 이미지',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'alt 텍스트',
-        },
-      ],
     }),
     defineField({
       name: 'body',

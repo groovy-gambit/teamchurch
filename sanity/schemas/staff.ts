@@ -1,18 +1,23 @@
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'author',
-  title: 'Author',
+  name: 'staff',
+  title: '섬기는사람들',
   type: 'document',
   fields: [
     defineField({
       name: 'name',
-      title: 'Name',
+      title: '이름',
+      type: 'string',
+    }),
+    defineField({
+      name: 'position',
+      title: '직함',
       type: 'string',
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: '슬러그',
       type: 'slug',
       options: {
         source: 'name',
@@ -20,8 +25,8 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'image',
-      title: 'Image',
+      name: 'profile_image',
+      title: '프로필 사진',
       type: 'image',
       options: {
         hotspot: true,
@@ -36,7 +41,7 @@ export default defineType({
     }),
     defineField({
       name: 'bio',
-      title: 'Bio',
+      title: '이력',
       type: 'array',
       of: [
         {
@@ -48,10 +53,4 @@ export default defineType({
       ],
     }),
   ],
-  preview: {
-    select: {
-      title: 'name',
-      media: 'image',
-    },
-  },
 });

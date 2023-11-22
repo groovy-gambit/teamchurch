@@ -7,7 +7,7 @@ import Image from 'next/image';
 const builder = imageUrlBuilder(client);
 
 async function getPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'about' });
+  const pageData = await client.fetch(pageQuery, { slug: 'word-of-god' });
   return pageData;
 }
 export default async function Page() {

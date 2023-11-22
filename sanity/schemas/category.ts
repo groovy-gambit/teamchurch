@@ -7,12 +7,12 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: '제목',
       type: 'string',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: '설명',
       type: 'text',
     }),
   ],
