@@ -4,7 +4,7 @@ import MeditationsList from './_components/meditationsList';
 
 export default async function Page() {
   return (
-    <div className="flex flex-row pb-20">
+    <div className="container mx-auto flex flex-row px-4 pb-20 md:px-10 lg:max-w-screen-lg">
       {/* Two Column Layout */}
       <div className="hidden pr-6 lg:flex lg:w-56 lg:flex-col">
         <section className="border-b border-gray-300 pb-2">
