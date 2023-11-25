@@ -12,7 +12,7 @@ export default async function AnnouncementList() {
   const posts = await getAllAnnouncements();
 
   return (
-    <div className="flex-1 space-y-4">
+    <div className="w-full flex-1 space-y-4">
       {posts.slice(0, 3).map((post: Announcement) => {
         return (
           <Link

@@ -48,8 +48,8 @@ const MobileNavItem = ({ href, title }: { href: string; title: string }) => {
 
 export default function Header() {
   return (
-    <header className="mb-6 w-full">
-      <nav className="flex w-full flex-row justify-between py-2">
+    <header className="w-full bg-white pt-6">
+      <nav className="container mx-auto flex w-full flex-row justify-between px-4 py-6 md:px-10 lg:max-w-screen-lg">
         <Link href="/" legacyBehavior>
           <Image src={navLogo} alt="Team Church logo" width={100} />
         </Link>
@@ -65,32 +65,30 @@ export default function Header() {
               <SheetHeader>
                 <SheetTitle>Team Church</SheetTitle>
               </SheetHeader>
-              <nav>
-                <Accordion type="single" collapsible defaultValue="item-1">
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger>소개</AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-                        <MobileNavItem href="/about" title="교회 안내" />
-                        <MobileNavItem href="/about/hours" title="예배 시간" />
-                        <MobileNavItem href="/about/staff" title="섬기는 사람들" />
-                        <MobileNavItem href="/about/contact" title="위치 및 연락 방법" />
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-2">
-                    <AccordionTrigger>말씀</AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-                        <MobileNavItem href="/word-of-god" title="예배" />
-                        <MobileNavItem href="/word-of-god/meditation" title="묵상" />
-                        <MobileNavItem href="/word-of-god/membership-training" title="멤버쉽반" />
-                        <MobileNavItem href="/word-of-god/lecture" title="특강" />
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </nav>
+              <Accordion type="single" collapsible defaultValue="item-1">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>소개</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                      <MobileNavItem href="/about" title="교회 안내" />
+                      <MobileNavItem href="/about/hours" title="예배 시간" />
+                      <MobileNavItem href="/about/staff" title="섬기는 사람들" />
+                      <MobileNavItem href="/about/contact" title="위치 및 연락 방법" />
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>말씀</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                      <MobileNavItem href="/word-of-god" title="예배" />
+                      <MobileNavItem href="/word-of-god/meditation" title="묵상" />
+                      <MobileNavItem href="/word-of-god/membership-training" title="멤버쉽반" />
+                      <MobileNavItem href="/word-of-god/lecture" title="특강" />
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
               <Link href="" legacyBehavior passHref>
                 <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                   헌금

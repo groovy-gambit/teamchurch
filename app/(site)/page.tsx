@@ -25,8 +25,8 @@ export default async function Home() {
   return (
     <>
       {/* Start block */}
-      <Link href="/announcement/an-2023-11-21" className="outline-none">
-        <section rel="hero" className="relative h-72 overflow-hidden rounded-lg">
+      <Link href="/announcement/an-2023-11-21" className="relative mx-auto block max-w-6xl outline-none">
+        <section rel="hero" className="relative h-80 max-w-6xl overflow-hidden rounded-lg ">
           <Image
             alt="hero-banner"
             src={heroImage}
@@ -45,12 +45,12 @@ export default async function Home() {
 
       {/* End block */}
       {/* Two column content layout */}
-      <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:px-10 lg:max-w-screen-lg lg:grid-cols-2">
         {/* Start block */}
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col items-center gap-4">
           <h2 className="mb-4 text-center text-2xl font-semibold">공지 및 광고</h2>
           <AnnouncementList />
-          <Link href="/announcement" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}>
+          <Link href="/announcement" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-xs')}>
             공지 및 광고 전체 보기
           </Link>
         </section>
