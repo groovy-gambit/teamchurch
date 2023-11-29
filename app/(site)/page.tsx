@@ -45,12 +45,15 @@ export default async function Home() {
 
       {/* End block */}
       {/* Two column content layout */}
-      <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:px-10 lg:max-w-screen-lg lg:grid-cols-2">
+      <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:grid-cols-2 md:px-10 lg:max-w-screen-lg">
         {/* Start block */}
         <section className="flex flex-col items-center gap-4">
           <h2 className="mb-4 text-center text-2xl font-semibold">공지 및 광고</h2>
           <AnnouncementList />
-          <Link href="/announcement" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-xs')}>
+          <Link
+            href="/announcement"
+            className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-none md:max-w-xs')}
+          >
             공지 및 광고 전체 보기
           </Link>
         </section>

@@ -16,7 +16,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 import Link from 'next/link';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import React from 'react';
+import React, { useState } from 'react';
 
 const ListItem = ({ href, title }: { href: string; title: string }) => {
   return (
@@ -47,6 +47,7 @@ const MobileNavItem = ({ href, title }: { href: string; title: string }) => {
 };
 
 export default function Header() {
+  const [current, setCurrent] = useState('item-1');
   return (
     <header className="w-full bg-white pt-6">
       <nav className="container mx-auto flex w-full flex-row justify-between px-4 py-6 md:px-10 lg:max-w-screen-lg">
@@ -65,7 +66,7 @@ export default function Header() {
               <SheetHeader>
                 <SheetTitle>Team Church</SheetTitle>
               </SheetHeader>
-              <Accordion type="single" collapsible defaultValue="item-1">
+              <Accordion type="single" collapsible defaultValue={current} onValueChange={(value) => setCurrent(value)}>
                 <AccordionItem value="item-1">
                   <AccordionTrigger>소개</AccordionTrigger>
                   <AccordionContent>

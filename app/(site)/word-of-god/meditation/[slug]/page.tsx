@@ -15,16 +15,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const data = await getPageData(slug);
 
-  console.log({ data });
   return (
-    <div>
+    <>
       <h1>{data.title}</h1>
-      {data.mainImage ? (
-        <div className="relative overflow-hidden rounded-md">
-          <Image alt={data.mainImage.alt} src={builder.image(data.mainImage).url()} fill className="m-0" />
-        </div>
-      ) : null}
-      {data.body ? <BodyContent value={data.body} /> : null}
-    </div>
+      <div className="rounded-lg bg-slate-50 p-4">
+        {data.mainImage ? (
+          <div className="relative overflow-hidden rounded-md">
+            <Image alt={data.mainImage.alt} src={builder.image(data.mainImage).url()} fill className="m-0" />
+          </div>
+        ) : null}
+        {data.body ? <BodyContent value={data.body} /> : null}
+      </div>
+    </>
   );
 }

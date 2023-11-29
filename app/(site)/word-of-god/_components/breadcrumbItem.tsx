@@ -9,5 +9,5 @@ async function getPageData(slug: string) {
 export default async function BreadcrumbItem({ slug }: { slug: string }) {
   const data = await getPageData(slug);
 
-  return data.title;
+  return <span className="mr-2 font-bold">{data.title}</span>;
 }
