@@ -1,4 +1,4 @@
-import SubMenu from './_components/submenu';
+import SubMenu from '../_components/submenu';
 import Breadcrumb from './_components/breadcrumb';
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {

@@ -12,6 +12,16 @@ export const announcementsQuery = groq`*[_type == "announcement" && dateTime(rel
     title, subtitle, slug, isEvent, releasedAt, eventAt
   }`;
 
+// Get all staffs
+export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc) {
+    name, position, slug, image, bio
+  }`;
+
+// Get one staff
+export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
+    name, position, slug, image, bio
+  }`;
+
 // Get all meditation
 export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt asc) {
     title, slug, type, intro, releasedAt

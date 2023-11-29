@@ -31,3 +31,13 @@ export type Announcement = {
   eventAt?: Date;
   body: TypedObject | TypedObject[];
 };
+
+export type Staff = {
+  name: string;
+  position: string;
+  slug: {
+    current: string;
+  };
+  profile_image: string;
+  bio: TypedObject | TypedObject[];
+};
