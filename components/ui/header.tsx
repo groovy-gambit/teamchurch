@@ -49,10 +49,10 @@ const MobileNavItem = ({ href, title }: { href: string; title: string }) => {
 export default function Header() {
   const [current, setCurrent] = useState('item-1');
   return (
-    <header className="w-full bg-white pt-6">
-      <nav className="container mx-auto flex w-full flex-row justify-between px-4 py-6 md:px-10 lg:max-w-screen-lg">
+    <header className="w-full bg-white">
+      <nav className="container mx-auto flex w-full flex-row items-center justify-between px-4 py-6 md:px-10 lg:max-w-screen-lg">
         <Link href="/" legacyBehavior>
-          <Image src={navLogo} alt="Team Church logo" width={100} />
+          <Image src={navLogo} alt="Team Church logo" height={60} />
         </Link>
         {/* collapsed nav */}
         <div className="md:hidden">

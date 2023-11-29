@@ -25,7 +25,7 @@ export default function Breadcrumb() {
 
       {pathArr.length > 2 ? (
         <>
-          <Link href={'/word-of-god/meditation'} className="mr-2 underline">
+          <Link href={`/${pathArr[0]}/${pathArr[1]}`} className="mr-2 underline">
             {getPageName()}
           </Link>
           <ChevronRightIcon className="mr-2 h-6 w-4 font-bold" />

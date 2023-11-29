@@ -1,25 +1,23 @@
-import MeditationsList from './_components/meditationsList';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
+import StaffList from './_components/staffList';
 
 const builder = imageUrlBuilder(client);
 
 async function getPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
+  const pageData = await client.fetch(pageQuery, { slug: 'staff' });
   return pageData;
 }
-
 export default async function Page() {
   const data = await getPageData();
-  console.log({ data });
   return (
     <>
-      <h1>묵상</h1>
+      <h1>{data.title}</h1>
       {data.mainImage ? (
-        <div className="relative overflow-hidden rounded-md">
+        <div className="relative h-72 overflow-hidden rounded-md">
           <Image
             alt={data.mainImage.alt}
             src={builder.image(data.mainImage).url()}
@@ -29,9 +27,8 @@ export default async function Page() {
           />
         </div>
       ) : null}
-      <h2>주간 묵상 목록</h2>
       {data.body ? <BodyContent value={data.body} /> : null}
-      <MeditationsList />
+      <StaffList />
     </>
   );
 }
