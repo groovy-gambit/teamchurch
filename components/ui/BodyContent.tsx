@@ -24,6 +24,11 @@ export const BodyContent = ({ value }: { value: any }) => {
             </div>
           ),
         },
+        block: {
+          h2: ({ children }) => {
+            return <h2 className={`first:mt-0`}>{children}</h2>;
+          },
+        },
       }}
     />
   );
