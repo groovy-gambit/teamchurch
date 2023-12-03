@@ -37,7 +37,7 @@ export default async function Home() {
         />
         <div className="absolute left-0 top-0 flex h-full w-full">
           <div className="container mx-auto mt-12 px-4 md:px-10 lg:max-w-screen-lg">
-            <h1 className=" text-5xl font-bold leading-tight">
+            <h1 className=" text-3xl font-bold leading-tight">
               TEAM Church 홈페이지를 오픈했습니다. <br />
               축하합니다!
             </h1>
