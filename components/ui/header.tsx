@@ -123,10 +123,21 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+
             <NavigationMenuItem>
               <Link href="" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>헌금</NavigationMenuLink>
               </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="https://visionyouthcc.org"
+                rel="noopener noreferrer"
+                target="_blank"
+                className={navigationMenuTriggerStyle()}
+              >
+                VYCC
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
