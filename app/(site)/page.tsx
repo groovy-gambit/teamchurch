@@ -26,21 +26,23 @@ export default async function Home() {
     <>
       {/* Start block */}
       {/* <Link href="/announcement/an-2023-11-21" className="relative mx-auto block max-w-6xl outline-none"> */}
-      <section rel="hero" className="relative h-80 max-w-6xl overflow-hidden rounded-lg ">
-        <Image
-          alt="hero-banner"
-          src={heroImage}
-          className="object-cover"
-          fill
-          sizes="100vw"
-          style={{ objectPosition: '15%' }}
-        />
-        <div className="absolute left-0 top-0 flex h-full w-full">
-          <div className="container mx-auto mt-12 px-4 md:px-10 lg:max-w-screen-lg">
-            <h1 className=" text-3xl font-bold leading-tight">
-              TEAM Church 홈페이지를 오픈했습니다. <br />
-              축하합니다!
-            </h1>
+      <section className="relative mx-auto block max-w-6xl outline-none">
+        <div rel="hero" className="relative h-80 max-w-6xl overflow-hidden rounded-lg ">
+          <Image
+            alt="hero-banner"
+            src={heroImage}
+            className="object-cover"
+            fill
+            sizes="100vw"
+            style={{ objectPosition: '15%' }}
+          />
+          <div className="absolute left-0 top-0 flex h-full w-full">
+            <div className="container mx-auto mt-12 px-4 md:px-10 lg:max-w-screen-lg">
+              <h1 className=" text-3xl font-bold leading-tight">
+                TEAM Church 홈페이지를 오픈했습니다. <br />
+                축하합니다!
+              </h1>
+            </div>
           </div>
         </div>
       </section>
