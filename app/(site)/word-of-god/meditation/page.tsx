@@ -29,7 +29,7 @@ export default async function Page() {
           />
         </div>
       ) : null}
-      <h2>주간 묵상 목록</h2>
+      <h2>주간 묵상 가이드</h2>
       {data.body ? <BodyContent value={data.body} /> : null}
       <MeditationsList />
     </>
