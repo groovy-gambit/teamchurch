@@ -9,9 +9,10 @@ import { cn } from '@/lib/utils';
 import AnnouncementList from './_components/announcementList';
 import { PageProps } from '@/.next/types/app/(site)/page';
 import { sanityFetch } from '@/lib/sanityClient';
+import { TypedObject } from 'sanity';
 
 type MeditationPageProps = {
-  body?: string;
+  body?: TypedObject;
 };
 
 async function getMeditationPageData() {
@@ -78,7 +79,7 @@ export default async function Home() {
         <section>
           <h2 className="mb-4 text-center text-2xl font-semibold">주간 묵상 가이드</h2>
           <div className="text-ellipse mb-2 h-52">
-            <PortableText value={meditation.body} />
+            <PortableText value={meditation?.body!} />
           </div>
           <div className="grid grid-cols-2 justify-between gap-x-1.5">
             <Link
