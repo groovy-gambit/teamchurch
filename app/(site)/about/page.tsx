@@ -1,13 +1,20 @@
 import { BodyContent } from '@/components/ui/BodyContent';
+import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
+import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
 async function getPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'about' });
+  const pageData = await sanityFetch<PageSchemaProps>({
+    query: pageQuery,
+    params: { slug: 'abount' },
+    tags: ['page'],
+  });
+
   return pageData;
 }
 export default async function Page() {
@@ -18,7 +25,7 @@ export default async function Page() {
       {data.mainImage ? (
         <div className="relative h-72 overflow-hidden rounded-md">
           <Image
-            alt={data.mainImage.alt}
+            alt={data?.mainImage?.alt ?? ''}
             src={builder.image(data.mainImage).url()}
             className="m-0 object-cover"
             fill

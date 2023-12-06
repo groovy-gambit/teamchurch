@@ -1,13 +1,19 @@
 import { BodyContent } from '@/components/ui/BodyContent';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { staffQuery } from '@/sanity/lib/queries';
+import { Staff } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 
 const builder = imageUrlBuilder(client);
 
 async function getPageData(slug: string) {
-  const pageData = await client.fetch(staffQuery, { slug: slug });
+  const pageData = await sanityFetch<Staff>({
+    query: staffQuery,
+    params: { slug },
+    tags: ['staff'],
+  });
   return pageData;
 }
 
