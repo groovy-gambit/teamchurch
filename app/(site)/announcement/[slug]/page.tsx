@@ -1,11 +1,17 @@
-import { client } from '@/sanity/lib/client';
 import { announcementQuery } from '@/sanity/lib/queries';
 import ChevronRightIcon from '@heroicons/react/24/solid/ChevronRightIcon';
 import Link from 'next/link';
 import { BodyContent } from '@/components/ui/BodyContent';
+import { Announcement } from '@/sanity/types/types';
+import { sanityFetch } from '@/lib/sanityClient';
 
 async function getPageData(slug: string) {
-  const pageData = await client.fetch(announcementQuery, { slug: slug });
+  const pageData = await sanityFetch<Announcement>({
+    query: announcementQuery,
+    params: { slug },
+    tags: ['announcement'],
+  });
+
   return pageData;
 }
 export default async function Page({ params }: { params: { slug: string } }) {
