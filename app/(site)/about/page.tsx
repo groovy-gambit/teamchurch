@@ -11,7 +11,7 @@ const builder = imageUrlBuilder(client);
 async function getPageData() {
   const pageData = await sanityFetch<PageSchemaProps>({
     query: pageQuery,
-    params: { slug: 'abount' },
+    params: { slug: 'about' },
     tags: ['page'],
   });
 
