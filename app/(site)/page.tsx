@@ -7,9 +7,21 @@ import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import AnnouncementList from './_components/announcementList';
+import { PageProps } from '@/.next/types/app/(site)/page';
+import { sanityFetch } from '@/lib/sanityClient';
+import { TypedObject } from 'sanity';
+
+type MeditationPageProps = {
+  body?: TypedObject;
+};
 
 async function getMeditationPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
+  // const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
+  const pageData = await sanityFetch<MeditationPageProps>({
+    query: pageQuery,
+    params: { slug: 'meditation' },
+    tags: ['meditation'],
+  });
   return pageData;
 }
 
@@ -67,7 +79,7 @@ export default async function Home() {
         <section>
           <h2 className="mb-4 text-center text-2xl font-semibold">주간 묵상 가이드</h2>
           <div className="text-ellipse mb-2 h-52">
-            <PortableText value={meditation.body} />
+            <PortableText value={meditation?.body!} />
           </div>
           <div className="grid grid-cols-2 justify-between gap-x-1.5">
             <Link
