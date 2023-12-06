@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { Slug, SlugSchemaType, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'meditation',
@@ -36,3 +36,11 @@ export default defineType({
     }),
   ],
 });
+
+export interface meditationSchemaProps {
+  title?: string;
+  slug?: Slug;
+  releasedAt?: Date;
+  intro?: string;
+  body?: string;
+}
