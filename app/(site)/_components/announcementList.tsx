@@ -1,20 +1,7 @@
-import { client } from '@/sanity/lib/client';
-import { announcementsQuery } from '@/sanity/lib/queries';
 import Link from 'next/link';
 import { Announcement } from '@/sanity/types/types';
-import { sanityFetch } from '@/lib/sanityClient';
 
-async function getAllAnnouncements() {
-  const dataList = await sanityFetch<Announcement[]>({
-    query: announcementsQuery,
-    tags: ['announcement'],
-  });
-  return dataList;
-}
-
-export default async function AnnouncementList() {
-  const posts = await getAllAnnouncements();
-
+export default async function AnnouncementList({ posts }: { posts: Announcement[] }) {
   return (
     <div className="w-full flex-1 space-y-4">
       {posts.slice(0, 3).map((post: Announcement) => {

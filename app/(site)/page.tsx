@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import heroImage from '@/public/people-hero.png';
-import { meditationsQuery, pageQuery } from '@/sanity/lib/queries';
+import { announcementsQuery, meditationsQuery, pageQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import AnnouncementList from './_components/announcementList';
 import { PageProps } from '@/.next/types/app/(site)/page';
 import { sanityFetch } from '@/lib/sanityClient';
 import { TypedObject } from 'sanity';
+import { Announcement } from '@/sanity/types/types';
 
 type MeditationPageProps = {
   body?: TypedObject;
@@ -36,10 +37,18 @@ async function getlastedMeditation() {
   return dataList[0];
 }
 
+async function getAllAnnouncements() {
+  const dataList = await sanityFetch<Announcement[]>({
+    query: announcementsQuery,
+    tags: ['announcement'],
+  });
+  return dataList;
+}
+
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
-
+  const announcements = await getAllAnnouncements();
   return (
     <>
       {/* Start block */}
@@ -72,7 +81,7 @@ export default async function Home() {
         {/* Start block */}
         <section className="flex flex-col items-center gap-4">
           <h2 className="mb-4 text-center text-2xl font-semibold">공지 및 광고</h2>
-          <AnnouncementList />
+          <AnnouncementList posts={announcements} />
           <Link
             href="/announcement"
             className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-none md:max-w-xs')}
