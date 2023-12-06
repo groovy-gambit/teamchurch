@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <h1>{data.title}</h1>
       {data.mainImage ? (
         <div className="relative h-72 overflow-hidden rounded-md">
-          <Image alt={data.mainImage.alt} src={builder.image(data.mainImage).url()} fill className="m-0" />
+          <Image alt={data?.mainImage?.alt ?? ''} src={builder.image(data.mainImage).url()} fill className="m-0" />
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
