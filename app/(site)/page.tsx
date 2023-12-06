@@ -20,7 +20,7 @@ async function getMeditationPageData() {
   const pageData = await sanityFetch<MeditationPageProps>({
     query: pageQuery,
     params: { slug: 'meditation' },
-    tags: ['meditation'],
+    tags: ['page'],
   });
   return pageData;
 }
