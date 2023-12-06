@@ -27,7 +27,9 @@ export async function sanityFetch<QueryResponse>({
   tags: string[];
 }): Promise<QueryResponse> {
   return client.fetch<QueryResponse>(query, params, {
-    cache: 'force-cache',
+    // editing doesn't immediately update the text, so using no-store to not use the cache
+    // if this doesn't fix it - go back to 'force-cache'
+    cache: 'no-store',
     next: {
       //revalidate: 30, // for simple, time-based revalidation
       tags, // for tag-based revalidation
