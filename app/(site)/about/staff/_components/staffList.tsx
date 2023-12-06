@@ -6,11 +6,15 @@ import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import imageUrlBuilder from '@sanity/image-url';
 import { BodyContent } from '@/components/ui/BodyContent';
+import { sanityFetch } from '@/lib/sanityClient';
 
 const builder = imageUrlBuilder(client);
 
 async function getAllStaffs() {
-  const dataList = await client.fetch(staffsQuery);
+  const dataList = await sanityFetch<Staff[]>({
+    query: staffsQuery,
+    tags: ['staff'],
+  });
   return dataList;
 }
 
