@@ -1,14 +1,20 @@
 import MeditationsList from './_components/meditationsList';
 import { BodyContent } from '@/components/ui/BodyContent';
+import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
+import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
 async function getPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
+  const pageData = await sanityFetch<PageSchemaProps>({
+    query: pageQuery,
+    params: { slug: 'meditation' },
+    tags: ['page'],
+  });
   return pageData;
 }
 
