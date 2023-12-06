@@ -1,5 +1,3 @@
-'use client';
-
 import ChevronRightIcon from '@heroicons/react/24/solid/ChevronRightIcon';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
