@@ -27,7 +27,7 @@ export default async function Page() {
       {data.mainImage ? (
         <div className="relative overflow-hidden rounded-md">
           <Image
-            alt={data.mainImage.alt}
+            alt={data?.mainImage?.alt ?? ''}
             src={builder.image(data.mainImage).url()}
             className="m-0 object-cover"
             fill
