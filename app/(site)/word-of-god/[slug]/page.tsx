@@ -1,13 +1,23 @@
 import { BodyContent } from '@/components/ui/BodyContent';
+import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
 import imageUrlBuilder from '@sanity/image-url';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
+type PageProps = {
+  title?: string;
+  mainImage?: SanityImageSource & {
+    alt?: string;
+  };
+  body?: string;
+};
+
 async function getPageData(slug: string) {
-  const pageData = await client.fetch(pageQuery, { slug: slug });
+  const pageData = await sanityFetch<PageProps>({ query: pageQuery, params: { slug }, tags: ['page'] });
   return pageData;
 }
 
@@ -20,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <h1>{data.title}</h1>
       {data.mainImage ? (
         <div className="relative overflow-hidden rounded-md">
-          <Image alt={data.mainImage.alt} src={builder.image(data.mainImage).url()} fill className="m-0" />
+          <Image alt={data?.mainImage?.alt ?? ''} src={builder.image(data.mainImage).url()} fill className="m-0" />
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
