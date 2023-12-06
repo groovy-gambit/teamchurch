@@ -36,11 +36,3 @@ export default defineType({
     }),
   ],
 });
-
-export interface MeditationSchemaProps {
-  title?: string;
-  slug?: Slug;
-  releasedAt?: Date;
-  intro?: string;
-  body?: string;
-}
