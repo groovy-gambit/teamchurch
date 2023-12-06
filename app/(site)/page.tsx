@@ -15,8 +15,11 @@ type MeditationPageProps = {
   body?: TypedObject;
 };
 
+type LastMeditationProps = {
+  slug: { current: string };
+};
+
 async function getMeditationPageData() {
-  // const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
   const pageData = await sanityFetch<MeditationPageProps>({
     query: pageQuery,
     params: { slug: 'meditation' },
@@ -26,7 +29,10 @@ async function getMeditationPageData() {
 }
 
 async function getlastedMeditation() {
-  const dataList = await client.fetch(meditationsQuery);
+  const dataList = await sanityFetch<LastMeditationProps[]>({
+    query: meditationsQuery,
+    tags: ['meditation'],
+  });
   return dataList[0];
 }
 
