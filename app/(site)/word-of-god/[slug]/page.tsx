@@ -2,22 +2,15 @@ import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
+import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
-type PageProps = {
-  title?: string;
-  mainImage?: SanityImageSource & {
-    alt?: string;
-  };
-  body?: string;
-};
-
 async function getPageData(slug: string) {
-  const pageData = await sanityFetch<PageProps>({ query: pageQuery, params: { slug }, tags: ['page'] });
+  const pageData = await sanityFetch<PageSchemaProps>({ query: pageQuery, params: { slug }, tags: ['page'] });
   return pageData;
 }
 

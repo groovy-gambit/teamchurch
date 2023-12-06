@@ -1,3 +1,4 @@
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -41,3 +42,11 @@ export default defineType({
     }),
   ],
 });
+
+export type PageSchemaProps = {
+  title?: string;
+  mainImage?: SanityImageSource & {
+    alt?: string;
+  };
+  body?: string;
+};
