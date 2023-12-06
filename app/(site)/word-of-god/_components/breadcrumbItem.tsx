@@ -1,14 +1,8 @@
-import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { meditationQuery } from '@/sanity/lib/queries';
-import { Meditation } from '@/sanity/types/types';
 
 async function getPageData(slug: string) {
-  const pageData = await sanityFetch<Meditation>({
-    query: meditationQuery,
-    params: { slug },
-    tags: ['meditation'],
-  });
+  const pageData = await client.fetch(meditationQuery, { slug: slug });
   return pageData;
 }
 
