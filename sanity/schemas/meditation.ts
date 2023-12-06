@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { Slug, SlugSchemaType, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'meditation',
