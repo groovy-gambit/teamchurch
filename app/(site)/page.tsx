@@ -7,9 +7,20 @@ import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import AnnouncementList from './_components/announcementList';
+import { PageProps } from '@/.next/types/app/(site)/page';
+import { sanityFetch } from '@/lib/sanityClient';
+
+type MeditationPageProps = {
+  body?: string;
+};
 
 async function getMeditationPageData() {
-  const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
+  // const pageData = await client.fetch(pageQuery, { slug: 'meditation' });
+  const pageData = await sanityFetch<MeditationPageProps>({
+    query: pageQuery,
+    params: { slug: 'meditation' },
+    tags: ['meditation'],
+  });
   return pageData;
 }
 
