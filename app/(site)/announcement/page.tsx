@@ -1,15 +1,10 @@
+import { client } from '@/sanity/lib/client';
 import { announcementsQuery } from '@/sanity/lib/queries';
 import Link from 'next/link';
 import { BodyToText } from '@/components/ui/BodyToText';
-import { Announcement } from '@/sanity/types/types';
-import { sanityFetch } from '@/lib/sanityClient';
 
 async function getAllAnnouncements() {
-  const pageData = await sanityFetch<Announcement[]>({
-    query: announcementsQuery,
-    tags: ['announcement'],
-  });
-
+  const pageData = await client.fetch(announcementsQuery);
   return pageData;
 }
 
