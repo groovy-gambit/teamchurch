@@ -2,14 +2,14 @@ import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { meditationQuery } from '@/sanity/lib/queries';
-import { meditationSchemaProps } from '@/sanity/schemas/meditation';
+import { MeditationSchemaProps } from '@/sanity/schemas/meditation';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
 async function getPageData(slug: string) {
-  const pageData = await sanityFetch<meditationSchemaProps>({
+  const pageData = await sanityFetch<MeditationSchemaProps>({
     query: meditationQuery,
     params: { slug },
     tags: ['meditation'],

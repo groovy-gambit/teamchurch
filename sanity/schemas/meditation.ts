@@ -37,7 +37,7 @@ export default defineType({
   ],
 });
 
-export interface meditationSchemaProps {
+export interface MeditationSchemaProps {
   title?: string;
   slug?: Slug;
   releasedAt?: Date;
