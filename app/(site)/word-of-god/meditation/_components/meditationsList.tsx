@@ -3,10 +3,14 @@ import { meditationsQuery } from '@/sanity/lib/queries';
 import Link from 'next/link';
 import { Meditation } from '@/sanity/types/types';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { sanityFetch } from '@/lib/sanityClient';
 
 async function getAllMeditations() {
-  const dataList = await client.fetch(meditationsQuery);
-  return dataList;
+  const pageData = await sanityFetch<Meditation[]>({
+    query: meditationsQuery,
+    tags: ['meditation'],
+  });
+  return pageData;
 }
 
 export default async function MeditationsList() {
