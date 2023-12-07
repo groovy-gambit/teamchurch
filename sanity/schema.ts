@@ -8,7 +8,8 @@ import page from './schemas/page';
 import announcement from './schemas/announcement';
 import meditation from './schemas/meditation';
 import staff from './schemas/staff';
+import youtube from './schemas/youtube';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [page, announcement, meditation, blockContent, lecture, staff],
+  types: [page, announcement, meditation, blockContent, lecture, staff, youtube],
 };
