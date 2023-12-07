@@ -1,9 +1,9 @@
-import { YouTubePreview } from '@/app/(site)/_components/YoutubePreview';
+import { YouTubePreview } from '@/sanity/lib/YoutubePreview';
 import { defineType, defineField } from 'sanity';
 
 export default defineType({
   name: 'youtube',
-  title: 'YouTube Embed',
+  title: 'Youtube',
   type: 'object',
   fields: [
     defineField({

@@ -16,7 +16,7 @@ export default defineType({
       type: 'slug',
       options: {
         source: 'releasedAt',
-        slugify: (input) => `mt-${input}`,
+        slugify: (input) => `sm-${input}`,
       },
     }),
     defineField({
@@ -24,12 +24,6 @@ export default defineType({
       title: '등록일',
       type: 'date',
     }),
-    {
-      name: 'youtube',
-      title: '설교 유튜브 링크',
-      type: 'youtube',
-      description: '유튜브 링크를 넣어주세요. 예) https://www.youtube.com/watch?v=_nsDTev4yCY',
-    },
     defineField({
       name: 'intro',
       title: '서론',
