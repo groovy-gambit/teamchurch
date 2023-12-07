@@ -23,7 +23,7 @@ const serializers = {
       const { url } = value;
       return (
         <div className="justify-center p-4">
-          <YoutubePlayer url={url} />;
+          <YoutubePlayer url={url} />
         </div>
       );
     },
