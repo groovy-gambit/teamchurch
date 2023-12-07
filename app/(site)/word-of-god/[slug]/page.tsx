@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
-      {slug === 'medidations'}
+      {slug === 'meditations'}
     </div>
   );
 }
