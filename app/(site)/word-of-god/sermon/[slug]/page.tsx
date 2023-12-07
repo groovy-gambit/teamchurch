@@ -1,10 +1,10 @@
-import { BodyContent } from '@/components/ui/BodyContent';
+import YoutubePlayer from '@/app/(site)/_components/YoutubePlayer';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { sermonQuery } from '@/sanity/lib/queries';
 import { Sermon } from '@/sanity/types/types';
+import { PortableText } from '@portabletext/react';
 import imageUrlBuilder from '@sanity/image-url';
-import YouTubePlayer from 'react-player/youtube';
 
 const builder = imageUrlBuilder(client);
 
@@ -17,19 +17,28 @@ async function getPageData(slug: string) {
   return pageData;
 }
 
+const serializers = {
+  types: {
+    youtube: ({ value }: { value: { url: string } }) => {
+      const { url } = value;
+      return (
+        <div className="justify-center p-4">
+          <YoutubePlayer url={url} />;
+        </div>
+      );
+    },
+  },
+};
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const data = await getPageData(slug);
-
   return (
     <>
       <h1>{data.title}</h1>
-      <div className="w-full">
-        <div className="aspect-w-16 aspect-h-9">
-          <YouTubePlayer url={data.youtube.url} />
-        </div>
+      <div className="rounded-lg bg-slate-50 p-4">
+        {data.body ? <PortableText value={data.body} components={serializers} /> : null}
       </div>
-      <div className="rounded-lg bg-slate-50 p-4">{data.body ? <BodyContent value={data.body} /> : null}</div>
     </>
   );
 }

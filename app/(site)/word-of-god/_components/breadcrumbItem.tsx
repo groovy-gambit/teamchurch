@@ -1,13 +1,30 @@
 import { client } from '@/sanity/lib/client';
-import { meditationQuery } from '@/sanity/lib/queries';
+import { meditationQuery, sermonQuery } from '@/sanity/lib/queries';
 
-async function getPageData(slug: string) {
-  const pageData = await client.fetch(meditationQuery, { slug: slug });
-  return pageData;
+const getQuery = (parentSlug: string) => {
+  switch (parentSlug) {
+    case 'meditation':
+      return meditationQuery;
+    case 'sermon':
+      return sermonQuery;
+    default:
+      return null;
+  }
+};
+
+async function getPageData(parentSlug: string, slug: string) {
+  const query = getQuery(parentSlug);
+  if (query) {
+    const pageData = await client.fetch(meditationQuery, { slug: slug });
+    return pageData;
+  }
+  return null;
 }
 
-export default async function BreadcrumbItem({ slug }: { slug: string }) {
-  const data = await getPageData(slug);
-
-  return <span className="mr-2 font-bold">{data.title}</span>;
+export default async function BreadcrumbItem({ slug, parentSlug }: { slug: string; parentSlug: string }) {
+  const data = await getPageData(parentSlug, slug);
+  if (data) {
+    return <span className="mr-2 font-bold">{data.title}</span>;
+  }
+  return null;
 }

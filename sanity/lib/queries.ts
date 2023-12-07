@@ -39,8 +39,8 @@ export const announcementQuery = groq`*[_type == "announcement" && slug.current 
 
 // Get sermon
 export const sermonQuery = groq`*[_type == "sermon" && slug.current == $slug][0]{
-    title, slug, url
+    title, slug, type, intro, body, releasedAt
 }`;
-export const sermonListQuery = groq`*[_type == "sermon"][0]{
-    title, slug, url
+export const sermonListQuery = groq`*[_type == "sermon"]{
+    title, slug, type, intro, releasedAt
 }`;
