@@ -1,12 +1,8 @@
 'use client';
 
-import coreUtils from '@/core/application/utils';
 import dynamic from 'next/dynamic';
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
-const YouTubePlayer = dynamic(() => import('react-player/lazy/players/YouTube'), { ssr: false });
-
-// import YouTubePlayer from 'react-player/youtube';
-
-export default (props) => {
-  return <YouTubePlayer {...props} />;
+export default (props: { url: string }) => {
+  return <ReactPlayer width="100%" controls={true} url={props.url} />;
 };
