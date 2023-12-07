@@ -36,3 +36,11 @@ export const meditationQuery = groq`*[_type == "meditation" && slug.current == $
 export const announcementQuery = groq`*[_type == "announcement" && slug.current == $slug][0]{
     title, slug, body, isEvent, releasedAt, eventAt
   }`;
+
+// Get youtube
+export const youtubeQuery = groq`*[_type == "youtube" && slug.current == $slug][0]{
+    title, slug, url
+}`;
+export const youtubeListQuery = groq`*[_type == "youtube"][0]{
+    title, slug, url
+}`;
