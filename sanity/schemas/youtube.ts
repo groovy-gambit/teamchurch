@@ -3,8 +3,8 @@ import { defineType, defineField } from 'sanity';
 
 export default defineType({
   name: 'youtube',
-  type: 'object',
   title: 'YouTube Embed',
+  type: 'object',
   fields: [
     defineField({
       name: 'url',

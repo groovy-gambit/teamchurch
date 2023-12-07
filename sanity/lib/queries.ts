@@ -37,10 +37,10 @@ export const announcementQuery = groq`*[_type == "announcement" && slug.current 
     title, slug, body, isEvent, releasedAt, eventAt
   }`;
 
-// Get youtube
-export const youtubeQuery = groq`*[_type == "youtube" && slug.current == $slug][0]{
+// Get sermon
+export const sermonQuery = groq`*[_type == "sermon" && slug.current == $slug][0]{
     title, slug, url
 }`;
-export const youtubeListQuery = groq`*[_type == "youtube"][0]{
+export const sermonListQuery = groq`*[_type == "sermon"][0]{
     title, slug, url
 }`;
