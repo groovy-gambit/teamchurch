@@ -3,7 +3,7 @@ import { Flex, Text } from '@sanity/ui';
 import YouTubePlayer from 'react-player/youtube';
 
 interface PreviewYouTubeProps extends PreviewProps {
-  url: string;
+  url?: string;
 }
 
 export function YouTubePreview(props: PreviewYouTubeProps) {
