@@ -4,7 +4,7 @@ export default async function Page() {
   return (
     <>
       <h1>설교</h1>
-      <h2>설교 내용 및 영상</h2>
+      <h2>설교 요약 및 영상입니다.</h2>
       <SermonList />
     </>
   );
