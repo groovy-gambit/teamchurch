@@ -82,7 +82,7 @@ export default function Header() {
                   <AccordionTrigger>말씀</AccordionTrigger>
                   <AccordionContent>
                     <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-                      <MobileNavItem href="/word-of-god" title="예배" />
+                      <MobileNavItem href="/word-of-god/sermon" title="설교" />
                       <MobileNavItem href="/word-of-god/meditation" title="묵상" />
                       <MobileNavItem href="/word-of-god/membership-training" title="멤버쉽반" />
                       <MobileNavItem href="/word-of-god/lecture" title="특강" />
@@ -116,7 +116,7 @@ export default function Header() {
               <NavigationMenuTrigger>말씀</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-                  <ListItem href="/word-of-god" title="예배" />
+                  <ListItem href="/word-of-god/sermon" title="설교" />
                   <ListItem href="/word-of-god/meditation" title="묵상" />
                   <ListItem href="/word-of-god/membership-training" title="멤버쉽반" />
                   <ListItem href="/word-of-god/lecture" title="특강" />
