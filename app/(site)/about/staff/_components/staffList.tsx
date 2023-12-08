@@ -22,7 +22,7 @@ export default async function StaffList() {
   const data = await getAllStaffs();
 
   return (
-    <div className="grid grid-flow-col grid-cols-1 gap-4 space-y-6 lg:grid-cols-2">
+    <div className="grid  grid-cols-1 gap-4 lg:grid-cols-2">
       {data.map((staff: Staff) => {
         return (
           <Link href={`/about/staff/${staff.slug.current}`} key={staff.slug.current} className="not-prose">
