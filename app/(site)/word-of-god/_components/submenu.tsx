@@ -9,10 +9,6 @@ export default function SubMenu() {
   return (
     <section className="pt-3">
       <div className="flex flex-col">
-        <Link href="/word-of-god" className={`py-2 ${pathName === '/word-of-god' && 'font-bold'}`}>
-          예배
-        </Link>
-
         <Link href="/word-of-god/sermon" className={`py-2 ${pathName.includes('/word-of-god/sermon') && 'font-bold'}`}>
           설교
         </Link>
