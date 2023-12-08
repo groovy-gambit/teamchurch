@@ -20,6 +20,19 @@ export type Meditation = {
   body: TypedObject | TypedObject[];
 };
 
+export type Sermon = {
+  title: string;
+  slug: {
+    current: string;
+  };
+  type: string;
+  intro: string;
+  body: TypedObject | TypedObject[];
+  youtube: {
+    url: string;
+  };
+};
+
 export type Announcement = {
   title: string;
   subtitle: string;

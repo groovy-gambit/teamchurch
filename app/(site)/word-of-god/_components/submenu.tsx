@@ -13,6 +13,10 @@ export default function SubMenu() {
           예배
         </Link>
 
+        <Link href="/word-of-god/sermon" className={`py-2 ${pathName.includes('/word-of-god/sermon') && 'font-bold'}`}>
+          설교
+        </Link>
+
         <Link
           href="/word-of-god/meditation"
           className={`py-2 ${pathName.includes('/word-of-god/meditation') && 'font-bold'}`}
