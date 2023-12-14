@@ -23,7 +23,7 @@ export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
   }`;
 
 // Get all meditation
-export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt asc) {
+export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt desc) {
     title, slug, type, intro, releasedAt
   }`;
 
