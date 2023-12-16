@@ -8,7 +8,7 @@ export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
   }`;
 
 // Get all announcements
-export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now())] | order(releasedAt asc) {
+export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now())] | order(releasedAt desc) {
     title, subtitle, slug, isEvent, releasedAt, eventAt
   }`;
 
@@ -23,7 +23,7 @@ export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
   }`;
 
 // Get all meditation
-export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt asc) {
+export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt desc) {
     title, slug, type, intro, releasedAt
   }`;
 

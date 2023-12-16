@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { client } from '@/sanity/lib/client';
 import heroImage from '@/public/people-hero.png';
 import { announcementsQuery, meditationsQuery, pageQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';

@@ -17,7 +17,7 @@ export default async function MeditationsList() {
   const posts = await getAllMeditations();
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-3">
       {posts.map((post: Meditation) => {
         return (
           <Link href={`/word-of-god/meditation/${post.slug.current}`} key={post.slug.current} className="not-prose">
