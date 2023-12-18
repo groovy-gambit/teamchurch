@@ -1,4 +1,3 @@
-import { client } from '@/sanity/lib/client';
 import { meditationsQuery } from '@/sanity/lib/queries';
 import Link from 'next/link';
 import { Meditation } from '@/sanity/types/types';

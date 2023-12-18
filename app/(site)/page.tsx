@@ -1,6 +1,4 @@
-import Image from 'next/image';
-import heroImage from '@/public/people-hero.png';
-import { announcementsQuery, meditationsQuery, pageQuery } from '@/sanity/lib/queries';
+import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -8,7 +6,8 @@ import { cn } from '@/lib/utils';
 import AnnouncementList from './_components/announcementList';
 import { sanityFetch } from '@/lib/sanityClient';
 import { TypedObject } from 'sanity';
-import { Announcement } from '@/sanity/types/types';
+import { Announcement, Banner } from '@/sanity/types/types';
+import BannerCarousel from './_components/bannerCarousel';
 
 type MeditationPageProps = {
   body?: TypedObject;
@@ -43,35 +42,26 @@ async function getAllAnnouncements() {
   return dataList;
 }
 
+async function getAllBanners() {
+  const dataList = await sanityFetch<Banner[]>({
+    query: bannerQuery,
+    tags: ['banner'],
+  });
+  return dataList;
+}
+
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
   const announcements = await getAllAnnouncements();
+  const banners = await getAllBanners();
+
   return (
     <>
       {/* Start block */}
-      {/* <Link href="/announcement/an-2023-11-21" className="relative mx-auto block max-w-6xl outline-none"> */}
-      <section className="relative mx-auto block max-w-6xl outline-none">
-        <div rel="hero" className="relative h-80 max-w-6xl overflow-hidden rounded-lg ">
-          <Image
-            alt="hero-banner"
-            src={heroImage}
-            className="object-cover"
-            fill
-            sizes="100vw"
-            style={{ objectPosition: '15%' }}
-          />
-          <div className="absolute left-0 top-0 flex h-full w-full">
-            <div className="container mx-auto mt-12 px-4 md:px-10 lg:max-w-screen-lg">
-              <h1 className=" text-3xl font-bold leading-tight">
-                TEAM Church 홈페이지를 오픈했습니다. <br />
-                축하합니다!
-              </h1>
-            </div>
-          </div>
-        </div>
+      <section className="relative mx-auto flex h-80 max-w-6xl items-center justify-center outline-none">
+        <BannerCarousel images={banners} />
       </section>
-      {/* </Link> */}
 
       {/* End block */}
       {/* Two column content layout */}
@@ -102,7 +92,7 @@ export default async function Home() {
               주간 가이드 읽기
             </Link>
             <Link href="/word-of-god/meditation" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}>
-              전체 가이드 읽기
+              묵상 학교
             </Link>
           </div>
         </section>

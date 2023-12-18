@@ -6,6 +6,11 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'title',
+      title: '제목',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       title: '이미지',
       type: 'image',
@@ -22,7 +27,7 @@ export default defineType({
     }),
     defineField({
       name: 'anchor',
-      title: '기준',
+      title: '위치 기준',
       type: 'string',
       options: {
         list: [
@@ -31,6 +36,7 @@ export default defineType({
           { title: '오른쪽', value: 'right' },
         ],
       },
+      initialValue: 'center',
     }),
     defineField({
       name: 'linkTo',
