@@ -92,7 +92,7 @@ export default async function Home() {
               주간 가이드 읽기
             </Link>
             <Link href="/word-of-god/meditation" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}>
-              묵상 학교
+              묵상 배우기
             </Link>
           </div>
         </section>

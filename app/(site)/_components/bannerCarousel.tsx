@@ -83,13 +83,13 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
         </motion.div>
       </AnimatePresence>
       <div
-        className="absolute right-4 top-[50%-20px] z-10 flex h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold"
+        className=" absolute right-4 top-[50%-20px] z-10 hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
         onClick={() => paginate(1)}
       >
         {'‣'}
       </div>
       <div
-        className="absolute left-4 top-[50%-20px] z-10 flex h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold"
+        className="absolute left-4 top-[50%-20px] z-10 hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
         onClick={() => paginate(-1)}
       >
         {'‣'}
