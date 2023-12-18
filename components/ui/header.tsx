@@ -52,7 +52,7 @@ export default function Header() {
     <header className="w-full bg-white">
       <nav className="container mx-auto flex w-full flex-row items-center justify-between px-4 py-6 md:px-10 lg:max-w-screen-lg">
         <Link href="/" legacyBehavior>
-          <Image src={navLogo} alt="Team Church logo" height={60} />
+          <Image src={navLogo} alt="Team Church logo" height={60} className=" cursor-pointer" />
         </Link>
         {/* collapsed nav */}
         <div className="md:hidden">
