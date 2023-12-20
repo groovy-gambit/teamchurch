@@ -20,7 +20,7 @@ export default async function Page() {
     <>
       <h1>{`공지 및 광고`}</h1>
       {data.map((item: any) => {
-        const publishedDate = new Date(item.publishedAt);
+        const publishedDate = new Date(item.releasedAt);
         const eventDate = item.eventAt ? new Date(item.eventAt) : undefined;
         return (
           <Link href={`/announcement/${item.slug.current}`} key={item.slug.current}>
@@ -30,8 +30,8 @@ export default async function Page() {
                 <BodyToText value={item.body} />
               </p>
             ) : null}
-            {eventDate ? <p>이벤트 날짜: {eventDate.toDateString()}</p> : null}
-            <p>{publishedDate.toDateString()}</p>
+            {eventDate ? <p>이벤트 날짜: {eventDate.toLocaleDateString()}</p> : null}
+            <p>{publishedDate.toLocaleDateString()}</p>
           </Link>
         );
       })}

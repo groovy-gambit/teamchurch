@@ -1,6 +1,7 @@
+import YoutubePlayer from '@/components/ui/YoutubePlayer';
 import { client } from '@/sanity/lib/client';
-import { PortableText } from '@portabletext/react';
 import imageUrlBuilder from '@sanity/image-url';
+import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
@@ -23,6 +24,14 @@ export const BodyContent = ({ value }: { value: any }) => {
               />
             </div>
           ),
+          youtube: ({ value }: { value: { url: string } }) => {
+            const { url } = value;
+            return (
+              <div className="justify-center">
+                <YoutubePlayer url={url} />
+              </div>
+            );
+          },
         },
         block: {
           h2: ({ children }) => {

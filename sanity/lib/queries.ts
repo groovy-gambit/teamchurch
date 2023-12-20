@@ -8,7 +8,7 @@ export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
   }`;
 
 // Get all announcements
-export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now())] | order(releasedAt asc) {
+export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now())] | order(releasedAt desc) {
     title, subtitle, slug, isEvent, releasedAt, eventAt
   }`;
 
@@ -39,8 +39,13 @@ export const announcementQuery = groq`*[_type == "announcement" && slug.current 
 
 // Get sermon
 export const sermonQuery = groq`*[_type == "sermon" && slug.current == $slug][0]{
-    title, slug, type, intro, body, releasedAt
+    title, slug, type, intro, body, releasedAt, sermonURL
 }`;
+
 export const sermonListQuery = groq`*[_type == "sermon"]{
-    title, slug, type, intro, releasedAt
+    title, slug, type, intro, releasedAt, sermonURL
+}`;
+
+export const bannerQuery = groq`*[_type == "banner"]{
+    image, anchor, linkTo
 }`;

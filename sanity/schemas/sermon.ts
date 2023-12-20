@@ -1,4 +1,4 @@
-import { Slug, SlugSchemaType, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'sermon',
@@ -23,6 +23,13 @@ export default defineType({
       name: 'releasedAt',
       title: '등록일',
       type: 'date',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'sermonURL',
+      title: '설교 영상 URL',
+      type: 'url',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'intro',
