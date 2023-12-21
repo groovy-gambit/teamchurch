@@ -16,7 +16,7 @@ export default defineType({
       type: 'slug',
       options: {
         source: 'title',
-        slugify: (input) => `lecture-${input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)}`,
+        slugify: (input) => `lecture-${encodeURI(input.toLowerCase().replace(/\s+/g, '-').slice(0, 200))}`,
       },
     }),
     defineField({
