@@ -56,5 +56,7 @@ export const lectureListQuery = groq`*[_type == "lecture"]{
 }`;
 
 export const bannerQuery = groq`*[_type == "banner"]{
-    image, anchor, linkTo
+    image, anchor, linkTo,
+  "linkToType": linkTo->_type,
+  "linkToSlug": linkTo->slug.current
 }`;

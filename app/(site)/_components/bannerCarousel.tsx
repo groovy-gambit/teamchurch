@@ -7,6 +7,9 @@ import { Banner } from '@/sanity/types/types';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import imageUrlBuilder from '@sanity/image-url';
+import { useRouter } from 'next/navigation';
+import linkMapper from '@/app/(site)/_util/linkMapper';
+import { cn } from '@/lib/utils';
 
 const variants = {
   enter: (direction: number) => {
@@ -36,8 +39,12 @@ const swipePower = (offset: number, velocity: number) => {
 const builder = imageUrlBuilder(client);
 
 export default function BannerCarousel({ images }: { images: Banner[] }) {
+  const router = useRouter();
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, images.length, page);
+  const linkToType = images[imageIndex].linkToType;
+  const linkToSlug = images[imageIndex].linkToSlug;
+  const linkPath = linkMapper(linkToType, linkToSlug);
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -74,11 +81,15 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
           <Image
             alt={images[imageIndex].image.alt}
             src={builder.image(images[imageIndex].image).url()}
-            className={`object-cover${images[imageIndex].anchor === 'left' ? ' object-left' : ''}${
-              images[imageIndex].anchor === 'right' ? ' object-right' : ''
-            }`}
+            className={cn(
+              `object-cover${images[imageIndex].anchor === 'left' ? ' object-left' : ''}${
+                images[imageIndex].anchor === 'right' ? ' object-right' : ''
+              }`,
+              linkPath ? 'hover:cursor-pointer' : 'cursor-auto',
+            )}
             fill
             sizes="100vw"
+            onClick={() => (linkPath ? router.push(linkPath) : null)}
           />
         </motion.div>
       </AnimatePresence>
@@ -98,9 +109,9 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
   );
 
   // TODO: ADD Link wrapper to the reference
-  if (images[imageIndex].linkTo) {
-    return content;
-  }
+  // if (images[imageIndex].linkTo) {
+  //   return content;
+  // }
 
   return content;
 }
