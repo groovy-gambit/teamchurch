@@ -3,6 +3,8 @@ import { DocumentActionComponent, useDocumentOperation } from 'sanity';
 
 const encodeTitle = (title: string) => encodeURI(title.toLowerCase().replace(/\s+/g, '-').slice(0, 200));
 
+const typesToGenerateSlugFor = ['lecture'];
+
 export function slugOnSave(originalPublishAction: DocumentActionComponent) {
   const BetterAction = (props: any) => {
     // use the hook to get access to the patch function with the current document
@@ -14,7 +16,7 @@ export function slugOnSave(originalPublishAction: DocumentActionComponent) {
     return {
       ...originalResult,
       onHandle: async () => {
-        if (!props.draft || props.type !== 'note') {
+        if (!props.draft || typesToGenerateSlugFor.indexOf(props.type) > -1) {
           return originalResult!.onHandle!();
         }
         // check for a title and existing slug
