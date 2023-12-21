@@ -76,5 +76,6 @@ export type Banner = {
     alt: string;
   };
   anchor: string;
-  linkTo: Reference;
+  linkToType: string;
+  linkToSlug: string;
 };
