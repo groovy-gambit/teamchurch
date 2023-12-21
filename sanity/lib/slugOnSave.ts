@@ -16,7 +16,8 @@ export function slugOnSave(originalPublishAction: DocumentActionComponent) {
     return {
       ...originalResult,
       onHandle: async () => {
-        if (!props.draft || typesToGenerateSlugFor.indexOf(props.type) > -1) {
+        // if (!props.draft || typesToGenerateSlugFor.indexOf(props.type) > -1) {
+        if (!props.draft) {
           return originalResult!.onHandle!();
         }
         // check for a title and existing slug
