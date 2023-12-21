@@ -24,5 +24,5 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 * [ ] - Auto generate slug: fix slugOnSave, it's not working yet
 * [ ] - bannerCarousel.tsx: 시간 지나면 자동으로 다음 배너로 넘어가는거
-* [ ] - bannerCarousel.tsx: linkTo reference 가 있으면 그걸로 링크 걸어줘야하는데 reference id 가지고 url query 하는 방법
+* [x] - bannerCarousel.tsx: linkTo reference 가 있으면 그걸로 링크 걸어줘야하는데 reference id 가지고 url query 하는 방법
 * [ ] - 설교 영상 홈(main page)에서 최근꺼 보이게 하는거
