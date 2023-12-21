@@ -34,6 +34,20 @@ export type Sermon = {
   };
 };
 
+export type Lecture = {
+  title: string;
+  slug: {
+    current: string;
+  };
+  type: string;
+  intro: string;
+  body: TypedObject | TypedObject[];
+  sermonURL: string;
+  youtube: {
+    url: string;
+  };
+};
+
 export type Announcement = {
   title: string;
   subtitle: string;

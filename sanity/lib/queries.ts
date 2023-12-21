@@ -46,6 +46,15 @@ export const sermonListQuery = groq`*[_type == "sermon"]{
     title, slug, type, intro, releasedAt, sermonURL
 }`;
 
+// Lecture
+export const lectureQuery = groq`*[_type == "lecture" && slug.current == $slug][0]{
+    title, slug, type, intro, body, releasedAt
+}`;
+
+export const lectureListQuery = groq`*[_type == "lecture"]{
+    title, slug, type, intro, releasedAt
+}`;
+
 export const bannerQuery = groq`*[_type == "banner"]{
     image, anchor, linkTo
 }`;

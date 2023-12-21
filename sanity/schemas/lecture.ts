@@ -16,8 +16,13 @@ export default defineType({
       type: 'slug',
       options: {
         source: 'title',
-        maxLength: 96,
+        slugify: (input) => `lecture-${input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)}`,
       },
+    }),
+    defineField({
+      name: 'intro',
+      title: '서론',
+      type: 'string',
     }),
     defineField({
       name: 'body',
