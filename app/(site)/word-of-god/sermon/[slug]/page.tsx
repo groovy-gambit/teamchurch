@@ -16,7 +16,6 @@ async function getPageData(slug: string) {
 export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const data = await getPageData(slug);
-  console.log(data.sermonURL);
   return (
     <div className="flex-col gap-4">
       <h1>{data.title}</h1>
