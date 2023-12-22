@@ -63,8 +63,6 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
     }
   }, []);
 
-  console.log(images[imageIndex].mobileImage.url);
-
   useEffect(() => {
     if (images.length === 1) return;
     resetTimeout();

@@ -1,4 +1,4 @@
-import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery } from '@/sanity/lib/queries';
+import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, recentSermonQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -6,8 +6,9 @@ import { cn } from '@/lib/utils';
 import AnnouncementList from './_components/announcementList';
 import { sanityFetch } from '@/lib/sanityClient';
 import { TypedObject } from 'sanity';
-import { Announcement, Banner } from '@/sanity/types/types';
+import { Announcement, Banner, Sermon } from '@/sanity/types/types';
 import BannerCarousel from './_components/bannerCarousel';
+import RecentSermons from './_components/recentSermons';
 
 type MeditationPageProps = {
   body?: TypedObject;
@@ -50,12 +51,21 @@ async function getAllBanners() {
   return dataList;
 }
 
+async function getRecentSermons() {
+  const pageData = await sanityFetch<Sermon[]>({
+    query: recentSermonQuery,
+    tags: ['sermon'],
+  });
+  return pageData;
+}
+
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
   const announcements = await getAllAnnouncements();
   const banners = await getAllBanners();
-  console.log({ banners });
+  const sermons = await getRecentSermons();
+
   return (
     <>
       {/* Start block */}
@@ -63,6 +73,16 @@ export default async function Home() {
         <BannerCarousel images={banners} />
       </section>
 
+      <section className="relative mx-auto mt-12 flex max-w-5xl flex-col items-center justify-center gap-4 px-10 outline-none">
+        <h2 className="mb-4 text-center text-2xl font-semibold">설교 말씀</h2>
+        <RecentSermons sermons={sermons} />
+        <Link
+          href="/word-of-god/sermon"
+          className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-none md:max-w-xs')}
+        >
+          설교 말씀 전체보기
+        </Link>
+      </section>
       {/* End block */}
       {/* Two column content layout */}
       <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:grid-cols-2 md:px-10 lg:max-w-screen-lg">
