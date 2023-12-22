@@ -67,7 +67,7 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
     return () => {
       resetTimeout();
     };
-  }, [paginate]);
+  }, [paginate, resetTimeout]);
 
   const content = (
     <div className="relative m-auto h-full w-full overflow-hidden">
