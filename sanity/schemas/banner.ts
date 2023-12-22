@@ -12,7 +12,22 @@ export default defineType({
     }),
     defineField({
       name: 'image',
-      title: '이미지',
+      title: '배너 이미지',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'alt 텍스트',
+        },
+      ],
+    }),
+    defineField({
+      name: 'mobileImage',
+      title: '모바일 배너 이미지',
       type: 'image',
       options: {
         hotspot: true,

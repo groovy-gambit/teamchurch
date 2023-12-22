@@ -55,7 +55,7 @@ export default async function Home() {
   const latestMeditation = await getlastedMeditation();
   const announcements = await getAllAnnouncements();
   const banners = await getAllBanners();
-
+  console.log({ banners });
   return (
     <>
       {/* Start block */}

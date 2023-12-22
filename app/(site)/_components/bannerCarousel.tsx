@@ -49,9 +49,12 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
   const linkToSlug = images[imageIndex].linkToSlug;
   const linkPath = linkMapper(linkToType, linkToSlug);
 
-  const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
-  };
+  const paginate = useCallback(
+    (newDirection: number) => {
+      setPage([page + newDirection, newDirection]);
+    },
+    [page],
+  );
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const resetTimeout = useCallback(() => {
@@ -60,14 +63,17 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
     }
   }, []);
 
+  console.log(images[imageIndex].mobileImage.url);
+
   useEffect(() => {
+    if (images.length === 1) return;
     resetTimeout();
     timeoutRef.current = setTimeout(() => paginate(1), AUTOMATIC_SLIDE_DELAY_MSEC);
 
     return () => {
       resetTimeout();
     };
-  }, [paginate, resetTimeout]);
+  }, [images.length, paginate, resetTimeout]);
 
   const content = (
     <div className="relative m-auto h-full w-full overflow-hidden">
@@ -98,47 +104,62 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
           }}
         >
           <Image
-            alt={images[imageIndex].image.alt}
+            alt={images[imageIndex].image.alt ?? ''}
             src={builder.image(images[imageIndex].image).url()}
             className={cn(
               `object-cover${images[imageIndex].anchor === 'left' ? ' object-left' : ''}${
                 images[imageIndex].anchor === 'right' ? ' object-right' : ''
               }`,
+              images[imageIndex].mobileImage.url ? 'hidden md:block' : '',
               linkPath ? 'hover:cursor-pointer' : 'cursor-auto',
             )}
             fill
             sizes="100vw"
             onClick={() => (linkPath ? router.push(linkPath) : null)}
           />
+          {images[imageIndex].mobileImage.url ? (
+            <Image
+              alt={images[imageIndex].mobileImage.alt ?? ''}
+              src={builder.image(images[imageIndex].mobileImage).url()}
+              className={cn(
+                `block md:hidden object-cover${images[imageIndex].anchor === 'left' ? ' object-left' : ''}${
+                  images[imageIndex].anchor === 'right' ? ' object-right' : ''
+                }`,
+                linkPath ? 'hover:cursor-pointer' : 'cursor-auto',
+              )}
+              fill
+              sizes="100vw"
+              onClick={() => (linkPath ? router.push(linkPath) : null)}
+            />
+          ) : null}
         </motion.div>
       </AnimatePresence>
-      <div className="relative flex h-full flex-col justify-between align-baseline">
-        <div
-          className="absolute right-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
-          onClick={() => {
-            resetTimeout();
-            paginate(1);
-          }}
-        >
-          {'‣'}
-        </div>
-        <div
-          className="absolute left-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
-          onClick={() => {
-            resetTimeout();
-            paginate(-1);
-          }}
-        >
-          {'‣'}
-        </div>
-      </div>
+      {images.length > 1 ? (
+        <>
+          <div className="relative flex h-full flex-col justify-between align-baseline">
+            <div
+              className="absolute right-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
+              onClick={() => {
+                resetTimeout();
+                paginate(1);
+              }}
+            >
+              {'‣'}
+            </div>
+            <div
+              className="absolute left-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
+              onClick={() => {
+                resetTimeout();
+                paginate(-1);
+              }}
+            >
+              {'‣'}
+            </div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
-
-  // TODO: ADD Link wrapper to the reference
-  // if (images[imageIndex].linkTo) {
-  //   return content;
-  // }
 
   return content;
 }

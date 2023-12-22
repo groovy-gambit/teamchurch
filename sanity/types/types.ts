@@ -1,4 +1,4 @@
-import { PortableTextBlock, TypedObject, Reference } from 'sanity';
+import { PortableTextBlock, TypedObject } from 'sanity';
 
 export type Blog = {
   _id: string;
@@ -47,7 +47,7 @@ export type Lecture = {
   sermonURL: string;
   thumbnail: {
     url: string;
-    alt: string;
+    alt?: string;
   };
   youtube: {
     url: string;
@@ -79,9 +79,13 @@ export type Staff = {
 export type Banner = {
   image: {
     url: string;
-    alt: string;
+    alt?: string;
   };
   anchor: string;
+  mobileImage: {
+    url: string;
+    alt?: string;
+  };
   linkToType: string;
   linkToSlug: string;
 };
