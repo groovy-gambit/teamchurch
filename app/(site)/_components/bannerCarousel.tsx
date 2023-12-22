@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { wrap } from 'popmotion';
 import { Banner } from '@/sanity/types/types';
 import Image from 'next/image';
@@ -10,6 +10,8 @@ import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/navigation';
 import linkMapper from '@/app/(site)/_util/linkMapper';
 import { cn } from '@/lib/utils';
+
+const AUTOMATIC_SLIDE_DELAY_MSEC = 5000;
 
 const variants = {
   enter: (direction: number) => {
@@ -41,6 +43,7 @@ const builder = imageUrlBuilder(client);
 export default function BannerCarousel({ images }: { images: Banner[] }) {
   const router = useRouter();
   const [[page, direction], setPage] = useState([0, 0]);
+
   const imageIndex = wrap(0, images.length, page);
   const linkToType = images[imageIndex].linkToType;
   const linkToSlug = images[imageIndex].linkToSlug;
@@ -50,8 +53,24 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
     setPage([page + newDirection, newDirection]);
   };
 
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const resetTimeout = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(() => paginate(1), AUTOMATIC_SLIDE_DELAY_MSEC);
+
+    return () => {
+      resetTimeout();
+    };
+  }, [paginate]);
+
   const content = (
-    <>
+    <div className="relative m-auto h-full w-full overflow-hidden">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
@@ -93,19 +112,27 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
           />
         </motion.div>
       </AnimatePresence>
-      <div
-        className=" absolute right-4 top-[50%-20px] z-10 hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
-        onClick={() => paginate(1)}
-      >
-        {'‣'}
+      <div className="relative flex h-full flex-col justify-between align-baseline">
+        <div
+          className="absolute right-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
+          onClick={() => {
+            resetTimeout();
+            paginate(1);
+          }}
+        >
+          {'‣'}
+        </div>
+        <div
+          className="absolute left-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
+          onClick={() => {
+            resetTimeout();
+            paginate(-1);
+          }}
+        >
+          {'‣'}
+        </div>
       </div>
-      <div
-        className="absolute left-4 top-[50%-20px] z-10 hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
-        onClick={() => paginate(-1)}
-      >
-        {'‣'}
-      </div>
-    </>
+    </div>
   );
 
   // TODO: ADD Link wrapper to the reference
