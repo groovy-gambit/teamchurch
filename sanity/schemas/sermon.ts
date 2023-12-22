@@ -32,6 +32,11 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'passage',
+      title: '본문',
+      type: 'string',
+    }),
+    defineField({
       name: 'intro',
       title: '서론',
       type: 'string',

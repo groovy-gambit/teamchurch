@@ -27,6 +27,7 @@ export type Sermon = {
   };
   type: string;
   intro: string;
+  passage: string;
   body: TypedObject | TypedObject[];
   sermonURL: string;
   youtube: {
@@ -41,8 +42,13 @@ export type Lecture = {
   };
   type: string;
   intro: string;
+  category: string;
   body: TypedObject | TypedObject[];
   sermonURL: string;
+  thumbnail: {
+    url: string;
+    alt: string;
+  };
   youtube: {
     url: string;
   };

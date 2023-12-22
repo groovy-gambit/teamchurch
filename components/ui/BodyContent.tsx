@@ -37,6 +37,9 @@ export const BodyContent = ({ value }: { value: any }) => {
           h2: ({ children }) => {
             return <h2 className={`first:mt-0`}>{children}</h2>;
           },
+          p: ({ children }) => {
+            return <p className={`first:mt-0`}>{children}</p>;
+          },
         },
       }}
     />
