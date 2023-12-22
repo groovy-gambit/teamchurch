@@ -70,7 +70,7 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
   }, [paginate]);
 
   const content = (
-    <>
+    <div className="relative m-auto h-full w-full overflow-hidden">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
@@ -112,25 +112,27 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
           />
         </motion.div>
       </AnimatePresence>
-      <div
-        className=" absolute right-4 top-[50%-20px] z-10 hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
-        onClick={() => {
-          resetTimeout();
-          paginate(1);
-        }}
-      >
-        {'‣'}
+      <div className="relative flex h-full flex-col justify-between align-baseline">
+        <div
+          className="absolute right-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
+          onClick={() => {
+            resetTimeout();
+            paginate(1);
+          }}
+        >
+          {'‣'}
+        </div>
+        <div
+          className="absolute left-4 top-[50%] z-10 mt-[-20px] hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
+          onClick={() => {
+            resetTimeout();
+            paginate(-1);
+          }}
+        >
+          {'‣'}
+        </div>
       </div>
-      <div
-        className="absolute left-4 top-[50%-20px] z-10 hidden h-10 w-10 scale-[-1] cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold md:flex"
-        onClick={() => {
-          resetTimeout();
-          paginate(-1);
-        }}
-      >
-        {'‣'}
-      </div>
-    </>
+    </div>
   );
 
   // TODO: ADD Link wrapper to the reference
