@@ -60,7 +60,7 @@ export const lecturesByCat = groq`*[_type == "lecture" && category == $category]
 }`;
 
 export const bannerQuery = groq`*[_type == "banner"]{
-    image, anchor, linkTo,
+    image, anchor, linkTo, mobileImage,
   "linkToType": linkTo->_type,
   "linkToSlug": linkTo->slug.current
 }`;
