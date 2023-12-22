@@ -30,6 +30,7 @@ export type Sermon = {
   passage: string;
   body: TypedObject | TypedObject[];
   sermonURL: string;
+  releasedAt: string;
   youtube: {
     url: string;
   };
