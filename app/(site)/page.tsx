@@ -1,4 +1,4 @@
-import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, sermonListQuery } from '@/sanity/lib/queries';
+import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, recentSermonQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -8,8 +8,6 @@ import { sanityFetch } from '@/lib/sanityClient';
 import { TypedObject } from 'sanity';
 import { Announcement, Banner, Sermon } from '@/sanity/types/types';
 import BannerCarousel from './_components/bannerCarousel';
-import { Card } from '@sanity/ui';
-import Image from 'next/image';
 import RecentSermons from './_components/recentSermons';
 
 type MeditationPageProps = {
@@ -53,22 +51,20 @@ async function getAllBanners() {
   return dataList;
 }
 
-async function getSermons() {
+async function getRecentSermons() {
   const pageData = await sanityFetch<Sermon[]>({
-    query: sermonListQuery,
+    query: recentSermonQuery,
     tags: ['sermon'],
   });
   return pageData;
 }
-
-const Regex = new RegExp('.*(?:(?:youtu.be/|v/|vi/|u/w/|embed/)|(?:(?:watch)??v(?:i)?=|&v(?:i)?=))([^#&?]*).*', 'i');
 
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
   const announcements = await getAllAnnouncements();
   const banners = await getAllBanners();
-  const sermons = await getSermons();
+  const sermons = await getRecentSermons();
 
   return (
     <>
