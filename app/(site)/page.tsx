@@ -50,50 +50,6 @@ async function getAnnouncementsFirstPage() {
   return dataList;
 }
 
-async function getAnnouncementsNextPage(lastId, lastReleasedAt, prevId, prevReleasedAt, direction = 1) {
-  if (lastId === null) {
-    return [];
-  }
-  let updatedLastId = lastId;
-  let updatedLastReleastedAt = lastReleasedAt;
-  let updatedPrevId = lastId;
-  let updatedPrevReleastedAt = lastReleasedAt;
-
-  const params =
-    direction === 1
-      ? {
-          lastId,
-          lastReleasedAt,
-        }
-      : {
-          prevId,
-          prevReleasedAt,
-        };
-
-  const dataList = await sanityFetch<Announcement[]>({
-    query: announcementsCursorPageQuery,
-    params,
-    tags: ['announcement'],
-  });
-  if (dataList.length > 0) {
-    updatedLastReleastedAt = dataList[dataList.length - 1].releasedAt;
-    updatedLastId = dataList[dataList.length - 1]._id;
-    updatedPrevId = lastId;
-    updatedPrevReleastedAt = lastReleasedAt;
-  } else {
-    updatedLastId = null; // Reached the end
-    updatedPrevId = prevId;
-    updatedPrevReleastedAt = prevReleasedAt;
-  }
-  return {
-    dataList,
-    updatedLastId,
-    updatedLastReleastedAt,
-    updatedPrevId,
-    updatedPrevReleastedAt,
-  };
-}
-
 async function getAllBanners() {
   const dataList = await sanityFetch<Banner[]>({
     query: bannerQuery,
