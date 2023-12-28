@@ -32,7 +32,7 @@ export default async function Page() {
   return (
     <>
       <h1>테스트 컨첸츠</h1>
-      {data.body ? <BodyContent value={data.body} /> : null}
+      {data?.body ? <BodyContent value={data.body} /> : null}
       <NotepadsList posts={posts} />
     </>
   );
