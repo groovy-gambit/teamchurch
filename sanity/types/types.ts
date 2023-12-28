@@ -22,6 +22,17 @@ export type Meditation = {
   body: TypedObject | TypedObject[];
 };
 
+export type Notepad = {
+  _id: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  type: string;
+  intro: string;
+  body: TypedObject | TypedObject[];
+};
+
 export type Sermon = {
   _id: string;
   title: string;

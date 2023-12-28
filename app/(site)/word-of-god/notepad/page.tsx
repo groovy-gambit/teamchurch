@@ -4,7 +4,7 @@ import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { notepadListQuery, pageQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
-import { Meditation } from '@/sanity/types/types';
+import { Notepad } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
@@ -19,7 +19,7 @@ async function getPageData() {
   return pageData;
 }
 async function getAllNotepads() {
-  const pageData = await sanityFetch<Meditation[]>({
+  const pageData = await sanityFetch<Notepad[]>({
     query: notepadListQuery,
     tags: ['notepad'],
   });
@@ -31,7 +31,7 @@ export default async function Page() {
   const posts = await getAllNotepads();
   return (
     <>
-      <h1>묵상</h1>
+      <h1>테스트 컨첸츠</h1>
       {data.mainImage ? (
         <div className="relative overflow-hidden rounded-md">
           <Image
@@ -43,7 +43,7 @@ export default async function Page() {
           />
         </div>
       ) : null}
-      <h2>주간 묵상 가이드</h2>
+      <h2>테스트용 컨텐츠</h2>
       {data.body ? <BodyContent value={data.body} /> : null}
       <NotepadsList posts={posts} />
     </>
