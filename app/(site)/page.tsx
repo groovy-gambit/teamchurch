@@ -1,4 +1,11 @@
-import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, recentSermonQuery } from '@/sanity/lib/queries';
+import {
+  announcementsQuery,
+  meditationsQuery,
+  pageQuery,
+  bannerQuery,
+  recentSermonQuery,
+  announcementsCursorPageQuery,
+} from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -35,7 +42,7 @@ async function getlastedMeditation() {
   return dataList[0];
 }
 
-async function getAllAnnouncements() {
+async function getAnnouncementsFirstPage() {
   const dataList = await sanityFetch<Announcement[]>({
     query: announcementsQuery,
     tags: ['announcement'],
@@ -62,7 +69,7 @@ async function getRecentSermons() {
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
-  const announcements = await getAllAnnouncements();
+  const announcements = await getAnnouncementsFirstPage();
   const banners = await getAllBanners();
   const sermons = await getRecentSermons();
 

@@ -1,6 +1,8 @@
 // ./nextjs-app/sanity/lib/queries.ts
 
+import { PAGINATION_PAGE_SIZE } from '@/app/(site)/_components/Pagination';
 import { groq } from 'next-sanity';
+import { andNextPageConditional } from './pagination';
 
 // Get page
 export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
@@ -8,13 +10,16 @@ export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
   }`;
 
 // Get all announcements
-export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now())] | order(releasedAt desc) {
-    title, subtitle, slug, isEvent, releasedAt, eventAt
+export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now()) ] | order(releasedAt desc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, title, subtitle, slug, isEvent, releasedAt, eventAt
+  }`;
+export const announcementsCursorPageQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now()) ${andNextPageConditional()}] | order(releasedAt desc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, title, subtitle, slug, isEvent, releasedAt, eventAt
   }`;
 
 // Get all staffs
-export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc) {
-    name, position, slug, image, bio
+export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, name, position, slug, image, bio
   }`;
 
 // Get one staff
@@ -23,8 +28,8 @@ export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
   }`;
 
 // Get all meditation
-export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt desc) {
-    title, slug, type, intro, releasedAt
+export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt desc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, title, slug, type, intro, releasedAt
   }`;
 
 // Get one meditation
@@ -42,8 +47,8 @@ export const sermonQuery = groq`*[_type == "sermon" && slug.current == $slug][0]
     title, slug, type, intro, body, releasedAt, sermonURL
 }`;
 
-export const sermonListQuery = groq`*[_type == "sermon"]{
-    title, slug, type, intro, releasedAt, sermonURL, passage
+export const sermonListQuery = groq`*[_type == "sermon"][0...${PAGINATION_PAGE_SIZE}]{
+    _id, title, slug, type, intro, releasedAt, sermonURL, passage
 }`;
 
 export const recentSermonQuery = groq`*[_type == "sermon"][0...3]{
@@ -55,12 +60,12 @@ export const lectureQuery = groq`*[_type == "lecture" && slug.current == $slug][
     title, slug, type, intro, body, releasedAt, category
 }`;
 
-export const lectureListQuery = groq`*[_type == "lecture"]{
-    title, slug, type, intro, releasedAt, thumbnail, category
+export const lectureListQuery = groq`*[_type == "lecture"][0...${PAGINATION_PAGE_SIZE}]{
+    _id, title, slug, type, intro, releasedAt, thumbnail, category
 }`;
 
-export const lecturesByCat = groq`*[_type == "lecture" && category == $category]{
-    title, slug, type, intro, releasedAt, thumbnail, category
+export const lecturesByCat = groq`*[_type == "lecture" && category == $category][0...${PAGINATION_PAGE_SIZE}]{
+    _id, title, slug, type, intro, releasedAt, thumbnail, category
 }`;
 
 export const bannerQuery = groq`*[_type == "banner"]{
@@ -68,3 +73,17 @@ export const bannerQuery = groq`*[_type == "banner"]{
   "linkToType": linkTo->_type,
   "linkToSlug": linkTo->slug.current
 }`;
+
+// For tests
+
+export const notepadListQuery = groq`*[_type == "notepad"] | order(releasedAt desc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, title, slug, type, intro, releasedAt
+  }`;
+
+export const notepadListCursorPageQuery = groq`*[_type == "notepad" ${andNextPageConditional()}] | order(releasedAt desc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, title, slug, type, intro, releasedAt
+  }`;
+
+export const notepadQuery = groq`*[_type == "notepad" && slug.current == $slug][0]{
+    title, slug, type, body, releasedAt,
+  }`;
