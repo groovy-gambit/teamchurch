@@ -1,4 +1,11 @@
-import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, recentSermonQuery } from '@/sanity/lib/queries';
+import {
+  announcementsQuery,
+  meditationsQuery,
+  pageQuery,
+  bannerQuery,
+  recentSermonQuery,
+  announcementsCursorPageQuery,
+} from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -35,12 +42,56 @@ async function getlastedMeditation() {
   return dataList[0];
 }
 
-async function getAllAnnouncements() {
+async function getAnnouncementsFirstPage() {
   const dataList = await sanityFetch<Announcement[]>({
     query: announcementsQuery,
     tags: ['announcement'],
   });
   return dataList;
+}
+
+async function getAnnouncementsNextPage(lastId, lastReleasedAt, prevId, prevReleasedAt, direction = 1) {
+  if (lastId === null) {
+    return [];
+  }
+  let updatedLastId = lastId;
+  let updatedLastReleastedAt = lastReleasedAt;
+  let updatedPrevId = lastId;
+  let updatedPrevReleastedAt = lastReleasedAt;
+
+  const params =
+    direction === 1
+      ? {
+          lastId,
+          lastReleasedAt,
+        }
+      : {
+          prevId,
+          prevReleasedAt,
+        };
+
+  const dataList = await sanityFetch<Announcement[]>({
+    query: announcementsCursorPageQuery,
+    params,
+    tags: ['announcement'],
+  });
+  if (dataList.length > 0) {
+    updatedLastReleastedAt = dataList[dataList.length - 1].releasedAt;
+    updatedLastId = dataList[dataList.length - 1]._id;
+    updatedPrevId = lastId;
+    updatedPrevReleastedAt = lastReleasedAt;
+  } else {
+    updatedLastId = null; // Reached the end
+    updatedPrevId = prevId;
+    updatedPrevReleastedAt = prevReleasedAt;
+  }
+  return {
+    dataList,
+    updatedLastId,
+    updatedLastReleastedAt,
+    updatedPrevId,
+    updatedPrevReleastedAt,
+  };
 }
 
 async function getAllBanners() {
@@ -62,7 +113,7 @@ async function getRecentSermons() {
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const latestMeditation = await getlastedMeditation();
-  const announcements = await getAllAnnouncements();
+  const announcements = await getAnnouncementsFirstPage();
   const banners = await getAllBanners();
   const sermons = await getRecentSermons();
 

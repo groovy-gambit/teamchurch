@@ -1,3 +1,4 @@
+import { UUID } from 'crypto';
 import { PortableTextBlock, TypedObject } from 'sanity';
 
 export type Blog = {
@@ -11,6 +12,7 @@ export type Blog = {
 };
 
 export type Meditation = {
+  _id: string;
   title: string;
   slug: {
     current: string;
@@ -21,6 +23,7 @@ export type Meditation = {
 };
 
 export type Sermon = {
+  _id: string;
   title: string;
   slug: {
     current: string;
@@ -37,6 +40,7 @@ export type Sermon = {
 };
 
 export type Lecture = {
+  _id: string;
   title: string;
   slug: {
     current: string;
@@ -56,6 +60,7 @@ export type Lecture = {
 };
 
 export type Announcement = {
+  _id: string;
   title: string;
   subtitle: string;
   slug: {
@@ -68,6 +73,7 @@ export type Announcement = {
 };
 
 export type Staff = {
+  _id: string;
   name: string;
   position: string;
   slug: {
@@ -78,6 +84,7 @@ export type Staff = {
 };
 
 export type Banner = {
+  _id: string;
   image: {
     url: string;
     alt?: string;
