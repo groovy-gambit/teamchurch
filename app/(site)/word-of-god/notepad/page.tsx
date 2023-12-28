@@ -32,18 +32,6 @@ export default async function Page() {
   return (
     <>
       <h1>테스트 컨첸츠</h1>
-      {data.mainImage ? (
-        <div className="relative overflow-hidden rounded-md">
-          <Image
-            alt={data?.mainImage?.alt ?? ''}
-            src={builder.image(data.mainImage).url()}
-            className="m-0 object-cover"
-            fill
-            sizes="100vw"
-          />
-        </div>
-      ) : null}
-      <h2>테스트용 컨텐츠</h2>
       {data.body ? <BodyContent value={data.body} /> : null}
       <NotepadsList posts={posts} />
     </>
