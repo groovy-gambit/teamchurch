@@ -9,7 +9,8 @@ import staff from './schemas/staff';
 import youtube from './schemas/youtube';
 import sermon from './schemas/sermon';
 import banner from './schemas/banner';
+import notepad from './schemas/notepad';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [page, announcement, meditation, blockContent, lecture, staff, youtube, sermon, banner],
+  types: [page, announcement, meditation, blockContent, lecture, staff, youtube, sermon, banner, notepad],
 };
