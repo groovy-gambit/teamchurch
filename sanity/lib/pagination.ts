@@ -1,5 +1,4 @@
-import { announcementsCursorPageQuery } from './queries';
-import { sanityFetch } from './sanityFetch';
+import { client } from '@/sanity/lib/client';
 
 export const andNextPageConditional = () =>
   '&& (releasedAt > $lastReleasedAt || (releasedAt == $lastReleasedAt && _id > $lastId))';
@@ -37,12 +36,7 @@ export async function getAnnouncementsNextPage<T extends { _id: string | null; r
           prevId,
           prevReleasedAt,
         };
-
-  const dataList = await sanityFetch<T[]>({
-    query,
-    params: { ...params, ...pageParams },
-    tags,
-  });
+  const dataList = await client.fetch(query, { ...params, ...pageParams }, { next: { tags } });
 
   if (dataList.length > 0) {
     updatedLastReleastedAt = dataList[dataList.length - 1].releasedAt;
