@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: '제목',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -18,6 +19,7 @@ export default defineType({
         source: 'releasedAt',
         slugify: (input) => `sm-${input}`,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'releasedAt',
