@@ -1,11 +1,4 @@
-import {
-  announcementsQuery,
-  meditationsQuery,
-  pageQuery,
-  bannerQuery,
-  recentSermonQuery,
-  announcementsCursorPageQuery,
-} from '@/sanity/lib/queries';
+import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, recentSermonQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -80,7 +73,7 @@ export default async function Home() {
         <BannerCarousel images={banners} />
       </section>
 
-      <section className="relative mx-auto mt-12 flex max-w-5xl flex-col items-center justify-center gap-4 px-10 outline-none">
+      <section className="container relative mx-auto mt-12 flex flex-col items-center justify-center gap-4 px-4 outline-none md:px-10 lg:max-w-screen-lg">
         <h2 className="mb-4 text-center text-2xl font-semibold">설교 말씀</h2>
         <RecentSermons sermons={sermons} />
         <Link
@@ -118,7 +111,10 @@ export default async function Home() {
             >
               주간 가이드 읽기
             </Link>
-            <Link href="/word-of-god/meditation" className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}>
+            <Link
+              href="/word-of-god/lecture?category=learn-meditation"
+              className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
+            >
               묵상 배우기
             </Link>
           </div>

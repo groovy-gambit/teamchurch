@@ -3,7 +3,6 @@
 import ChevronRightIcon from '@heroicons/react/24/solid/ChevronRightIcon';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import BreadcrumbItem from './breadcrumbItem';
 
 export default function Breadcrumb() {
   const pathName = usePathname();
@@ -13,30 +12,25 @@ export default function Breadcrumb() {
     if (pathName === '/word-of-god/membership-training') return '멤버쉽반';
     if (pathName === '/word-of-god/lecture') return '특강';
     if (pathName === '/word-of-god/sermon') return '설교';
-    return '예배';
+    return '설교';
   };
 
   const pathArr = pathName.split('/').filter(Boolean);
 
-  const parentSlug = pathArr[pathArr.length - 2];
-  const slug = pathArr[pathArr.length - 1];
-
   return (
     <section className="flex flex-row py-2 pb-6 lg:hidden">
-      <span className="mr-2">말씀</span>
+      <span className="mr-2">홈</span>
       <ChevronRightIcon className="mr-2 h-6 w-4 font-bold" />
+      <span className="mr-2">말씀</span>
 
       {pathArr.length > 2 ? (
         <>
+          <ChevronRightIcon className="mr-2 h-6 w-4 font-bold" />
           <Link href={`/${pathArr[0]}/${pathArr[1]}`} className="mr-2 underline">
             {getPageName()}
           </Link>
-          <ChevronRightIcon className="mr-2 h-6 w-4 font-bold" />
-          <BreadcrumbItem slug={slug} parentSlug={parentSlug} />
         </>
-      ) : (
-        <span className="mr-2 font-bold">{getPageName()}</span>
-      )}
+      ) : null}
     </section>
   );
 }
