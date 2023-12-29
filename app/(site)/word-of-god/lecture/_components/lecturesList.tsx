@@ -8,29 +8,34 @@ import { client } from '@/sanity/lib/client';
 import Image from 'next/image';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const builder = imageUrlBuilder(client);
 export default function LectureList({ posts }: { posts: Lecture[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()!;
+  const params = new URLSearchParams(searchParams);
+
+  const [currentCat, setCurrentCat] = useState(params.getAll('category')[0] ?? 'all');
+
+  useEffect(() => {
+    setCurrentCat(new URLSearchParams(searchParams).getAll('category')[0] ?? 'all');
+  }, [searchParams]);
 
   const onValueChangeHandler = async (value: string) => {
-    const params = new URLSearchParams(searchParams);
     if (value === 'all') {
       params.delete('category');
     } else {
       params.set('category', value);
     }
-
     const queryString = params.toString();
-
     router.push(pathname + '?' + queryString);
   };
 
   return (
     <div className="flex flex-col gap-4">
-      <Tabs defaultValue="all" className="w-full" onValueChange={onValueChangeHandler}>
+      <Tabs defaultValue={currentCat} className="w-full" onValueChange={onValueChangeHandler}>
         <TabsList className="grid h-20 w-full grid-cols-3 sm:h-10 sm:grid-cols-5">
           <TabsTrigger value="all">전체</TabsTrigger>
           <TabsTrigger value="learn-bible">성경 배우기</TabsTrigger>
