@@ -9,11 +9,13 @@ export default defineType({
       name: 'name',
       title: '이름',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'position',
       title: '직함',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -23,6 +25,7 @@ export default defineType({
         source: 'name',
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'profile_image',

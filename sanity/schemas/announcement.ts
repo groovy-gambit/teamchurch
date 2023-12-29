@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: '제목',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'subtitle',
@@ -19,6 +20,7 @@ export default defineType({
       name: 'releasedAt',
       title: '등록일',
       type: 'date',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -28,6 +30,7 @@ export default defineType({
         source: 'releasedAt',
         slugify: (input) => `an-${input}`,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'isEvent',
