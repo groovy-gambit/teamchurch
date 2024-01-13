@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'announcement',
-  title: '공지 및 광고',
+  title: '교회 소식',
   type: 'document',
   fields: [
     defineField({

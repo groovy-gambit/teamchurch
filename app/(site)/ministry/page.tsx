@@ -11,9 +11,10 @@ const builder = imageUrlBuilder(client);
 async function getPageData() {
   const pageData = await sanityFetch<PageSchemaProps>({
     query: pageQuery,
-    params: { slug: 'word-of-god' },
+    params: { slug: 'ministry' },
     tags: ['page'],
   });
+
   return pageData;
 }
 export default async function Page() {
@@ -22,7 +23,7 @@ export default async function Page() {
     <>
       <h1>{data.title}</h1>
       {data.mainImage ? (
-        <div className="relative overflow-hidden rounded-md">
+        <div className="relative h-72 overflow-hidden rounded-md">
           <Image
             alt={data?.mainImage?.alt ?? ''}
             src={builder.image(data.mainImage).url()}

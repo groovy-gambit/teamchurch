@@ -89,10 +89,45 @@ export default function Header() {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>사역</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                      <MobileNavItem href="/ministry/praise" title="찬양" />
+                      <MobileNavItem href="/ministry/small-group" title="소그룹" />
+                      <MobileNavItem href="/ministry/evangelize" title="전도" />
+                      <MobileNavItem href="/ministry/missionary" title="선교" />
+                      <Link href="" legacyBehavior passHref>
+                        <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          VYCC
+                        </Button>
+                      </Link>
+                      <MobileNavItem href="/ministry/event" title="이벤트" />
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-4">
+                  <AccordionTrigger>교육</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                      <MobileNavItem href="/education/sunday-school" title="주일학교" />
+                      <MobileNavItem href="/education/youth" title="Youth" />
+                      <MobileNavItem href="/education/college" title="College" />
+                      <MobileNavItem href="/education/gabe-orda" title="가베&오르다" />
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <Link
+                  passHref
+                  href="/gallery"
+                  className="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline"
+                >
+                  갤러리
+                </Link>
               </Accordion>
               <Link href="" legacyBehavior passHref>
                 <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                  헌금
+                  온라인 헌금
                 </Button>
               </Link>
             </SheetContent>
@@ -123,21 +158,33 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-
             <NavigationMenuItem>
-              <Link href="" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>헌금</NavigationMenuLink>
-              </Link>
+              <NavigationMenuTrigger>사역</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                  <ListItem href="/ministry/praise" title="찬양" />
+                  <ListItem href="/ministry/small-group" title="소그룹" />
+                  <ListItem href="/ministry/evangelize" title="전도" />
+                  <ListItem href="/ministry/missionary" title="선교" />
+                  <ListItem href="/ministry/event" title="이벤트" />
+                </ul>
+              </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink
-                href="https://visionyouthcc.org"
-                rel="noopener noreferrer"
-                target="_blank"
-                className={navigationMenuTriggerStyle()}
-              >
-                VYCC
-              </NavigationMenuLink>
+              <NavigationMenuTrigger>교육</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                  <ListItem href="/education/sunday-school" title="주일학교" />
+                  <ListItem href="/education/youth" title="Youth" />
+                  <ListItem href="/education/college" title="College" />
+                  <ListItem href="/education/gabe-orda" title="가베&오르다" />
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>온라인 헌금</NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

@@ -18,7 +18,7 @@ export default async function Page() {
 
   return (
     <>
-      <h1>{`공지 및 광고`}</h1>
+      <h1>{`교회 소식`}</h1>
       {data.map((item: any) => {
         const publishedDate = new Date(item.releasedAt);
         const eventDate = item.eventAt ? new Date(item.eventAt) : undefined;

@@ -73,7 +73,7 @@ export default async function Home() {
         <BannerCarousel images={banners} />
       </section>
 
-      <section className="container relative mx-auto mt-12 flex flex-col items-center justify-center gap-4 px-4 outline-none md:px-10 lg:max-w-screen-lg">
+      <section className="container relative mx-auto mt-12 flex flex-col items-center justify-center gap-4 px-0 outline-none sm:px-4 md:px-10 lg:max-w-screen-lg">
         <h2 className="mb-4 text-center text-2xl font-semibold">설교 말씀</h2>
         <RecentSermons sermons={sermons} />
         <Link
@@ -85,16 +85,16 @@ export default async function Home() {
       </section>
       {/* End block */}
       {/* Two column content layout */}
-      <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:grid-cols-2 md:px-10 lg:max-w-screen-lg">
+      <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-0 sm:px-4 md:grid-cols-2 md:px-10 lg:max-w-screen-lg">
         {/* Start block */}
         <section className="flex flex-col items-center gap-4">
-          <h2 className="mb-4 text-center text-2xl font-semibold">공지 및 광고</h2>
+          <h2 className="mb-4 text-center text-2xl font-semibold">교회 소식</h2>
           <AnnouncementList posts={announcements} />
           <Link
             href="/announcement"
             className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-none md:max-w-xs')}
           >
-            공지 및 광고 전체 보기
+            교회 소식 전체 보기
           </Link>
         </section>
         {/* End block */}

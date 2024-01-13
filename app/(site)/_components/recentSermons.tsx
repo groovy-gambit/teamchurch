@@ -19,7 +19,7 @@ export default function RecentSermons({ sermons }: { sermons: Sermon[] }) {
                     alt=""
                     fill
                     className="m-0 object-cover"
-                    sizes="100vw"
+                    sizes="auto, 160px"
                   />
                   <span className="absolute bottom-2 left-2 flex h-12 w-12 flex-col items-center justify-center rounded-md bg-white">
                     <span className=" text-xs leading-5">

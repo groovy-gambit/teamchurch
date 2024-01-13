@@ -11,27 +11,24 @@ const builder = imageUrlBuilder(client);
 async function getPageData() {
   const pageData = await sanityFetch<PageSchemaProps>({
     query: pageQuery,
-    params: { slug: 'word-of-god' },
+    params: { slug: 'contact' },
     tags: ['page'],
   });
   return pageData;
 }
+
 export default async function Page() {
   const data = await getPageData();
+
   return (
     <>
       <h1>{data.title}</h1>
       {data.mainImage ? (
-        <div className="relative overflow-hidden rounded-md">
-          <Image
-            alt={data?.mainImage?.alt ?? ''}
-            src={builder.image(data.mainImage).url()}
-            className="m-0 object-cover"
-            fill
-            sizes="100vw"
-          />
+        <div className="relative h-72 overflow-hidden rounded-md">
+          <Image alt={data?.mainImage?.alt ?? ''} src={builder.image(data.mainImage).url()} fill className="m-0" />
         </div>
       ) : null}
+      {/* Need to add google map here */}
       {data.body ? <BodyContent value={data.body} /> : null}
     </>
   );

@@ -19,12 +19,12 @@ export const announcementsCursorPageQuery = groq`*[_type == "announcement" && da
 
 // Get all staffs
 export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc)[0...${PAGINATION_PAGE_SIZE}] {
-    _id, name, position, slug, image, bio
+    _id, name, position, slug, profile_image, bio
   }`;
 
 // Get one staff
 export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
-    name, position, slug, image, bio
+    name, position, slug, profile_image, bio
   }`;
 
 // Get all meditation
@@ -73,6 +73,11 @@ export const bannerQuery = groq`*[_type == "banner"]{
   "linkToType": linkTo->_type,
   "linkToSlug": linkTo->slug.current
 }`;
+
+// Get gallery events
+export const galleryEventsQuery = groq`*[_type == "gallery" && dateTime(date + 'T00:00:00Z') <= dateTime(now()) ] | order(date desc)[0...${PAGINATION_PAGE_SIZE}] {
+    _id, title, date, slug, images
+  }`;
 
 // For tests
 

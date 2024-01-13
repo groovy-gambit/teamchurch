@@ -8,28 +8,25 @@ import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
-async function getPageData() {
+async function getPageData(slug: string) {
   const pageData = await sanityFetch<PageSchemaProps>({
     query: pageQuery,
-    params: { slug: 'word-of-god' },
+    params: { slug },
     tags: ['page'],
   });
   return pageData;
 }
-export default async function Page() {
-  const data = await getPageData();
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const slug = params.slug;
+  const data = await getPageData(slug);
+
   return (
     <>
       <h1>{data.title}</h1>
       {data.mainImage ? (
-        <div className="relative overflow-hidden rounded-md">
-          <Image
-            alt={data?.mainImage?.alt ?? ''}
-            src={builder.image(data.mainImage).url()}
-            className="m-0 object-cover"
-            fill
-            sizes="100vw"
-          />
+        <div className="relative h-72 overflow-hidden rounded-md">
+          <Image alt={data?.mainImage?.alt ?? ''} src={builder.image(data.mainImage).url()} fill className="m-0" />
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
