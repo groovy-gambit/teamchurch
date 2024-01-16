@@ -52,7 +52,7 @@ export async function getPaginatedContent<T>(
   }
   return {
     posts,
-    from,
-    to,
+    from: (from as string) || '0',
+    to: (to as string) || `${MAX_PAGE_SIZE}`,
   };
 }

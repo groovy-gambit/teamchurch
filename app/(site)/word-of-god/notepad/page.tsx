@@ -41,7 +41,7 @@ export default async function Page({ searchParams }: { searchParams: PageSearchP
     <>
       <h1>테스트 컨xp츠</h1>
       {data?.body ? <BodyContent value={data.body} /> : null}
-      <NotepadsList posts={posts} from={(from as string) || '0'} to={(to as string) || `${MAX_PAGE_SIZE}`} />
+      <NotepadsList posts={posts} from={from} to={to} />
     </>
   );
 }
