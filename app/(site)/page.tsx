@@ -1,11 +1,4 @@
-import {
-  announcementsQuery,
-  meditationsQuery,
-  pageQuery,
-  bannerQuery,
-  recentSermonQuery,
-  announcementsCursorPageQuery,
-} from '@/sanity/lib/queries';
+import { announcementsQuery, meditationsQuery, pageQuery, bannerQuery, recentSermonQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
