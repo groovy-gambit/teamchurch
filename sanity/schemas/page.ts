@@ -50,3 +50,8 @@ export type PageSchemaProps = {
   };
   body?: string;
 };
+
+type PageSearchParamsPropValue = string | string[] | undefined;
+export type PageSearchParamsProp = {
+  [key: string]: PageSearchParamsPropValue;
+};
