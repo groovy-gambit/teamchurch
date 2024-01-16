@@ -6,10 +6,7 @@ import { notepadListPageQuery, notepadListQuery, pageQuery } from '@/sanity/lib/
 import { PageSchemaProps, PageSearchParamsProp } from '@/sanity/schemas/page';
 import { Notepad } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
-import { headers } from 'next/headers';
-import Image from 'next/image';
-import NoteCards from './_components/noteCards';
-import { MAX_PAGE_SIZE, getPaginatedContent, getPagingMarkersFromUrl } from '@/sanity/lib/pagination';
+import { MAX_PAGE_SIZE, getPaginatedContent } from '@/sanity/lib/pagination';
 
 const builder = imageUrlBuilder(client);
 
