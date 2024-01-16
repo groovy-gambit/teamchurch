@@ -50,5 +50,9 @@ export async function getPaginatedContent<T>(
   } else {
     posts = await noPagedContentGetter();
   }
-  return posts;
+  return {
+    posts,
+    from,
+    to,
+  };
 }

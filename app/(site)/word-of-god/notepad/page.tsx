@@ -34,9 +34,12 @@ async function getAllNotepads() {
 
 export default async function Page({ searchParams }: { searchParams: PageSearchParamsProp }) {
   const data = await getPageData();
-  const { from, to } = getPagingMarkersFromUrl(searchParams);
 
-  const posts = await getPaginatedContent<Notepad>(searchParams, { query: notepadListPageQuery, tags }, getAllNotepads);
+  const { posts, from, to } = await getPaginatedContent<Notepad>(
+    searchParams,
+    { query: notepadListPageQuery, tags },
+    getAllNotepads,
+  );
   return (
     <>
       <h1>테스트 컨xp츠</h1>
