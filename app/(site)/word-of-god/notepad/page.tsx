@@ -9,7 +9,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import NoteCards from './_components/noteCards';
-import { MAX_PAGE_SIZE, getPagingMarkersFromUrl } from '@/sanity/lib/pagination';
+import { MAX_PAGE_SIZE, getPaginatedContent, getPagingMarkersFromUrl } from '@/sanity/lib/pagination';
 
 const builder = imageUrlBuilder(client);
 
@@ -21,10 +21,13 @@ async function getPageData() {
   });
   return pageData;
 }
+
+const tags = ['notepad'];
+
 async function getAllNotepads() {
   const pageData = await sanityFetch<Notepad[]>({
     query: notepadListQuery,
-    tags: ['notepad'],
+    tags,
   });
   return pageData;
 }
@@ -32,15 +35,8 @@ async function getAllNotepads() {
 export default async function Page({ searchParams }: { searchParams: PageSearchParamsProp }) {
   const data = await getPageData();
   const { from, to } = getPagingMarkersFromUrl(searchParams);
-  let posts: Notepad[] = [];
-  if (from && to) {
-    posts = await client.fetch(notepadListPageQuery, {
-      from: parseInt(from as string),
-      to: parseInt(to as string),
-    });
-  } else {
-    posts = await getAllNotepads();
-  }
+
+  const posts = await getPaginatedContent<Notepad>(searchParams, { query: notepadListPageQuery, tags }, getAllNotepads);
   return (
     <>
       <h1>테스트 컨xp츠</h1>

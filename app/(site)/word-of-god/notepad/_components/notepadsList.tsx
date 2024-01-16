@@ -1,4 +1,3 @@
-'use client';
 import { Notepad } from '@/sanity/types/types';
 import { Pagination } from '@/app/(site)/_components/Pagination';
 import { MAX_PAGE_SIZE } from '@/sanity/lib/pagination';
