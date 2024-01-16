@@ -4,8 +4,6 @@ import { PageSearchParamsProp } from '../schemas/page';
 
 export const MAX_PAGE_SIZE = 10;
 
-type PlusOrNegative = 1 | -1;
-
 export function getPagingMarkersFromUrl(searchParams: PageSearchParamsProp) {
   if (searchParams && typeof searchParams === 'object') {
     const from = searchParams.from;
