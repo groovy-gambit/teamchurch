@@ -18,7 +18,7 @@ export default function ContentWithPagination<T>({
     <div className="flex flex-col gap-3">
       {children}
       {posts.length === 0 && showPaging && (
-        <span>페이지의 끝에 도달했습니다. '이전'을 눌러서 전 페이지로 돌아가세요.</span>
+        <span>페이지의 끝에 도달했습니다. &lsquo;이전&lsquo;을 눌러서 전 페이지로 돌아가세요.</span>
       )}
       {showPaging && <Pagination from={from} to={to} itemsLessThanMaxPageSize={posts.length < MAX_PAGE_SIZE} />}
     </div>
