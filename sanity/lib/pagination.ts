@@ -1,5 +1,3 @@
-import { client } from '@/sanity/lib/client';
-import { RequiredMetaProps } from '../types/types';
 import { PageSearchParamsProp } from '../schemas/page';
 import { sanityFetch } from '@/lib/sanityClient';
 import { QueryParams } from 'next-sanity';

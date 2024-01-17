@@ -79,6 +79,10 @@ export const lecturesByCat = groq`*[_type == "lecture" && category == $category]
     _id, title, slug, type, intro, releasedAt, thumbnail, category
 }`;
 
+export const lecturesByCatPageQuery = groq`*[_type == "lecture" && category == $category]| order(releasedAt desc, _id desc)[$from...$to]{
+    _id, title, slug, type, intro, releasedAt, thumbnail, category
+}`;
+
 export const bannerQuery = groq`*[_type == "banner"]{
     image, anchor, linkTo, mobileImage,
   "linkToType": linkTo->_type,

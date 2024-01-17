@@ -2,11 +2,13 @@ import SermonList from './_components/sermonsList';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
-import { pageQuery, sermonListQuery } from '@/sanity/lib/queries';
+import { getPaginatedContent } from '@/sanity/lib/pagination';
+import { pageQuery, sermonListPageQuery, sermonListQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import { Sermon } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
+import ContentWithPagination from '../../_components/ContentWithPagination';
 
 const builder = imageUrlBuilder(client);
 
@@ -20,17 +22,29 @@ async function getPageData() {
   return pageData;
 }
 
+const tags = ['sermon'];
+
 async function getAllSermon() {
   const pageData = await sanityFetch<Sermon[]>({
     query: sermonListQuery,
-    tags: ['sermon'],
+    tags,
   });
   return pageData;
 }
 
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const data = await getPageData();
-  const posts = await getAllSermon();
+
+  const { posts, from, to } = await getPaginatedContent<Sermon>(
+    searchParams,
+    { query: sermonListPageQuery, tags },
+    getAllSermon,
+  );
+
   return (
     <>
       <h1>설교</h1>
@@ -46,7 +60,9 @@ export default async function Page() {
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
-      <SermonList posts={posts} />
+      <ContentWithPagination posts={posts} from={from} to={to}>
+        <SermonList posts={posts} />
+      </ContentWithPagination>
     </>
   );
 }
