@@ -4,7 +4,6 @@ import { client } from '@/sanity/lib/client';
 import { pageQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
