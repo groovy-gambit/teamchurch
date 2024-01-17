@@ -12,7 +12,7 @@ export default function NoteCards({ posts }: { posts: Notepad[] }) {
             <Card className="hover:drop-shadow">
               <CardHeader>
                 <CardTitle>{post._id}</CardTitle>
-                <CardDescription>{post.releasedAt}</CardDescription>
+                <CardDescription>{post.title}</CardDescription>
               </CardHeader>
             </Card>
           </Link>
