@@ -35,7 +35,8 @@ export default function SermonList({ posts }: { posts: Sermon[] }) {
                   <span className="text-xl">{post.title}</span>
                   <span className="text-base text-slate-500">{post.passage}</span>
                 </div>
-                <span className="line-clamp-2 text-base text-slate-500">{post.intro}</span>
+                <span className="line-clamp-2 flex-grow text-base text-slate-500">{post.intro}</span>
+                <span className="text-base text-slate-500">{post.pastor}</span>
               </div>
             </Card>
           </Link>

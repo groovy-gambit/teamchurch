@@ -36,6 +36,7 @@ export type Notepad = {
 export type Sermon = {
   _id: string;
   title: string;
+  pastor: string;
   slug: {
     current: string;
   };

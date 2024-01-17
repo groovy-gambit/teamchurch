@@ -47,12 +47,12 @@ export const sermonQuery = groq`*[_type == "sermon" && slug.current == $slug][0]
     title, slug, type, intro, body, releasedAt, sermonURL
 }`;
 
-export const sermonListQuery = groq`*[_type == "sermon"][0...${PAGINATION_PAGE_SIZE}]{
-    _id, title, slug, type, intro, releasedAt, sermonURL, passage
+export const sermonListQuery = groq`*[_type == "sermon"] | order(releasedAt desc)[0...${PAGINATION_PAGE_SIZE}]{
+    _id, title, slug, pastor, type, intro, releasedAt, sermonURL, passage
 }`;
 
-export const recentSermonQuery = groq`*[_type == "sermon"][0...3]{
-    title, slug, type, intro, releasedAt, sermonURL, passage
+export const recentSermonQuery = groq`*[_type == "sermon"] | order(releasedAt desc)[0...3]{
+    title, slug, type, pastor, intro, releasedAt, sermonURL, passage
 }`;
 
 // Lecture
