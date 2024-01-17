@@ -5,7 +5,7 @@ import { Announcement } from '@/sanity/types/types';
 import { sanityFetch } from '@/lib/sanityClient';
 import { PageSearchParamsProp } from '@/sanity/schemas/page';
 import { getPaginatedContent } from '@/sanity/lib/pagination';
-import ContentWithPagination from '../_components/Pagination copy';
+import ContentWithPagination from '../_components/ContentWithPagination';
 
 const tags = ['announcement'];
 async function getAllAnnouncements() {
