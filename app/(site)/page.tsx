@@ -88,19 +88,19 @@ export default async function Home() {
       <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:grid-cols-2 md:px-10 lg:max-w-screen-lg">
         {/* Start block */}
         <section className="flex flex-col items-center gap-4">
-          <h2 className="mb-4 text-center text-2xl font-semibold">공지 및 광고</h2>
+          <h2 className="mb-4 text-center text-2xl font-semibold">교회소식</h2>
           <AnnouncementList posts={announcements} />
           <Link
             href="/announcement"
             className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-none md:max-w-xs')}
           >
-            공지 및 광고 전체 보기
+            교회소식 전체보기
           </Link>
         </section>
         {/* End block */}
         {/* Start block */}
         <section>
-          <h2 className="mb-4 text-center text-2xl font-semibold">주간 묵상 가이드</h2>
+          <h2 className="mb-4 text-center text-2xl font-semibold">묵상 & 경건생활</h2>
           <div className="text-ellipse mb-2 h-52">
             <PortableText value={meditation?.body!} />
           </div>
@@ -109,13 +109,13 @@ export default async function Home() {
               href={`/word-of-god/meditation/${latestMeditation.slug.current}`}
               className={cn(buttonVariants({ variant: 'default' }), 'w-full')}
             >
-              주간 가이드 읽기
+              주간 묵상 가이드
             </Link>
             <Link
               href="/word-of-god/lecture?category=learn-meditation"
               className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
             >
-              묵상 배우기
+              경건에 이르기
             </Link>
           </div>
         </section>
