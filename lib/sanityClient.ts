@@ -1,5 +1,3 @@
-import 'server-only';
-
 import type { QueryParams } from '@sanity/client';
 import { createClient } from 'next-sanity';
 
@@ -26,7 +24,8 @@ export async function sanityFetch<QueryResponse>({
   params?: QueryParams;
   tags: string[];
 }): Promise<QueryResponse> {
-  return client.fetch<QueryResponse>(query, params, {
+  const finalParams = { ...DEFAULT_PARAMS, ...params };
+  return client.fetch<QueryResponse>(query, finalParams, {
     // editing doesn't immediately update the text, so using no-store to not use the cache
     // if this doesn't fix it - go back to 'force-cache'
     cache: 'no-store',

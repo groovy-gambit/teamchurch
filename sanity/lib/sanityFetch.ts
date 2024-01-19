@@ -23,8 +23,9 @@ export async function sanityFetch<QueryResponse>({
     throw new Error('The `SANITY_API_READ_TOKEN` environment variable is required.');
   }
   const isDevelopment = process.env.NODE_ENV === 'development';
+  const finalParams = { ...DEFAULT_PARAMS, ...params };
 
-  return client.withConfig({ useCdn: !isDraftMode }).fetch<QueryResponse>(query, params, {
+  return client.withConfig({ useCdn: !isDraftMode }).fetch<QueryResponse>(query, finalParams, {
     cache: isDevelopment || isDraftMode ? undefined : 'force-cache',
     ...(isDraftMode && {
       token: token,
