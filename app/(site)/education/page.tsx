@@ -19,6 +19,10 @@ async function getPageData() {
 }
 export default async function Page() {
   const data = await getPageData();
+  if (!data) {
+    return null;
+  }
+
   return (
     <>
       <h1>{data.title}</h1>
