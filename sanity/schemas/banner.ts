@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: '제목',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'image',
@@ -24,6 +25,7 @@ export default defineType({
           title: 'alt 텍스트',
         },
       ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mobileImage',

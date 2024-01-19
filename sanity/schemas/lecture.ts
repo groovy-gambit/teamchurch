@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: '제목',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -18,6 +19,7 @@ export default defineType({
         source: 'title',
         slugify: (input) => `lec-${encodeURI(input.toLowerCase().replace(/\s+/g, '-').slice(0, 200))}`,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'thumbnail',
@@ -46,6 +48,7 @@ export default defineType({
           { title: '외부특강 및 세미나', value: 'other' },
         ],
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'intro',

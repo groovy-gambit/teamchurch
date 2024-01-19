@@ -10,7 +10,22 @@ import youtube from './schemas/youtube';
 import sermon from './schemas/sermon';
 import banner from './schemas/banner';
 import notepad from './schemas/notepad';
+import galleryObject from './schemas/galleryObject';
+import gallery from './schemas/gallery';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [page, announcement, meditation, blockContent, lecture, staff, youtube, sermon, banner, notepad],
+  types: [
+    page,
+    announcement,
+    meditation,
+    galleryObject,
+    blockContent,
+    lecture,
+    staff,
+    youtube,
+    sermon,
+    banner,
+    notepad,
+    gallery,
+  ],
 };

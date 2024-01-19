@@ -115,7 +115,7 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
             sizes="100vw"
             onClick={() => (linkPath ? router.push(linkPath) : null)}
           />
-          {images[imageIndex].mobileImage.url ? (
+          {images[imageIndex].mobileImage ? (
             <Image
               alt={images[imageIndex].mobileImage.alt ?? ''}
               src={builder.image(images[imageIndex].mobileImage).url()}

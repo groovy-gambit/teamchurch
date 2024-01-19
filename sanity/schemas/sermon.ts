@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: '제목',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -18,10 +19,11 @@ export default defineType({
         source: 'releasedAt',
         slugify: (input) => `sm-${input}`,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'releasedAt',
-      title: '등록일',
+      title: '설교날짜',
       type: 'date',
       validation: (Rule) => Rule.required(),
     }),
@@ -29,6 +31,12 @@ export default defineType({
       name: 'sermonURL',
       title: '설교 영상 URL',
       type: 'url',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'pastor',
+      title: '설교 목사',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({

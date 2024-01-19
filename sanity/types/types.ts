@@ -37,6 +37,7 @@ export interface Notepad extends RequiredMetaProps {
 
 export interface Sermon extends RequiredMetaProps {
   title: string;
+  pastor: string;
   slug: {
     current: string;
   };

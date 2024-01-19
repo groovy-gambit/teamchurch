@@ -1,14 +1,20 @@
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'meditation',
-  title: '묵상',
+  name: 'gallery',
+  title: '갤러리',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: '제목',
+      title: '이벤트 제목',
       type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'date',
+      title: '이벤트 날짜',
+      type: 'date',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -16,26 +22,16 @@ export default defineType({
       title: '슬러그',
       type: 'slug',
       options: {
-        source: 'releasedAt',
-        slugify: (input) => `mt-${input}`,
+        source: 'title',
+        slugify: (input) => `gal-${encodeURI(input.toLowerCase().replace(/\s+/g, '-').slice(0, 200))}`,
       },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'releasedAt',
-      title: '등록일',
-      type: 'date',
+      name: 'images',
+      title: '사진들',
+      type: 'galleryObject',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'intro',
-      title: '서론',
-      type: 'string',
-    }),
-    defineField({
-      name: 'body',
-      title: '내용',
-      type: 'blockContent',
     }),
   ],
 });
