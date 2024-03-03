@@ -69,7 +69,7 @@ export default async function Home() {
   return (
     <>
       {/* Start block */}
-      <section className="relative mx-auto flex h-80 max-w-5xl items-center justify-center outline-none">
+      <section className="relative mx-auto flex max-w-5xl items-center justify-center outline-none">
         <BannerCarousel images={banners} />
       </section>
 
@@ -99,9 +99,9 @@ export default async function Home() {
         </section>
         {/* End block */}
         {/* Start block */}
-        <section>
+        <section className="flex flex-col">
           <h2 className="mb-4 text-center text-2xl font-semibold">묵상 & 경건생활</h2>
-          <div className="text-ellipse mb-2 h-52">
+          <div className="text-ellipse mb-2 flex-grow">
             <PortableText value={meditation?.body!} />
           </div>
           <div className="grid grid-cols-2 justify-between gap-x-1.5">
