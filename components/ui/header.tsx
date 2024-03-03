@@ -100,10 +100,42 @@ export default function Header() {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>사역</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                      <MobileNavItem href="/ministry/evangelize" title="전도" />
+                      <MobileNavItem href="/ministry/missionary" title="선교" />
+                      <MobileNavItem href="/ministry/small-group" title="소그룹" />
+                      <MobileNavItem href="/ministry/event" title="이벤트" />
+                      <SheetClose asChild className="w-full">
+                        <Link href="https://visionyouthcc.org" target="_blank" legacyBehavior={false}>
+                          <Button
+                            variant="ghost"
+                            className="block w-full select-none space-y-1 rounded-md p-3 text-left leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            VYCC
+                          </Button>
+                        </Link>
+                      </SheetClose>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-4">
+                  <AccordionTrigger>교육</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                      <MobileNavItem href="/education/sunday-school" title="주일학교" />
+                      <MobileNavItem href="/education/youth" title="Youth" />
+                      <MobileNavItem href="/education/college" title="College" />
+                      <MobileNavItem href="/education/gabe-orda" title="가베 & 오르다" />
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
               </Accordion>
               <Link href="" legacyBehavior passHref>
                 <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                  헌금
+                  온라인 헌금
                 </Button>
               </Link>
             </SheetContent>
