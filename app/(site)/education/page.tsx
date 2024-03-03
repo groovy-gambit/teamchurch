@@ -5,6 +5,7 @@ import { pageQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 const builder = imageUrlBuilder(client);
 
@@ -19,21 +20,24 @@ async function getPageData() {
 }
 export default async function Page() {
   const data = await getPageData();
+  if (!data) {
+    redirect('/education/sunday-school');
+  }
   return (
     <>
-      <h1>{data.title}</h1>
-      {data.mainImage ? (
+      <h1>{data?.title}</h1>
+      {data?.mainImage ? (
         <div className="relative h-72 overflow-hidden rounded-md">
           <Image
             alt={data?.mainImage?.alt ?? ''}
-            src={builder.image(data.mainImage).url()}
+            src={builder.image(data?.mainImage).url()}
             className="m-0 object-cover"
             fill
             sizes="100vw"
           />
         </div>
       ) : null}
-      {data.body ? <BodyContent value={data.body} /> : null}
+      {data?.body ? <BodyContent value={data?.body} /> : null}
     </>
   );
 }
