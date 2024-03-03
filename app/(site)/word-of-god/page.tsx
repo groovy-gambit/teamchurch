@@ -5,6 +5,7 @@ import { pageQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 const builder = imageUrlBuilder(client);
 
@@ -18,6 +19,9 @@ async function getPageData() {
 }
 export default async function Page() {
   const data = await getPageData();
+  if (!data) {
+    redirect('/word-of-god/sermon');
+  }
   return (
     <>
       <h1>{data.title}</h1>
