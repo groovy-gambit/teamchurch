@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <Image alt={data?.mainImage?.alt ?? ''} src={builder.image(data.mainImage).url()} fill className="m-0" />
         </div>
       ) : null}
-      <Map lat={33.858852} lng={-117.907763} />
+      {slug === 'contact' && <Map lat={33.858852} lng={-117.907763} />}
       {data.body ? <BodyContent value={data.body} /> : null}
     </>
   );
