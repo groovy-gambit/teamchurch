@@ -144,7 +144,7 @@ export default function Header() {
                 </AccordionItem>
               </Accordion>
 
-              {/* <Dialog>
+              <Dialog>
                 <DialogTrigger asChild>
                   <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                     온라인 헌금
@@ -163,7 +163,7 @@ export default function Header() {
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
-              </Dialog> */}
+              </Dialog>
 
               <Link href="https://www.instagram.com/teamchurchoc/" legacyBehavior={false} target="_blank">
                 <Image src={instaLogo} alt="Team church instagram" height={40} className=" cursor-pointer" />
@@ -225,7 +225,7 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            {/* <NavigationMenuItem>
+            <NavigationMenuItem>
               <Dialog>
                 <DialogTrigger asChild>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>온라인 헌금</NavigationMenuLink>
@@ -244,7 +244,7 @@ export default function Header() {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
-            </NavigationMenuItem> */}
+            </NavigationMenuItem>
             <NavigationMenuItem className="pl-2">
               <Link href="https://www.instagram.com/teamchurchoc/" legacyBehavior={false} target="_blank">
                 <Image src={instaLogo} alt="Team church instagram" height={32} className=" cursor-pointer" />

@@ -35,15 +35,13 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
           return (
             <CarouselItem key={index}>
               <div className="p-1">
-                <Card className="overflow-hidden bg-slate-50">
-                  <CardContent className="relative flex aspect-[2/1] items-center justify-center p-6 md:aspect-[4/1]">
+                <Card className="overflow-hidden">
+                  <CardContent className="relative flex aspect-[2/1] items-center justify-center overflow-hidden p-0 md:aspect-[4/1]">
                     <Image
                       alt={image.image.alt ?? ''}
                       src={builder.image(image.image).url()}
                       className={cn(
-                        `object-cover${image.anchor === 'left' ? ' object-left' : ''}${
-                          image.anchor === 'right' ? ' object-right' : ''
-                        }`,
+                        `m-0 object-cover`,
                         image.mobileImage.url ? 'hidden md:block' : '',
                         linkPath ? 'hover:cursor-pointer' : 'cursor-auto',
                       )}
@@ -56,9 +54,7 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
                         alt={image.mobileImage.alt ?? ''}
                         src={builder.image(image.mobileImage).url()}
                         className={cn(
-                          `block md:hidden object-cover${image.anchor === 'left' ? ' object-left' : ''}${
-                            image.anchor === 'right' ? ' object-right' : ''
-                          }`,
+                          `block object-cover md:hidden`,
                           linkPath ? 'hover:cursor-pointer' : 'cursor-auto',
                         )}
                         fill
