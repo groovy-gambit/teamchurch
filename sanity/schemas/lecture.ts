@@ -15,6 +15,8 @@ export default defineType({
       name: 'slug',
       title: '슬러그',
       type: 'slug',
+      description:
+        '슬러그는 URL주소에 사용됩니다. 오른쪽에 Generate 버튼을 눌러 자동생성 혹은 유니크한 이름을 입력해주세요.',
       options: {
         source: 'title',
         slugify: (input) => `lec-${encodeURI(input.toLowerCase().replace(/\s+/g, '-').slice(0, 200))}`,

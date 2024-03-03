@@ -21,6 +21,7 @@ export default defineType({
       name: 'slug',
       title: '슬러그',
       type: 'slug',
+      description: '슬러그는 URL주소에 사용됩니다. 영문 이름을 써주세요. 띄어쓰기 없이 - 를 사용해주세요.',
       options: {
         source: 'name',
         maxLength: 96,
