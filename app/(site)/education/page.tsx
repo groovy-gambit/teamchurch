@@ -21,7 +21,7 @@ export default async function Page() {
   const data = await getPageData();
   return (
     <>
-      <h1>{data.title}</h1>
+      <h1>{data?.title}</h1>
       {data.mainImage ? (
         <div className="relative h-72 overflow-hidden rounded-md">
           <Image
