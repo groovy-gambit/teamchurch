@@ -51,13 +51,13 @@ export default function LectureList({ posts }: { posts: Lecture[] }) {
             <Link href={`/word-of-god/lecture/${post.slug.current}`} key={post.slug.current} className="not-prose">
               <Card className="flex flex-col gap-2 overflow-hidden hover:drop-shadow sm:flex-row">
                 {post.thumbnail ? (
-                  <div className="relative h-72 w-full sm:h-40 sm:w-72">
+                  <div className="relative h-72 w-full shrink-0 sm:h-40 sm:w-72">
                     <Image
                       src={builder.image(post.thumbnail).url()}
-                      alt={post?.thumbnail?.alt ?? ''}
+                      alt=""
                       fill
                       className="m-0 object-cover"
-                      sizes="100vw"
+                      sizes="auto, 160px"
                     />
                   </div>
                 ) : null}

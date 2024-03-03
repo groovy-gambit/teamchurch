@@ -141,7 +141,13 @@ export default function Header() {
                   <ListItem href="/ministry/missionary" title="선교" />
                   <ListItem href="/ministry/small-group" title="소그룹" />
                   <ListItem href="/ministry/event" title="이벤트" />
-                  <ListItem href="https://visionyouthcc.org" legacyBehavior={false} title="VYCC" target="_blank" />
+                  <li>
+                    <Link href="https://visionyouthcc.org" legacyBehavior passHref target="_blank">
+                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">VYCC</div>
+                      </NavigationMenuLink>
+                    </Link>
+                  </li>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
