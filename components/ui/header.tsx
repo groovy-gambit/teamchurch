@@ -138,6 +138,10 @@ export default function Header() {
                   온라인 헌금
                 </Button>
               </Link>
+
+              <Link href="https://www.instagram.com/teamchurchoc/" legacyBehavior={false} target="_blank">
+                <Image src={instaLogo} alt="Team church instagram" height={40} className=" cursor-pointer" />
+              </Link>
             </SheetContent>
           </Sheet>
         </div>
@@ -202,7 +206,7 @@ export default function Header() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/" legacyBehavior>
+              <Link href="https://www.instagram.com/teamchurchoc/" legacyBehavior={false} target="_blank">
                 <Image src={instaLogo} alt="Team church instagram" height={32} className=" cursor-pointer" />
               </Link>
             </NavigationMenuItem>
