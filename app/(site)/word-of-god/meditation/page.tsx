@@ -40,6 +40,7 @@ export default async function Page({
     { query: meditationsPageQuery, tags },
     getAllMeditations,
   );
+
   return (
     <>
       <h1>묵상</h1>

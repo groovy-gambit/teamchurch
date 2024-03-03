@@ -16,12 +16,22 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 import Link from 'next/link';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import React, { useState } from 'react';
+import React, { ComponentPropsWithoutRef, useState } from 'react';
 
-const ListItem = ({ href, title }: { href: string; title: string }) => {
+const ListItem = ({
+  href,
+  title,
+  target,
+  legacyBehavior = true,
+}: {
+  href: string;
+  title: string;
+  legacyBehavior?: boolean;
+  target?: ComponentPropsWithoutRef<'a'>['target'];
+}) => {
   return (
     <li>
-      <Link href={href} legacyBehavior passHref>
+      <Link href={href} legacyBehavior={legacyBehavior} passHref target={target}>
         <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
           <div className="text-sm font-medium leading-none">{title}</div>
         </NavigationMenuLink>
@@ -123,21 +133,34 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>사역</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                  <ListItem href="/ministry/evangelize" title="전도" />
+                  <ListItem href="/ministry/missionary" title="선교" />
+                  <ListItem href="/ministry/small-group" title="소그룹" />
+                  <ListItem href="/ministry/event" title="이벤트" />
+                  <ListItem href="https://visionyouthcc.org" legacyBehavior={false} title="VYCC" target="_blank" />
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>교육</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
+                  <ListItem href="/education/sunday-school" title="주일학교" />
+                  <ListItem href="/education/youth" title="Youth" />
+                  <ListItem href="/education/college" title="College" />
+                  <ListItem href="/education/gabe-orda" title="가베 & 오르다" />
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
             <NavigationMenuItem>
               <Link href="" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>헌금</NavigationMenuLink>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>온라인 헌금</NavigationMenuLink>
               </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="https://visionyouthcc.org"
-                rel="noopener noreferrer"
-                target="_blank"
-                className={navigationMenuTriggerStyle()}
-              >
-                VYCC
-              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
