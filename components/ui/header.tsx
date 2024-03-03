@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import navLogo from '@/public/logo.svg';
+import instaLogo from '@/public/logo_instagram.svg';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -166,6 +167,11 @@ export default function Header() {
             <NavigationMenuItem>
               <Link href="" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>온라인 헌금</NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/" legacyBehavior>
+                <Image src={instaLogo} alt="Team church instagram" height={32} className=" cursor-pointer" />
               </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
