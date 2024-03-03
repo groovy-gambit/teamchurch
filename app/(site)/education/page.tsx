@@ -33,7 +33,7 @@ export default async function Page() {
           />
         </div>
       ) : null}
-      {data.body ? <BodyContent value={data?.body} /> : null}
+      {data?.body ? <BodyContent value={data?.body} /> : null}
     </>
   );
 }
