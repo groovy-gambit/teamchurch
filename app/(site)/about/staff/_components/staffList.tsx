@@ -3,10 +3,11 @@ import { staffsQuery } from '@/sanity/lib/queries';
 import Link from 'next/link';
 import { Staff } from '@/sanity/types/types';
 import { Card, CardDescription, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import imageUrlBuilder from '@sanity/image-url';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
+import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
@@ -30,7 +31,13 @@ export default async function StaffList() {
               <div className="flex items-center gap-4">
                 <Avatar className="h-20 w-20">
                   {staff.profile_image ? (
-                    <AvatarImage src={builder.image(staff.profile_image).url()} />
+                    <Image
+                      src={builder.image(staff.profile_image).url()}
+                      fill
+                      alt={staff.profile_image.alt ?? ''}
+                      sizes="160px, 160px"
+                      className="m-0 object-cover"
+                    />
                   ) : (
                     <AvatarFallback>{staff.name.slice(0, 1)}</AvatarFallback>
                   )}

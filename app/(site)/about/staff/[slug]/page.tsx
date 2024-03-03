@@ -5,6 +5,7 @@ import { client } from '@/sanity/lib/client';
 import { staffQuery } from '@/sanity/lib/queries';
 import { Staff } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
+import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
@@ -26,7 +27,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className="flex items-center gap-8">
         <Avatar className="h-40 w-40">
           {data.profile_image ? (
-            <AvatarImage src={builder.image(data.profile_image).url()} />
+            <Image
+              src={builder.image(data.profile_image).url()}
+              fill
+              alt={data.profile_image.alt ?? ''}
+              sizes="160px, 160px"
+              className="m-0 object-cover"
+            />
           ) : (
             <AvatarFallback>{data.name.slice(0, 1)}</AvatarFallback>
           )}

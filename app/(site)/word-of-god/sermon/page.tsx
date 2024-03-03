@@ -55,7 +55,7 @@ export default async function Page({
             src={builder.image(data.mainImage).url()}
             className="m-0 object-cover"
             fill
-            sizes="100vw"
+            sizes="100vw, auto"
           />
         </div>
       ) : null}

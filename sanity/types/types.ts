@@ -87,7 +87,10 @@ export interface Staff extends RequiredMetaProps {
   slug: {
     current: string;
   };
-  profile_image: string;
+  profile_image: {
+    url: string;
+    alt?: string;
+  };
   bio: TypedObject | TypedObject[];
 }
 

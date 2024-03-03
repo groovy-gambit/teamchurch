@@ -14,13 +14,13 @@ export default function SermonList({ posts }: { posts: Sermon[] }) {
           <Link href={`/word-of-god/sermon/${post.slug.current}`} key={post.slug.current} className="not-prose">
             <Card className="flex flex-col gap-2 overflow-hidden hover:drop-shadow sm:flex-row">
               {sermonID ? (
-                <div className="relative h-72 w-full sm:h-40 sm:w-72">
+                <div className="relative h-72 w-full shrink-0 sm:h-40 sm:w-72">
                   <Image
                     src={`https://img.youtube.com/vi/${sermonID}/hqdefault.jpg`}
                     alt=""
                     fill
                     className="m-0 object-cover"
-                    sizes="100vw"
+                    sizes="auto, 160px"
                   />
                   <span className="absolute right-2 top-2 flex h-12 w-12 flex-col items-center justify-center rounded-md bg-white">
                     <span className=" text-xs leading-5">
