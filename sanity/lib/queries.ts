@@ -21,12 +21,12 @@ export const announcementsPageQuery = groq`*[_type == "announcement" && dateTime
 
 // Get all staffs
 export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc)[0...10] {
-    _id, name, position, slug, image, bio
+    _id, name, position, slug, profile_image, bio
   }`;
 
 // Get one staff
 export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
-    name, position, slug, image, bio
+    name, position, slug, profile_image, bio
   }`;
 
 // Get all meditation
