@@ -152,9 +152,13 @@ export default function Header() {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-md">
                   <DialogHeader>
-                    <DialogTitle>온라인 헌금 안내</DialogTitle>
+                    <DialogTitle>온라인 헌금</DialogTitle>
                   </DialogHeader>
-                  Zelle: teamchurchoc@gmail.com
+                  <p>온라인으로 헌금하실 분들은 Zelle 을 이용해서 드리시면 되겠습니다.</p>
+                  <p>
+                    보내실 때, 저희교회 이메일 주소(Teamchurchoc@gmail.com)를 입력하신 다음, 헌금할 액수를 입력하시면
+                    됩니다.
+                  </p>
                   <DialogFooter className="sm:justify-start">
                     <DialogClose asChild>
                       <Button type="button" variant="secondary">
@@ -232,9 +236,12 @@ export default function Header() {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-md">
                   <DialogHeader>
-                    <DialogTitle>온라인 헌금 안내</DialogTitle>
+                    <DialogTitle>온라인 헌금</DialogTitle>
                   </DialogHeader>
-                  Zelle: teamchurchoc@gmail.com
+                  <p>
+                    온라인으로 헌금하실 분들은 Zelle 을 이용해서 드리시면 되겠습니다. 보내실 때, 저희교회 이메일
+                    주소(Teamchurchoc@gmail.com)를 입력하신 다음, 헌금할 액수를 입력하시면 됩니다.
+                  </p>
                   <DialogFooter className="sm:justify-start">
                     <DialogClose asChild>
                       <Button type="button" variant="secondary">
