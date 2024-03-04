@@ -20,6 +20,8 @@ export default defineType({
     defineField({
       name: 'slug',
       title: '슬러그',
+      description:
+        '슬러그는 URL주소에 사용됩니다. 오른쪽에 Generate 버튼을 눌러 자동생성 혹은 유니크한 이름을 입력해주세요.',
       type: 'slug',
       options: {
         source: 'title',

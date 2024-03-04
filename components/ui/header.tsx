@@ -18,6 +18,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Link from 'next/link';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import React, { ComponentPropsWithoutRef, useState } from 'react';
+import {
+  Dialog,
+  DialogHeader,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from './dialog';
 
 const ListItem = ({
   href,
@@ -133,11 +143,31 @@ export default function Header() {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-              <Link href="" legacyBehavior passHref>
-                <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                  온라인 헌금
-                </Button>
-              </Link>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="my-4 block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                    온라인 헌금
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>온라인 헌금</DialogTitle>
+                  </DialogHeader>
+                  <p>온라인으로 헌금하실 분들은 Zelle 을 이용해서 드리시면 되겠습니다.</p>
+                  <p>
+                    보내실 때, 저희교회 이메일 주소(Teamchurchoc@gmail.com)를 입력하신 다음, 헌금할 액수를 입력하시면
+                    됩니다.
+                  </p>
+                  <DialogFooter className="sm:justify-start">
+                    <DialogClose asChild>
+                      <Button type="button" variant="secondary">
+                        Close
+                      </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
 
               <Link href="https://www.instagram.com/teamchurchoc/" legacyBehavior={false} target="_blank">
                 <Image src={instaLogo} alt="Team church instagram" height={40} className=" cursor-pointer" />
@@ -199,13 +229,30 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-
             <NavigationMenuItem>
-              <Link href="" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>온라인 헌금</NavigationMenuLink>
-              </Link>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>온라인 헌금</NavigationMenuLink>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>온라인 헌금</DialogTitle>
+                  </DialogHeader>
+                  <p>
+                    온라인으로 헌금하실 분들은 Zelle 을 이용해서 드리시면 되겠습니다. 보내실 때, 저희교회 이메일
+                    주소(Teamchurchoc@gmail.com)를 입력하신 다음, 헌금할 액수를 입력하시면 됩니다.
+                  </p>
+                  <DialogFooter className="sm:justify-start">
+                    <DialogClose asChild>
+                      <Button type="button" variant="secondary">
+                        Close
+                      </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            <NavigationMenuItem className="pl-2">
               <Link href="https://www.instagram.com/teamchurchoc/" legacyBehavior={false} target="_blank">
                 <Image src={instaLogo} alt="Team church instagram" height={32} className=" cursor-pointer" />
               </Link>

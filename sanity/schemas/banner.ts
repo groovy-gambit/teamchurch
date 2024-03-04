@@ -14,10 +14,8 @@ export default defineType({
     defineField({
       name: 'image',
       title: '배너 이미지',
+      description: '이미지 비율은 가로 4 새로 1 입니다. 예) 1280px x 320px',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
       fields: [
         {
           name: 'alt',
@@ -30,10 +28,8 @@ export default defineType({
     defineField({
       name: 'mobileImage',
       title: '모바일 배너 이미지',
+      description: '이미지 비율은 가로 2 새로 1 입니다. 예) 640px x 320px',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
       fields: [
         {
           name: 'alt',
@@ -41,19 +37,6 @@ export default defineType({
           title: 'alt 텍스트',
         },
       ],
-    }),
-    defineField({
-      name: 'anchor',
-      title: '위치 기준',
-      type: 'string',
-      options: {
-        list: [
-          { title: '왼쪽', value: 'left' },
-          { title: '중앙', value: 'center' },
-          { title: '오른쪽', value: 'right' },
-        ],
-      },
-      initialValue: 'center',
     }),
     defineField({
       name: 'linkTo',

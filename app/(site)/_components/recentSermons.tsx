@@ -6,7 +6,7 @@ const Regex = new RegExp('.*(?:(?:youtu.be/|v/|vi/|u/w/|embed/)|(?:(?:watch)??v(
 
 export default function RecentSermons({ sermons }: { sermons: Sermon[] }) {
   return (
-    <div className="grid w-full grid-cols-1 grid-rows-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid w-full grid-cols-1 grid-rows-1 gap-3 md:grid-cols-3">
       {sermons.map((sermon: Sermon) => {
         const sermonID = sermon.sermonURL.match(Regex)?.[1];
         return (
@@ -17,7 +17,7 @@ export default function RecentSermons({ sermons }: { sermons: Sermon[] }) {
           >
             <div className="flex flex-col gap-2 overflow-hidden">
               {sermonID ? (
-                <div className="relative h-72 overflow-hidden rounded-xl sm:h-40">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
                   <Image
                     src={`https://img.youtube.com/vi/${sermonID}/hqdefault.jpg`}
                     alt=""
