@@ -13,6 +13,7 @@ export default function ContentWithPagination<T>({
   to: string;
 }) {
   const showPaging = from === '0' ? posts.length >= MAX_PAGE_SIZE : true;
+  console.log(posts.length);
 
   return (
     <div className="flex flex-col gap-3">

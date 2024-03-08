@@ -18,16 +18,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Link from 'next/link';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import React, { ComponentPropsWithoutRef, useState } from 'react';
-import {
-  Dialog,
-  DialogHeader,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from './dialog';
+import { Dialog, DialogHeader, DialogTrigger, DialogContent, DialogTitle, DialogFooter, DialogClose } from './dialog';
 
 const ListItem = ({
   href,
@@ -92,7 +83,7 @@ export default function Header() {
                   <AccordionTrigger>소개</AccordionTrigger>
                   <AccordionContent>
                     <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-                      <MobileNavItem href="/about" title="교회 안내" />
+                      <MobileNavItem href="/about/info" title="교회 안내" />
                       <MobileNavItem href="/about/hours" title="예배 시간" />
                       <MobileNavItem href="/about/staff" title="섬기는 사람들" />
                       <MobileNavItem href="/about/contact" title="위치 및 연락 방법" />
@@ -182,7 +173,7 @@ export default function Header() {
               <NavigationMenuTrigger>소개</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-                  <ListItem href="/about" title="교회 안내" />
+                  <ListItem href="/about/info" title="교회 안내" />
                   <ListItem href="/about/hours" title="예배 시간" />
                   <ListItem href="/about/staff" title="섬기는 사람들" />
                   <ListItem href="/about/contact" title="위치 및 연락 방법" />

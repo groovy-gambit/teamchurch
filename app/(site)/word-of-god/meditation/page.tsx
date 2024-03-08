@@ -2,13 +2,12 @@ import MeditationsList from './_components/meditationsList';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
-import { getPaginatedContent } from '@/sanity/lib/pagination';
-import { meditationsPageQuery, meditationsQuery, pageQuery } from '@/sanity/lib/queries';
+import { meditationsQuery, pageQuery, paginatedContentQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import { Meditation } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
-import ContentWithPagination from '../../_components/ContentWithPagination';
+import ContentPagination from '../../_components/ContentPagination';
 
 const builder = imageUrlBuilder(client);
 const tags = ['meditation'];
@@ -29,17 +28,30 @@ async function getAllMeditations() {
   return pageData;
 }
 
+async function getPaginatedContent({ from, to }: { from: number; to: number }) {
+  const pageData = await sanityFetch<Meditation[]>({
+    query: paginatedContentQuery,
+    params: { type: 'sermon', from, to },
+    tags: ['sermon'],
+  });
+
+  return pageData;
+}
+
 export default async function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const data = await getPageData();
-  const { posts, from, to } = await getPaginatedContent<Meditation>(
-    searchParams,
-    { query: meditationsPageQuery, tags },
-    getAllMeditations,
-  );
+  const length = (await getAllMeditations()).length;
+  const perPage = 5;
+  const from = searchParams && searchParams.from ? +searchParams.from : 0;
+  const to = searchParams && searchParams.to ? +searchParams.to : perPage;
+  const posts = await getPaginatedContent({
+    from,
+    to,
+  });
 
   return (
     <>
@@ -57,9 +69,8 @@ export default async function Page({
       ) : null}
       <h2>주간 묵상 가이드</h2>
       {data.body ? <BodyContent value={data.body} /> : null}
-      <ContentWithPagination posts={posts} from={from} to={to}>
-        <MeditationsList posts={posts} />
-      </ContentWithPagination>
+      <MeditationsList posts={posts} />
+      <ContentPagination searchParams={searchParams} length={length} per={perPage} />
     </>
   );
 }
