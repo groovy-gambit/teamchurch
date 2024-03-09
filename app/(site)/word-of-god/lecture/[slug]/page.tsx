@@ -1,5 +1,4 @@
 import { BodyContent } from '@/components/ui/BodyContent';
-import YoutubePlayer from '@/components/ui/YoutubePlayer';
 import { sanityFetch } from '@/lib/sanityClient';
 import { lectureQuery } from '@/sanity/lib/queries';
 import { Lecture } from '@/sanity/types/types';

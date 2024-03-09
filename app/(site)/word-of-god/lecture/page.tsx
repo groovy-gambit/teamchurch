@@ -2,14 +2,7 @@ import { BodyContent } from '@/components/ui/BodyContent';
 import LectureList from './_components/lecturesList';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
-import {
-  lectureListPageQuery,
-  lectureListQuery,
-  lecturesByCat,
-  lecturesByCatPageQuery,
-  pageQuery,
-  paginatedContentQuery,
-} from '@/sanity/lib/queries';
+import { lecturesByCat, lecturesByCatPageQuery, pageQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
@@ -28,13 +21,6 @@ async function getPageData() {
   return pageData;
 }
 const tags = ['lecture'];
-async function getAllLecture() {
-  const pageData = await sanityFetch<Lecture[]>({
-    query: lectureListQuery,
-    tags,
-  });
-  return pageData;
-}
 
 async function getLectureByCat({ category }: { category: string[] }) {
   const pageData = await sanityFetch<Lecture[]>({
