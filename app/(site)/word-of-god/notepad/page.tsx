@@ -1,4 +1,4 @@
-import NotepadsList from './_components/notepadsList';
+// import NotepadsList from './_components/notepadsList';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
@@ -41,7 +41,7 @@ export default async function Page({ searchParams }: { searchParams: PageSearchP
     <>
       <h1>테스트 컨xp츠</h1>
       {data?.body ? <BodyContent value={data.body} /> : null}
-      <NotepadsList posts={posts} from={from} to={to} />
+      {/* <NotepadsList posts={posts} from={from} to={to} /> */}
     </>
   );
 }
