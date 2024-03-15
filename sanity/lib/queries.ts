@@ -102,3 +102,11 @@ export const notepadListPageQuery = groq`*[_type == "notepad"] | order(releasedA
 export const notepadQuery = groq`*[_type == "notepad" && slug.current == $slug][0]{
     title, slug, type, body, releasedAt,
   }`;
+
+export const galleryListQuery = groq`*[_type == "galleryObject"] | order(releasedAt desc, _id desc)[$from...$to] {
+    _id, title, slug, type, releasedAt, images
+  }`;
+
+export const galleryQuery = groq`*[_type == "galleryObject" && slug.current == $slug][0]{
+    _id, title, slug, type, releasedAt, images
+  }`;

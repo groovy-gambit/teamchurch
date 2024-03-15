@@ -1,5 +1,5 @@
 import { UUID } from 'crypto';
-import { PortableTextBlock, TypedObject } from 'sanity';
+import { Image, PortableTextBlock, TypedObject } from 'sanity';
 
 export type RequiredMetaProps = {
   _id: string;
@@ -106,4 +106,17 @@ export interface Banner extends RequiredMetaProps {
   };
   linkToType: string;
   linkToSlug: string;
+}
+
+export interface GalleryObject extends RequiredMetaProps {
+  images: Image[];
+}
+
+export interface Gallery extends RequiredMetaProps {
+  title: string;
+  date: Date;
+  slug: {
+    current: string;
+  };
+  images: GalleryObject[];
 }
