@@ -1,8 +1,8 @@
 import { client } from '@/sanity/lib/client';
-import { pageQuery } from '@/sanity/lib/queries';
+import { slugQuery } from '@/sanity/lib/queries';
 
 async function getPageData(slug: string) {
-  const pageData = await client.fetch(pageQuery, { slug: slug });
+  const pageData = await client.fetch(slugQuery, { slug: slug });
   return pageData;
 }
 

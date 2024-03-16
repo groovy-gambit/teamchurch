@@ -4,7 +4,7 @@ import { Announcement } from '@/sanity/types/types';
 export default async function AnnouncementList({ posts }: { posts: Announcement[] }) {
   return (
     <div className="w-full flex-1 space-y-4">
-      {posts.slice(0, 5).map((post: Announcement) => {
+      {posts.map((post: Announcement) => {
         return (
           <Link
             href={`/announcement/${post.slug.current}`}

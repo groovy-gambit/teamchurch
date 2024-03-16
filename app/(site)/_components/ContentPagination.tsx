@@ -27,7 +27,7 @@ export default function ContentPagination({
   const fromMinMax = (target: number) => Math.min(Math.max(target, 0), pageCount * per - per);
   const toMinMax = (target: number) => Math.min(Math.max(target, per), pageCount * per);
 
-  const ItemArr = Array.from({ length: pageCount }, (x, i) => i + 1);
+  const itemArr = Array.from({ length: pageCount }, (x, i) => i + 1);
 
   const category = () => {
     if (searchParams.category) return `category=${searchParams.category}&`;
@@ -44,7 +44,7 @@ export default function ContentPagination({
             href={`${pathname}?from=${fromMinMax(from - per)}&to=${toMinMax(to - per)}`}
           />
         </PaginationItem>
-        {ItemArr.map((index) => {
+        {itemArr.map((index) => {
           const targetFrom = fromMinMax(index * per - per);
           const targetTo = toMinMax(index * per);
           const isActive = () => {

@@ -2,9 +2,9 @@ import SermonList from './_components/sermonsList';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
-import { pageQuery, paginatedContentQuery, sermonListQuery } from '@/sanity/lib/queries';
+import { pageQuery, paginatedContentQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
-import { Sermon } from '@/sanity/types/types';
+import { Sermons } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 import ContentPagination from '../../_components/ContentPagination';
@@ -21,16 +21,8 @@ async function getPageData() {
   return pageData;
 }
 
-async function getAllSermons() {
-  const pageData = await sanityFetch<Sermon[]>({
-    query: sermonListQuery,
-    tags: ['sermon'],
-  });
-  return pageData;
-}
-
 async function getPaginatedContent({ from, to }: { from: number; to: number }) {
-  const pageData = await sanityFetch<Sermon[]>({
+  const pageData = await sanityFetch<Sermons>({
     query: paginatedContentQuery,
     params: { type: 'sermon', from, to },
     tags: ['sermon'],
@@ -45,14 +37,14 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const data = await getPageData();
-  const length = (await getAllSermons()).length;
   const perPage = 5;
   const from = searchParams && searchParams.from ? +searchParams.from : 0;
   const to = searchParams && searchParams.to ? +searchParams.to : perPage;
-  const posts = await getPaginatedContent({
+  const postData = await getPaginatedContent({
     from,
     to,
   });
+  const length = postData.total;
 
   return (
     <>
@@ -69,7 +61,7 @@ export default async function Page({
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
-      <SermonList posts={posts} />
+      <SermonList posts={postData.posts} />
       <ContentPagination searchParams={searchParams} length={length} per={perPage} />
     </>
   );

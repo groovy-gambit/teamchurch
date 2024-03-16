@@ -2,11 +2,11 @@ import { BodyContent } from '@/components/ui/BodyContent';
 import LectureList from './_components/lecturesList';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
-import { lecturesByCat, lecturesByCatPageQuery, pageQuery } from '@/sanity/lib/queries';
+import { lecturesByCatPageQuery, pageQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
-import { Lecture } from '@/sanity/types/types';
+import { Lectures } from '@/sanity/types/types';
 import ContentPagination from '../../_components/ContentPagination';
 
 const builder = imageUrlBuilder(client);
@@ -22,17 +22,8 @@ async function getPageData() {
 }
 const tags = ['lecture'];
 
-async function getLectureByCat({ category }: { category: string[] }) {
-  const pageData = await sanityFetch<Lecture[]>({
-    query: lecturesByCat,
-    params: { category },
-    tags,
-  });
-  return pageData;
-}
-
 async function getPaginatedContent({ from, to, category }: { from: number; to: number; category: string[] }) {
-  const pageData = await sanityFetch<Lecture[]>({
+  const pageData = await sanityFetch<Lectures>({
     query: lecturesByCatPageQuery,
     params: { from, to, category },
     tags,
@@ -51,15 +42,16 @@ export default async function Page({
     searchParams && searchParams.category
       ? [`${searchParams.category}`]
       : ['learn-bible', 'learn-doctrine', 'learn-meditation', 'other'];
-  const length = (await getLectureByCat({ category: cat })).length;
+
   const perPage = 5;
   const from = searchParams && searchParams.from ? +searchParams.from : 0;
   const to = searchParams && searchParams.to ? +searchParams.to : perPage;
-  const posts = await getPaginatedContent({
+  const postData = await getPaginatedContent({
     from,
     to,
     category: cat,
   });
+  const length = postData.total;
   return (
     <>
       <h1>특강</h1>
@@ -76,7 +68,7 @@ export default async function Page({
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
-      <LectureList posts={posts} />
+      <LectureList posts={postData.posts} />
       <ContentPagination searchParams={searchParams} length={length} per={perPage} />
     </>
   );
