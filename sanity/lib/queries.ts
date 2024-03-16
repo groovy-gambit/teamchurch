@@ -72,3 +72,11 @@ export const bannerQuery = groq`*[_type == "banner"]{
   "linkToType": linkTo->_type,
   "linkToSlug": linkTo->slug.current
 }`;
+
+export const galleryListQuery = groq`*[_type == "galleryObject"] | order(releasedAt desc, _id desc)[$from...$to] {
+    _id, title, slug, type, releasedAt, images
+  }`;
+
+export const galleryQuery = groq`*[_type == "galleryObject" && slug.current == $slug][0]{
+    _id, title, slug, type, releasedAt, images
+  }`;
