@@ -52,7 +52,7 @@ export default async function Page({ searchParams }: { searchParams: PageSearchP
         </BreadcrumbList>
       </Breadcrumb>
       <h1>{`갤러리`}</h1>
-      <div className="grid grid-cols-2">
+      <div className="grid  sm:grid-cols-2 lg:grid-cols-3">
         {postData.posts.map((item, i) => {
           return (
             <Link href={`/gallery/${item.slug.current}`} key={i} className="not-prose">

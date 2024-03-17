@@ -14,6 +14,8 @@ import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import imageUrlBuilder from '@sanity/image-url';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { cn } from '@/lib/utils';
 
 const builder = imageUrlBuilder(client);
 
@@ -50,7 +52,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </BreadcrumbList>
       </Breadcrumb>
       <h1>{data.title}</h1>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {data.images.images.map((image, i) => {
           return (
             <Dialog key={i}>
@@ -68,16 +70,34 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent className=" h-full max-h-[95%] w-full max-w-[95%] p-0">
-                <div className="relative w-full shrink-0">
-                  <Image
-                    alt={image.alt ?? ''}
-                    src={builder.image(image).width(1280).url()}
-                    fill
-                    className="m-0 object-contain"
-                    sizes="1280px"
-                  />
-                </div>
+              <DialogContent className=" h-full w-full p-0 lg:max-h-[95%] lg:max-w-[95%]">
+                <Carousel
+                  className="relative flex w-full flex-shrink-0"
+                  opts={{
+                    loop: true,
+                    startIndex: i,
+                  }}
+                >
+                  <CarouselContent className="h-full">
+                    {data.images.images.map((image, index) => {
+                      return (
+                        <CarouselItem key={index} className="relative">
+                          <div className=" relative h-full w-full">
+                            <Image
+                              alt={image.alt ?? ''}
+                              src={builder.image(image).width(1280).url()}
+                              className={cn(`m-0 object-contain`)}
+                              fill
+                              sizes="100vw"
+                            />
+                          </div>
+                        </CarouselItem>
+                      );
+                    })}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-1 lg:-left-3" />
+                  <CarouselNext className="right-1 lg:-right-3" />
+                </Carousel>
               </DialogContent>
             </Dialog>
           );
