@@ -5,10 +5,6 @@ import { revalidateTag } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 import { parseBody } from 'next-sanity/webhook';
 
-type Data = {
-  message: string;
-};
-
 export async function POST(req: NextRequest) {
   try {
     const { isValidSignature, body } = await parseBody<{

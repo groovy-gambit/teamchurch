@@ -27,7 +27,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <h1>{data.title}</h1>
       {data.mainImage ? (
         <div className="relative h-72 overflow-hidden rounded-md">
-          <Image alt={data?.mainImage?.alt ?? ''} src={builder.image(data.mainImage).url()} fill className="m-0" />
+          <Image
+            alt={data?.mainImage?.alt ?? ''}
+            src={builder.image(data.mainImage).url()}
+            className="m-0 object-cover"
+            fill
+            sizes="100vw"
+          />
         </div>
       ) : null}
       {slug === 'contact' && <Map lat={33.858852} lng={-117.907763} />}

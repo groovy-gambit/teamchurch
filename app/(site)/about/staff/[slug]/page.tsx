@@ -1,5 +1,5 @@
 import { BodyContent } from '@/components/ui/BodyContent';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
 import { staffQuery } from '@/sanity/lib/queries';

@@ -6,18 +6,18 @@
 import { groq } from 'next-sanity';
 
 // Get page
+export const slugQuery = groq`*[slug.current == $slug][0]{...}`;
+
+// Get page
 export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
     title, slug, body, "imageUrl": mainImage.asset->url, mainImage,
   }`;
 
-// Get all announcements
-export const announcementsQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now()) ] | order(releasedAt desc, _id desc)[0...10] {
-    _id, title, subtitle, slug, isEvent, releasedAt, eventAt
-  }`;
-
-export const announcementsPageQuery = groq`*[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now())] | order(releasedAt desc, _id desc)[$from...$to] {
-    _id, title, subtitle, slug, isEvent, releasedAt, eventAt
-  }`;
+// Get announcements - paginated
+export const announcementsQuery = groq`{
+    "posts": *[_type == "announcement" && dateTime(releasedAt + 'T00:00:00Z') <= dateTime(now()) ] | order(releasedAt desc, _id desc)[$from...$to],
+    "total": count(*[_type == "announcement"]) 
+}`;
 
 // Get all staffs
 export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc)[0...10] {
@@ -27,14 +27,6 @@ export const staffsQuery = groq`*[_type == "staff"] | order(_createdAt asc)[0...
 // Get one staff
 export const staffQuery = groq`*[_type == "staff" && slug.current == $slug][0]{
     name, position, slug, profile_image, bio
-  }`;
-
-// Get all meditation
-export const meditationsQuery = groq`*[_type == "meditation"] | order(releasedAt desc, _id desc)[0...10] {
-    _id, title, slug, type, intro, releasedAt
-  }`;
-export const meditationsPageQuery = groq`*[_type == "meditation"] | order(releasedAt desc, _id desc)[$from...$to] {
-    _id, title, slug, type, intro, releasedAt
   }`;
 
 // Get one meditation
@@ -52,35 +44,27 @@ export const sermonQuery = groq`*[_type == "sermon" && slug.current == $slug][0]
     title, slug, type, intro, body, releasedAt, sermonURL
 }`;
 
-export const sermonListQuery = groq`*[_type == "sermon"] | order(releasedAt desc, _id desc)[0...10]{
-    _id, title, slug, pastor, type, intro, releasedAt, sermonURL, passage
-}`;
-export const sermonListPageQuery = groq`*[_type == "sermon"]| order(releasedAt desc, _id desc)[$from...$to]{
-    _id, title, slug, type, intro, releasedAt, sermonURL, passage
-}`;
-
-export const recentSermonQuery = groq`*[_type == "sermon"]| order(releasedAt desc, _id desc)[0...3]{
-    title, slug, type, pastor, intro, releasedAt, sermonURL, passage
+// Get sermons - paginated
+export const sermonListPageQuery = groq`{
+    "posts": *[_type == "sermon"] | order(publishedAt desc)[$from...$to],
+    "total": count(*[_type == "sermon"]) 
 }`;
 
-// Lecture
+// Get lecture
 export const lectureQuery = groq`*[_type == "lecture" && slug.current == $slug][0]{
     title, slug, type, intro, body, releasedAt, category
 }`;
 
-export const lectureListQuery = groq`*[_type == "lecture"]| order(releasedAt desc, _id desc)[0...10]{
-    _id, title, slug, type, intro, releasedAt, thumbnail, category
-}`;
-export const lectureListPageQuery = groq`*[_type == "lecture"]| order(releasedAt desc, _id desc)[$from...$to]{
-    _id, title, slug, type, intro, releasedAt, thumbnail, category
-}`;
-
-export const lecturesByCat = groq`*[_type == "lecture" && category == $category]| order(releasedAt desc, _id desc)[0...10]{
-    _id, title, slug, type, intro, releasedAt, thumbnail, category
+// Get lectures by cat - paginated
+export const lecturesByCatPageQuery = groq`{
+    "posts": *[_type == "lecture" && category in $category]| order(releasedAt desc, _id desc)[$from...$to],
+    "total": count(*[_type == "lecture" && category in $category])
 }`;
 
-export const lecturesByCatPageQuery = groq`*[_type == "lecture" && category == $category]| order(releasedAt desc, _id desc)[$from...$to]{
-    _id, title, slug, type, intro, releasedAt, thumbnail, category
+// PaginatedContents
+export const paginatedContentQuery = groq`{
+    "posts": *[_type == string($type)] | order(releasedAt desc, _id desc)[$from...$to],
+    "total": count(*[_type == string($type)]) 
 }`;
 
 export const bannerQuery = groq`*[_type == "banner"]{
@@ -88,17 +72,3 @@ export const bannerQuery = groq`*[_type == "banner"]{
   "linkToType": linkTo->_type,
   "linkToSlug": linkTo->slug.current
 }`;
-
-// For tests
-
-export const notepadListQuery = groq`*[_type == "notepad"] | order(releasedAt desc, _id desc)[0...10] {
-    _id, title, slug, type, intro, releasedAt
-  }`;
-
-export const notepadListPageQuery = groq`*[_type == "notepad"] | order(releasedAt desc, _id desc)[$from...$to] {
-    _id, title, slug, type, intro, releasedAt
-  }`;
-
-export const notepadQuery = groq`*[_type == "notepad" && slug.current == $slug][0]{
-    title, slug, type, body, releasedAt,
-  }`;

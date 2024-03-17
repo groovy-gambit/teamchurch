@@ -9,7 +9,7 @@ export default function SubMenu() {
   return (
     <section className="pt-3">
       <div className="flex flex-col">
-        <Link href="/about" className={`py-2 ${pathName === '/about' && 'font-bold'}`}>
+        <Link href="/about/info" className={`py-2 ${pathName === '/about/info' && 'font-bold'}`}>
           교회 안내
         </Link>
 

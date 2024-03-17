@@ -2,13 +2,12 @@ import SermonList from './_components/sermonsList';
 import { BodyContent } from '@/components/ui/BodyContent';
 import { sanityFetch } from '@/lib/sanityClient';
 import { client } from '@/sanity/lib/client';
-import { getPaginatedContent } from '@/sanity/lib/pagination';
-import { pageQuery, sermonListPageQuery, sermonListQuery } from '@/sanity/lib/queries';
+import { pageQuery, paginatedContentQuery } from '@/sanity/lib/queries';
 import { PageSchemaProps } from '@/sanity/schemas/page';
-import { Sermon } from '@/sanity/types/types';
+import { Sermons } from '@/sanity/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
-import ContentWithPagination from '../../_components/ContentWithPagination';
+import ContentPagination from '../../_components/ContentPagination';
 
 const builder = imageUrlBuilder(client);
 
@@ -22,13 +21,13 @@ async function getPageData() {
   return pageData;
 }
 
-const tags = ['sermon'];
-
-async function getAllSermon() {
-  const pageData = await sanityFetch<Sermon[]>({
-    query: sermonListQuery,
-    tags,
+async function getPaginatedContent({ from, to }: { from: number; to: number }) {
+  const pageData = await sanityFetch<Sermons>({
+    query: paginatedContentQuery,
+    params: { type: 'sermon', from, to },
+    tags: ['sermon'],
   });
+
   return pageData;
 }
 
@@ -38,12 +37,14 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const data = await getPageData();
-
-  const { posts, from, to } = await getPaginatedContent<Sermon>(
-    searchParams,
-    { query: sermonListPageQuery, tags },
-    getAllSermon,
-  );
+  const perPage = 5;
+  const from = searchParams && searchParams.from ? +searchParams.from : 0;
+  const to = searchParams && searchParams.to ? +searchParams.to : perPage;
+  const postData = await getPaginatedContent({
+    from,
+    to,
+  });
+  const length = postData.total;
 
   return (
     <>
@@ -60,9 +61,8 @@ export default async function Page({
         </div>
       ) : null}
       {data.body ? <BodyContent value={data.body} /> : null}
-      <ContentWithPagination posts={posts} from={from} to={to}>
-        <SermonList posts={posts} />
-      </ContentWithPagination>
+      <SermonList posts={postData.posts} />
+      <ContentPagination searchParams={searchParams} length={length} per={perPage} />
     </>
   );
 }

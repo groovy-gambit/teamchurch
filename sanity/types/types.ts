@@ -1,4 +1,3 @@
-import { UUID } from 'crypto';
 import { PortableTextBlock, TypedObject } from 'sanity';
 
 export type RequiredMetaProps = {
@@ -23,6 +22,11 @@ export interface Meditation extends RequiredMetaProps {
   type: string;
   intro: string;
   body: TypedObject | TypedObject[];
+}
+
+export interface Meditations extends RequiredMetaProps {
+  posts: Meditation[];
+  total: number;
 }
 
 export interface Notepad extends RequiredMetaProps {
@@ -51,6 +55,11 @@ export interface Sermon extends RequiredMetaProps {
   };
 }
 
+export interface Sermons extends RequiredMetaProps {
+  posts: Sermon[];
+  total: number;
+}
+
 export interface Lecture extends RequiredMetaProps {
   title: string;
   slug: {
@@ -70,6 +79,11 @@ export interface Lecture extends RequiredMetaProps {
   };
 }
 
+export interface Lectures extends RequiredMetaProps {
+  posts: Lecture[];
+  total: number;
+}
+
 export interface Announcement extends RequiredMetaProps {
   title: string;
   subtitle: string;
@@ -79,6 +93,11 @@ export interface Announcement extends RequiredMetaProps {
   isEvent: boolean;
   eventAt?: Date;
   body: TypedObject | TypedObject[];
+}
+
+export interface Announcements extends RequiredMetaProps {
+  posts: Announcement[];
+  total: number;
 }
 
 export interface Staff extends RequiredMetaProps {
