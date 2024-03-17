@@ -1,3 +1,4 @@
+import { BreadcrumbLink, BreadcrumbPage } from '@/components/ui/breadcrumb';
 import { client } from '@/sanity/lib/client';
 import { slugQuery } from '@/sanity/lib/queries';
 
@@ -6,13 +7,11 @@ async function getPageData(slug: string) {
   return pageData;
 }
 
-export default async function BreadcrumbPageName({ slug }: { slug: string }) {
+export default async function BreadcrumbPageName({ slug, parent }: { slug: string; parent?: string }) {
   const data = await getPageData(slug);
 
-  if (slug === 'about') return '소개';
-  if (slug === 'word-of-god') return '말씀';
-  if (slug === 'ministry') return '사역';
-  if (slug === 'education') return '교육';
-
-  return <>{data?.title ?? slug} </>;
+  if (parent) {
+    return <BreadcrumbLink href={`/${parent}/${slug}`}>{data?.title ?? slug}</BreadcrumbLink>;
+  }
+  return <BreadcrumbPage>{data?.title ?? slug}</BreadcrumbPage>;
 }
