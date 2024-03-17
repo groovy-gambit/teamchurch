@@ -1,4 +1,4 @@
-import { Image, PortableTextBlock, TypedObject } from 'sanity';
+import { PortableTextBlock, TypedObject } from 'sanity';
 
 export type RequiredMetaProps = {
   _id: string;
@@ -128,7 +128,7 @@ export interface Banner extends RequiredMetaProps {
 }
 
 export interface GalleryObject extends RequiredMetaProps {
-  images: Image[];
+  images: { url: string; alt: string }[];
 }
 
 export interface Gallery extends RequiredMetaProps {
@@ -137,5 +137,10 @@ export interface Gallery extends RequiredMetaProps {
   slug: {
     current: string;
   };
-  images: GalleryObject[];
+  images: GalleryObject;
+}
+
+export interface Galleries extends RequiredMetaProps {
+  posts: Gallery[];
+  total: number;
 }
