@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </BreadcrumbList>
       </Breadcrumb>
       <h1>{data.title}</h1>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {data.images.images.map((image, i) => {
           return (
             <Dialog key={i}>
@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent className=" h-full max-h-[95%] w-full max-w-[95%] p-0">
+              <DialogContent className=" h-full w-full p-0 lg:max-h-[95%] lg:max-w-[95%]">
                 <Carousel
                   className="relative flex w-full flex-shrink-0"
                   opts={{
@@ -95,8 +95,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                       );
                     })}
                   </CarouselContent>
-                  <CarouselPrevious className="-left-3" />
-                  <CarouselNext className="-right-3" />
+                  <CarouselPrevious className="left-1 lg:-left-3" />
+                  <CarouselNext className="right-1 lg:-right-3" />
                 </Carousel>
               </DialogContent>
             </Dialog>
