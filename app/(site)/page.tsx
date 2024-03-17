@@ -6,9 +6,15 @@ import { cn } from '@/lib/utils';
 import AnnouncementList from './_components/announcementList';
 import { sanityFetch } from '@/lib/sanityClient';
 import { TypedObject } from 'sanity';
-import { Announcements, Banner, Meditations, Sermons } from '@/sanity/types/types';
+import { Announcements, Banner, Galleries, Meditations, Sermons } from '@/sanity/types/types';
 import BannerCarousel from './_components/bannerCarousel';
 import RecentSermons from './_components/recentSermons';
+import { Card } from '@/components/ui/card';
+import Image from 'next/image';
+import { client } from '@/sanity/lib/client';
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(client);
 
 type MeditationPageProps = {
   body?: TypedObject;
@@ -46,6 +52,7 @@ export default async function Home() {
   const banners = await getAllBanners();
   const announcements = await getData<Announcements>('announcement', 0, 5);
   const sermons = await getData<Sermons>('sermon', 0, 3);
+  const galleries = await getData<Galleries>('gallery', 0, 3);
 
   return (
     <>
@@ -100,8 +107,41 @@ export default async function Home() {
             </Link>
           </div>
         </section>
-        {/* End block */}
       </div>
+      {/* Start block */}
+      <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:px-10 lg:max-w-screen-lg">
+        <section className="relative mx-auto flex w-full flex-col items-center justify-center outline-none">
+          <h2 className="mb-4 text-center text-2xl font-semibold">갤러리</h2>
+          <div className="grid w-full grid-cols-1 grid-rows-1 gap-3 md:grid-cols-3">
+            {galleries.posts.map((item, i) => {
+              return (
+                <Link href={`/gallery/${item.slug.current}`} key={i} className="not-prose">
+                  <Card className="flex flex-col gap-2 overflow-hidden hover:drop-shadow">
+                    <div className="relative aspect-video w-full shrink-0">
+                      <Image
+                        alt={item.images.images[0].alt ?? ''}
+                        src={builder.image(item.images.images[0]).width(500).url()}
+                        fill
+                        className="m-0 object-cover"
+                        sizes="auto, 160px"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2 p-4">
+                      <div className="flex flex-col">
+                        <span className="text-xl">{item.title}</span>
+                      </div>
+                      <span className="line-clamp-2 flex-grow text-base text-slate-500">
+                        {new Date(item.date).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      </div>
+      {/* End block */}
     </>
   );
 }

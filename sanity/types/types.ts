@@ -126,3 +126,21 @@ export interface Banner extends RequiredMetaProps {
   linkToType: string;
   linkToSlug: string;
 }
+
+export interface GalleryObject extends RequiredMetaProps {
+  images: { url: string; alt: string }[];
+}
+
+export interface Gallery extends RequiredMetaProps {
+  title: string;
+  date: Date;
+  slug: {
+    current: string;
+  };
+  images: GalleryObject;
+}
+
+export interface Galleries extends RequiredMetaProps {
+  posts: Gallery[];
+  total: number;
+}

@@ -72,3 +72,12 @@ export const bannerQuery = groq`*[_type == "banner"]{
   "linkToType": linkTo->_type,
   "linkToSlug": linkTo->slug.current
 }`;
+
+export const galleryListQuery = groq`{
+    "posts": *[_type == "gallery"] | order(releasedAt desc, _id desc)[$from...$to],
+    "total": count(*[_type == "gallery"])
+}`;
+
+export const galleryQuery = groq`*[_type == "gallery" && slug.current == $slug][0]{
+    _id, title, slug, type, releasedAt, images
+}`;
