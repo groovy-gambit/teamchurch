@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </BreadcrumbList>
       </Breadcrumb>
       <h1>{data.title}</h1>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid-cols2 grid gap-3 lg:grid-cols-3">
         {data.images.images.map((image, i) => {
           return (
             <Dialog key={i}>
