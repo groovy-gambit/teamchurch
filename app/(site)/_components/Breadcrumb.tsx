@@ -7,7 +7,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import BreadcrumbPageName from './BreadcrumbPageName';
@@ -24,14 +23,16 @@ export default function Breadcrumb() {
         <BreadcrumbItem>
           <BreadcrumbLink href="/">홈</BreadcrumbLink>
         </BreadcrumbItem>
-        {pathArr.map((item) => {
+        {pathArr.map((item, i) => {
           return (
             <Fragment key={item}>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>
+                {i === pathArr.length - 1 ? (
                   <BreadcrumbPageName slug={item} />
-                </BreadcrumbPage>
+                ) : (
+                  <BreadcrumbPageName slug={item} parent={pathArr[i - 1]} />
+                )}
               </BreadcrumbItem>
             </Fragment>
           );
