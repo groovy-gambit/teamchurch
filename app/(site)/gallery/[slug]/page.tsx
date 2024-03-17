@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 <div className="relative w-full shrink-0">
                   <Image
                     alt={image.alt ?? ''}
-                    src={builder.image(image).format('jpg').url()}
+                    src={builder.image(image).width(2000).format('jpg').url()}
                     fill
                     className="m-0 object-contain"
                     sizes="100vw"
