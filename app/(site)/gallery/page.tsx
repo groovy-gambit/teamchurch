@@ -52,11 +52,11 @@ export default async function Page({ searchParams }: { searchParams: PageSearchP
         </BreadcrumbList>
       </Breadcrumb>
       <h1>{`갤러리`}</h1>
-      <div className="grid  sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {postData.posts.map((item, i) => {
           return (
             <Link href={`/gallery/${item.slug.current}`} key={i} className="not-prose">
-              <Card className="flex flex-col gap-2 overflow-hidden hover:drop-shadow">
+              <Card className="flex h-full flex-col gap-2 overflow-hidden hover:drop-shadow">
                 <div className="relative aspect-video w-full shrink-0">
                   <Image
                     alt={item.images.images[0].alt ?? ''}
@@ -66,11 +66,11 @@ export default async function Page({ searchParams }: { searchParams: PageSearchP
                     sizes="auto, 160px"
                   />
                 </div>
-                <div className="flex flex-col gap-2 p-4">
+                <div className="flex flex-grow flex-col justify-between gap-2 p-4">
                   <div className="flex flex-col">
                     <span className="text-xl">{item.title}</span>
                   </div>
-                  <span className="line-clamp-2 flex-grow text-base text-slate-500">
+                  <span className="line-clamp-2 text-base text-slate-500">
                     {new Date(item.date).toLocaleDateString()}
                   </span>
                 </div>

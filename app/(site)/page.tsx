@@ -1,4 +1,4 @@
-import { paginatedContentQuery, pageQuery, bannerQuery } from '@/sanity/lib/queries';
+import { paginatedContentQuery, pageQuery, bannerQuery, galleryListQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
@@ -46,13 +46,22 @@ async function getData<T>(type: string, from: number, to: number) {
   return dataList;
 }
 
+async function getGalleries<T>(from: number, to: number) {
+  const dataList = await sanityFetch<T>({
+    query: galleryListQuery,
+    params: { from, to },
+    tags: ['gallery'],
+  });
+  return dataList;
+}
+
 export default async function Home() {
   const meditation = await getMeditationPageData();
   const meditations = await getData<Meditations>('meditation', 0, 2);
   const banners = await getAllBanners();
   const announcements = await getData<Announcements>('announcement', 0, 5);
   const sermons = await getData<Sermons>('sermon', 0, 3);
-  const galleries = await getData<Galleries>('gallery', 0, 3);
+  const galleries = await getGalleries<Galleries>(0, 3);
 
   return (
     <>
@@ -110,13 +119,13 @@ export default async function Home() {
       </div>
       {/* Start block */}
       <div className="container mx-auto mt-12 grid grid-cols-1 gap-12 px-4 md:px-10 lg:max-w-screen-lg">
-        <section className="relative mx-auto flex w-full flex-col items-center justify-center outline-none">
+        <section className="relative mx-auto flex w-full flex-col items-center justify-center gap-4 outline-none">
           <h2 className="mb-4 text-center text-2xl font-semibold">갤러리</h2>
           <div className="grid w-full grid-cols-1 grid-rows-1 gap-3 md:grid-cols-3">
             {galleries.posts.map((item, i) => {
               return (
                 <Link href={`/gallery/${item.slug.current}`} key={i} className="not-prose">
-                  <Card className="flex flex-col gap-2 overflow-hidden hover:drop-shadow">
+                  <Card className="flex h-full flex-col gap-2 overflow-hidden hover:drop-shadow">
                     <div className="relative aspect-video w-full shrink-0">
                       <Image
                         alt={item.images.images[0].alt ?? ''}
@@ -126,11 +135,11 @@ export default async function Home() {
                         sizes="auto, 160px"
                       />
                     </div>
-                    <div className="flex flex-col gap-2 p-4">
+                    <div className="flex flex-grow flex-col justify-between gap-2 p-4">
                       <div className="flex flex-col">
                         <span className="text-xl">{item.title}</span>
                       </div>
-                      <span className="line-clamp-2 flex-grow text-base text-slate-500">
+                      <span className="line-clamp-2  text-base text-slate-500">
                         {new Date(item.date).toLocaleDateString()}
                       </span>
                     </div>
@@ -139,6 +148,12 @@ export default async function Home() {
               );
             })}
           </div>
+          <Link
+            href="/gallery"
+            className={cn(buttonVariants({ variant: 'secondary' }), 'w-full max-w-none md:max-w-xs')}
+          >
+            갤러리 전체보기
+          </Link>
         </section>
       </div>
       {/* End block */}
