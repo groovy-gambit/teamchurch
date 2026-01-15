@@ -163,6 +163,7 @@ export default function Header() {
 											<MobileNavItem href="/ministry/missionary" title="선교" />
 
 											<MobileNavItem href="/ministry/event" title="이벤트" />
+											<MobileNavItem href="/ministry/event-video" title="행사영상" />
 											<SheetClose asChild className="w-full">
 												<Link
 													href="https://visionyouthcc.org"
@@ -280,6 +281,7 @@ export default function Header() {
 									<ListItem href="/ministry/small-group" title="소그룹" />
 									<ListItem href="/ministry/missionary" title="선교" />
 									<ListItem href="/ministry/event" title="이벤트" />
+									<ListItem href="/ministry/event-video" title="행사영상" />
 									<li>
 										<Link
 											href="https://visionyouthcc.org"

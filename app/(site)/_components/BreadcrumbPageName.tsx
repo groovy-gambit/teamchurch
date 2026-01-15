@@ -13,6 +13,7 @@ export default async function BreadcrumbPageName({ slug, parent }: { slug: strin
   if (slug === 'word-of-god') return <BreadcrumbPage>말씀</BreadcrumbPage>;
   if (slug === 'ministry') return <BreadcrumbPage>사역</BreadcrumbPage>;
   if (slug === 'education') return <BreadcrumbPage>교육</BreadcrumbPage>;
+  if (slug === 'event-video') return <BreadcrumbPage>행사영상</BreadcrumbPage>;
   if (parent) {
     return <BreadcrumbLink href={`/${parent}/${slug}`}>{data?.title ?? slug}</BreadcrumbLink>;
   }

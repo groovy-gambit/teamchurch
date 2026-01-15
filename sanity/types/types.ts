@@ -144,3 +144,17 @@ export interface Galleries extends RequiredMetaProps {
   posts: Gallery[];
   total: number;
 }
+export interface EventVideo extends RequiredMetaProps {
+  title: string;
+  slug: {
+    current: string;
+  };
+  releasedAt: Date;
+  url: string;
+  body: TypedObject | TypedObject[];
+}
+
+export interface EventVideos extends RequiredMetaProps {
+  posts: EventVideo[];
+  total: number;
+}

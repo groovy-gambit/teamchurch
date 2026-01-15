@@ -78,6 +78,11 @@ export const galleryListQuery = groq`{
     "total": count(*[_type == "gallery"])
 }`;
 
+// Get event video
+export const eventVideoQuery = groq`*[_type == "eventVideo" && slug.current == $slug][0]{
+    title, slug, releasedAt, url, body
+}`;
+
 export const galleryQuery = groq`*[_type == "gallery" && slug.current == $slug][0]{
     _id, title, slug, type, date, images
 }`;

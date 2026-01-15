@@ -4,9 +4,11 @@ import Image from 'next/image';
 
 const Regex = new RegExp('.*(?:(?:youtu.be/|v/|vi/|u/w/|embed/)|(?:(?:watch)??v(?:i)?=|&v(?:i)?=))([^#&?]*).*', 'i');
 
-export default function RecentSermons({ sermons }: { sermons: Sermon[] }) {
+import { cn } from "@/lib/utils";
+
+export default function RecentSermons({ sermons, className }: { sermons: Sermon[], className?: string }) {
   return (
-    <div className="grid w-full grid-cols-1 grid-rows-1 gap-3 md:grid-cols-3">
+    <div className={cn("grid w-full grid-cols-1 grid-rows-1 gap-3 md:grid-cols-3", className)}>
       {sermons.map((sermon: Sermon) => {
         const sermonID = sermon.sermonURL.match(Regex)?.[1];
         return (
