@@ -17,9 +17,11 @@ import {
 	Galleries,
 	Meditations,
 	Sermons,
+	EventVideos,
 } from "@/sanity/types/types";
 import BannerCarousel from "./_components/bannerCarousel";
 import RecentSermons from "./_components/recentSermons";
+import RecentEventVideo from "./_components/recentEventVideo";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
@@ -71,7 +73,8 @@ export default async function Home() {
 	const meditations = await getData<Meditations>("meditation", 0, 2);
 	const banners = await getAllBanners();
 	const announcements = await getData<Announcements>("announcement", 0, 5);
-	const sermons = await getData<Sermons>("sermon", 0, 3);
+	const sermons = await getData<Sermons>("sermon", 0, 2);
+	const eventVideos = await getData<EventVideos>("eventVideo", 0, 1);
 	const galleries = await getGalleries<Galleries>(0, 3);
 
 	return (
@@ -81,18 +84,38 @@ export default async function Home() {
 				<BannerCarousel images={banners} />
 			</section>
 
-			<section className="container relative mx-auto mt-12 flex flex-col items-center justify-center gap-4 px-4 outline-none md:px-10 lg:max-w-screen-lg">
-				<h2 className="mb-4 text-center text-2xl font-semibold">설교 말씀</h2>
-				<RecentSermons sermons={sermons.posts} />
-				<Link
-					href="/word-of-god/sermon"
-					className={cn(
-						buttonVariants({ variant: "secondary" }),
-						"w-full max-w-none md:max-w-xs",
+			<section className="container relative mx-auto mt-12 grid grid-cols-1 gap-3 px-4 md:grid-cols-3 md:px-10 lg:max-w-screen-lg">
+				{/* Sermons Section (2 cols) */}
+				<div className="flex flex-col items-center gap-4 md:col-span-2 px-4 py-4 rounded-lg bg-gray-100/90">
+					<h2 className="mb-4 text-center text-2xl font-semibold">설교 말씀</h2>
+					<RecentSermons sermons={sermons.posts} className="md:grid-cols-2" />
+					<Link
+						href="/word-of-god/sermon"
+						className={cn(
+							buttonVariants({ variant: "default" }),
+							"w-full max-w-none md:max-w-xs",
+						)}
+					>
+						설교 말씀 전체보기
+					</Link>
+				</div>
+
+				{/* Event Video Section (1 col) */}
+				<div className="flex flex-col items-center gap-4 md:col-span-1 px-2 py-4 justify-between">
+					<h2 className="mb-4 text-center text-2xl font-semibold">행사영상</h2>
+					{eventVideos.posts[0] && (
+						<RecentEventVideo video={eventVideos.posts[0]} />
 					)}
-				>
-					설교 말씀 전체보기
-				</Link>
+					<Link
+						href="/ministry/event-video"
+						className={cn(
+							buttonVariants({ variant: "secondary" }),
+							"w-full max-w-none md:max-w-xs",
+						)}
+					>
+						행사영상 전체보기
+					</Link>
+				</div>
 			</section>
 			{/* End block */}
 			{/* Two column content layout */}

@@ -23,9 +23,15 @@ export default function SubMenu() {
 				</Link>
 				<Link
 					href="/ministry/event"
-					className={`py-2 ${pathName.includes("/ministry/event") && "font-bold"}`}
+					className={`py-2 ${(pathName === "/ministry/event" || pathName.startsWith("/ministry/event/")) && "font-bold"}`}
 				>
 					이벤트
+				</Link>
+				<Link
+					href="/ministry/event-video"
+					className={`py-2 ${pathName.includes("/ministry/event-video") && "font-bold"}`}
+				>
+					행사영상
 				</Link>
 				<Link className="py-2" href="https://visionyouthcc.org" target="_blank">
 					VYCC

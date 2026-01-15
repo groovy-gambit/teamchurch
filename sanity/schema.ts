@@ -12,6 +12,7 @@ import banner from './schemas/banner';
 import notepad from './schemas/notepad';
 import galleryObject from './schemas/galleryObject';
 import gallery from './schemas/gallery';
+import eventVideo from './schemas/eventVideo';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,5 +28,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     banner,
     notepad,
     gallery,
+    eventVideo,
   ],
 };
