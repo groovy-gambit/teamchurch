@@ -13,6 +13,8 @@ import notepad from './schemas/notepad';
 import galleryObject from './schemas/galleryObject';
 import gallery from './schemas/gallery';
 import eventVideo from './schemas/eventVideo';
+import motherwiseFatherwise from './schemas/motherwiseFatherwise';
+import unitedPrayer from './schemas/unitedPrayer';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -29,5 +31,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     notepad,
     gallery,
     eventVideo,
+    motherwiseFatherwise,
+    unitedPrayer,
   ],
 };

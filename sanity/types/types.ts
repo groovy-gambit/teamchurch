@@ -158,3 +158,32 @@ export interface EventVideos extends RequiredMetaProps {
   posts: EventVideo[];
   total: number;
 }
+
+export interface MotherwiseFatherwise extends RequiredMetaProps {
+  title: string;
+  slug: {
+    current: string;
+  };
+  category: 'motherwise' | 'fatherwise';
+  intro: string;
+  body: TypedObject | TypedObject[];
+}
+
+export interface MotherwiseFatherwises extends RequiredMetaProps {
+  posts: MotherwiseFatherwise[];
+  total: number;
+}
+
+export interface UnitedPrayer extends RequiredMetaProps {
+  title: string;
+  slug: {
+    current: string;
+  };
+  intro: string;
+  body: TypedObject | TypedObject[];
+}
+
+export interface UnitedPrayers extends RequiredMetaProps {
+  posts: UnitedPrayer[];
+  total: number;
+}
