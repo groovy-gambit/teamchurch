@@ -86,3 +86,13 @@ export const eventVideoQuery = groq`*[_type == "eventVideo" && slug.current == $
 export const galleryQuery = groq`*[_type == "gallery" && slug.current == $slug][0]{
     _id, title, slug, type, date, images
 }`;
+
+// Get single motherwiseFatherwise item
+export const motherwiseFatherwiseQuery = groq`*[_type == "motherwiseFatherwise" && slug.current == $slug][0]{
+    title, slug, category, releasedAt, intro, body
+}`;
+
+// Get single unitedPrayer item
+export const unitedPrayerQuery = groq`*[_type == "unitedPrayer" && slug.current == $slug][0]{
+    title, slug, releasedAt, intro, body
+}`;

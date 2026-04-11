@@ -133,17 +133,20 @@ export default function Header() {
 									</AccordionContent>
 								</AccordionItem>
 								<AccordionItem value="item-2">
-									<AccordionTrigger>말씀</AccordionTrigger>
+									<AccordionTrigger>양육</AccordionTrigger>
 									<AccordionContent>
 										<ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-											<MobileNavItem href="/word-of-god/sermon" title="설교" />
-											<MobileNavItem
-												href="/word-of-god/meditation"
-												title="묵상"
-											/>
 											<MobileNavItem
 												href="/word-of-god/membership-training"
 												title="멤버쉽반"
+											/>
+											<MobileNavItem
+												href="/word-of-god/motherwise-fatherwise"
+												title="마더와이즈 & 파더와이즈"
+											/>
+											<MobileNavItem
+												href="/word-of-god/meditation"
+												title="묵상"
 											/>
 											<MobileNavItem
 												href="/word-of-god/lecture"
@@ -160,9 +163,8 @@ export default function Header() {
 												href="/ministry/small-group"
 												title="소그룹"
 											/>
+											<MobileNavItem href="/ministry/united-prayer" title="연합기도" />
 											<MobileNavItem href="/ministry/missionary" title="선교" />
-
-											<MobileNavItem href="/ministry/event" title="이벤트" />
 											<MobileNavItem href="/ministry/event-video" title="행사영상" />
 											<SheetClose asChild className="w-full">
 												<Link
@@ -261,15 +263,18 @@ export default function Header() {
 							</NavigationMenuContent>
 						</NavigationMenuItem>
 						<NavigationMenuItem>
-							<NavigationMenuTrigger>말씀</NavigationMenuTrigger>
+							<NavigationMenuTrigger>양육</NavigationMenuTrigger>
 							<NavigationMenuContent>
 								<ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
-									<ListItem href="/word-of-god/sermon" title="설교" />
-									<ListItem href="/word-of-god/meditation" title="묵상" />
 									<ListItem
 										href="/word-of-god/membership-training"
 										title="멤버쉽반"
 									/>
+									<ListItem
+										href="/word-of-god/motherwise-fatherwise"
+										title="마더와이즈 & 파더와이즈"
+									/>
+									<ListItem href="/word-of-god/meditation" title="묵상" />
 									<ListItem href="/word-of-god/lecture" title="양육컨텐츠" />
 								</ul>
 							</NavigationMenuContent>
@@ -279,8 +284,8 @@ export default function Header() {
 							<NavigationMenuContent>
 								<ul className="grid gap-2 p-2 md:w-[150px] lg:grid-cols-[1fr]">
 									<ListItem href="/ministry/small-group" title="소그룹" />
+									<ListItem href="/ministry/united-prayer" title="연합기도" />
 									<ListItem href="/ministry/missionary" title="선교" />
-									<ListItem href="/ministry/event" title="이벤트" />
 									<ListItem href="/ministry/event-video" title="행사영상" />
 									<li>
 										<Link
