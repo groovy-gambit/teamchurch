@@ -10,10 +10,17 @@ export default function SubMenu() {
 		<section className="pt-3">
 			<div className="flex flex-col">
 				<Link
-					href="/word-of-god/sermon"
-					className={`py-2 ${pathName.includes("/word-of-god/sermon") && "font-bold"}`}
+					href="/word-of-god/membership-training"
+					className={`py-2 ${pathName.includes("/word-of-god/membership-training") && "font-bold"}`}
 				>
-					설교
+					멤버쉽반
+				</Link>
+
+				<Link
+					href="/word-of-god/motherwise-fatherwise"
+					className={`py-2 ${pathName.includes("/word-of-god/motherwise-fatherwise") && "font-bold"}`}
+				>
+					마더와이즈 & 파더와이즈
 				</Link>
 
 				<Link
@@ -21,13 +28,6 @@ export default function SubMenu() {
 					className={`py-2 ${pathName.includes("/word-of-god/meditation") && "font-bold"}`}
 				>
 					묵상
-				</Link>
-
-				<Link
-					href="/word-of-god/membership-training"
-					className={`py-2 ${pathName.includes("/word-of-god/membership-training") && "font-bold"}`}
-				>
-					멤버쉽반
 				</Link>
 
 				<Link

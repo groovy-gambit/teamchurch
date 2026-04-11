@@ -16,16 +16,16 @@ export default function SubMenu() {
 					소그룹
 				</Link>
 				<Link
+					href="/ministry/united-prayer"
+					className={`py-2 ${pathName.includes("/ministry/united-prayer") && "font-bold"}`}
+				>
+					연합기도
+				</Link>
+				<Link
 					href="/ministry/missionary"
 					className={`py-2 ${pathName.includes("/ministry/missionary") && "font-bold"}`}
 				>
 					선교
-				</Link>
-				<Link
-					href="/ministry/event"
-					className={`py-2 ${(pathName === "/ministry/event" || pathName.startsWith("/ministry/event/")) && "font-bold"}`}
-				>
-					이벤트
 				</Link>
 				<Link
 					href="/ministry/event-video"
