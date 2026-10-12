@@ -5,22 +5,22 @@ import { eventVideoQuery } from '@/sanity/lib/queries';
 import { EventVideo } from '@/sanity/types/types';
 
 async function getPageData(slug: string) {
-    const pageData = await sanityFetch<EventVideo>({
-        query: eventVideoQuery,
-        params: { slug },
-        tags: ['eventVideo'],
-    });
-    return pageData;
+  const pageData = await sanityFetch<EventVideo>({
+    query: eventVideoQuery,
+    params: { slug },
+    tags: ['eventVideo'],
+  });
+  return pageData;
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-    const slug = params.slug;
-    const data = await getPageData(slug);
-    return (
-        <div className="flex-col gap-4">
-            <h1>{data.title}</h1>
-            {data.url ? <YoutubePlayer url={data.url} /> : null}
-            {data.body ? <BodyContent value={data.body} /> : null}
-        </div>
-    );
+  const slug = params.slug;
+  const data = await getPageData(slug);
+  return (
+    <div className="flex-col gap-4">
+      <h1>{data.title}</h1>
+      {data.url ? <YoutubePlayer url={data.url} /> : null}
+      {data.body ? <BodyContent value={data.body} /> : null}
+    </div>
+  );
 }
