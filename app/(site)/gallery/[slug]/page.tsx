@@ -85,7 +85,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                           <div className=" relative h-full w-full">
                             <Image
                               alt={image.alt ?? ''}
-                              src={builder.image(image).width(1280).url()}
+                              src={builder.image(image).width(2400).fit('max').quality(85).url()}
                               className={cn(`m-0 object-contain`)}
                               fill
                               sizes="100vw"
