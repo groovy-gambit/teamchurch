@@ -39,7 +39,7 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
                   <CardContent className="relative flex aspect-[2/1] items-center justify-center overflow-hidden p-0 md:aspect-[4/1]">
                     <Image
                       alt={image.image.alt ?? ''}
-                      src={builder.image(image.image).url()}
+                      src={builder.image(image.image).width(1920).quality(75).url()}
                       className={cn(
                         `m-0 object-cover`,
                         image.mobileImage.url ? 'hidden md:block' : '',
@@ -52,7 +52,7 @@ export default function BannerCarousel({ images }: { images: Banner[] }) {
                     {image.mobileImage ? (
                       <Image
                         alt={image.mobileImage.alt ?? ''}
-                        src={builder.image(image.mobileImage).url()}
+                        src={builder.image(image.mobileImage).width(768).quality(75).url()}
                         className={cn(
                           `block object-cover md:hidden`,
                           linkPath ? 'hover:cursor-pointer' : 'cursor-auto',

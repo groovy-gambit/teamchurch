@@ -15,7 +15,7 @@ export const BodyContent = ({ value }: { value: any }) => {
           image: ({ value }) => (
             <div className="relative w-full">
               <Image
-                src={builder.image(value).url()}
+                src={builder.image(value).width(1200).quality(75).url()}
                 alt={value.alt}
                 width={0}
                 height={0}

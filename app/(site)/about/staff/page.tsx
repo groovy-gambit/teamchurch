@@ -26,7 +26,7 @@ export default async function Page() {
         <div className="relative h-72 overflow-hidden rounded-md">
           <Image
             alt={data?.mainImage?.alt ?? ''}
-            src={builder.image(data.mainImage).url()}
+            src={builder.image(data.mainImage).width(1920).quality(75).url()}
             className="m-0 object-cover"
             fill
             sizes="100vw"

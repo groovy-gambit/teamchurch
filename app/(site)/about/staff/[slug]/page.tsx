@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <Avatar className="h-40 w-40">
           {data.profile_image ? (
             <Image
-              src={builder.image(data.profile_image).url()}
+              src={builder.image(data.profile_image).width(320).quality(75).url()}
               fill
               alt={data.profile_image.alt ?? ''}
               sizes="160px, 160px"
