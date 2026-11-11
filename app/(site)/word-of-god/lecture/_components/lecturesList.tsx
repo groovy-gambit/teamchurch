@@ -53,7 +53,7 @@ export default function LectureList({ posts }: { posts: Lecture[] }) {
                 {post.thumbnail ? (
                   <div className="relative h-72 w-full shrink-0 sm:h-40 sm:w-72">
                     <Image
-                      src={builder.image(post.thumbnail).url()}
+                      src={builder.image(post.thumbnail).width(320).quality(75).url()}
                       alt=""
                       fill
                       className="m-0 object-cover"

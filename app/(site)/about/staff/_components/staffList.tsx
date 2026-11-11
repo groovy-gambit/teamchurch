@@ -32,7 +32,7 @@ export default async function StaffList() {
                 <Avatar className="h-20 w-20">
                   {staff.profile_image ? (
                     <Image
-                      src={builder.image(staff.profile_image).url()}
+                      src={builder.image(staff.profile_image).width(320).quality(75).url()}
                       fill
                       alt={staff.profile_image.alt ?? ''}
                       sizes="160px, 160px"
